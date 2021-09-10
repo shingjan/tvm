@@ -262,8 +262,19 @@ def create_measure_batch(task, option):
     builder.set_task(task, build_kwargs)
 
     def measure_batch(measure_inputs):
+        import time
+        import logging
+
+        logger = logging.getLogger("autotvm")
+
+        start = time.time()
         build_results = builder.build(measure_inputs)
+        build_time = time.time()
         results = runner.run(measure_inputs, build_results)
+        run_time = time.time()
+        logger.info(
+            "build_time: %.2f, run_time: %.2f .\n", build_time - start, run_time - build_time
+        )
         return results
 
     measure_batch.n_parallel = builder.n_parallel

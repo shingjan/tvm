@@ -194,8 +194,17 @@ print(task.config_space)
 
 # Use local gpu, measure 10 times for every config to reduce variance
 # The timeout of compiling a program is 10 seconds, the timeout for running is 4 seconds
+from tvm.contrib import tar
+
+
+def custom_build(*args):
+    return tar.tar(*args)
+
+
+custom_build.output_format = "tar"
+
 measure_option = autotvm.measure_option(
-    builder=autotvm.LocalBuilder(),
+    builder=autotvm.LocalBuilder(build_func=custom_build),
     runner=autotvm.LocalRunner(repeat=3, min_repeat_ms=100, timeout=4),
 )
 
@@ -204,7 +213,7 @@ measure_option = autotvm.measure_option(
 # see many error reports. As long as you can see non-zero GFLOPS, it is okay.
 tuner = autotvm.tuner.XGBTuner(task)
 tuner.tune(
-    n_trial=20,
+    n_trial=192,
     measure_option=measure_option,
     callbacks=[autotvm.callback.log_to_file("conv2d.log")],
 )
