@@ -28,6 +28,7 @@
 #include <tvm/tir/stmt_functor.h>
 
 #include <cmath>
+#include <regex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -723,6 +724,40 @@ void CodeGenCUDA::VisitExpr_(const CallNode* op, std::ostream& os) {
       this->PrintExpr(op->args[i * 2 + 1], os);
       os << "]" << ((i < 3) ? ", " : ")");
     }
+
+  } else if ((op->op.same_as(builtin::call_extern()) ||
+              op->op.same_as(builtin::call_pure_extern())) &&
+             Downcast<StringImm>(op->args[0])->value == "mma_m16n8k8_row_row_fp16fp16fp32") {
+    ICHECK_EQ(op->args.size(), 7U);
+    std::string asm_code = "";
+    std::string a_ref = this->PrintExpr(op->args[1]);
+    std::string a_bias = this->PrintExpr(op->args[2]);
+    std::string b_ref = this->PrintExpr(op->args[3]);
+    std::string b_bias = this->PrintExpr(op->args[4]);
+    std::string c_ref = this->PrintExpr(op->args[5]);
+    std::string c_bias = this->PrintExpr(op->args[6]);
+
+    // C accumulator is fp16
+    std::string new_a_ref = "((unsigned *)(" + a_ref + " + " + a_bias + "))";
+    std::string new_b_ref = "((unsigned *)(" + b_ref + " + " + b_bias + "))";
+    std::string new_c_ref = "((float *)(" + c_ref + " + " + c_bias + "))";
+    asm_code = R"(
+            {
+              __asm__ __volatile__(
+                  "mma.sync.aligned.m16n8k8.row.col.f32.f16.f16.f32 "
+                  "{%0,%1,%2,%3}, {%4,%5}, {%6}, "
+                  "{%7,%8,%9,%10};\n"
+                  : "=f"(D[0]), "=f"(D[1]), "=f"(D[2]), "=f"(D[3])
+                  : "r"(A[0]), "r"(A[1]), "r"(B[0]), 
+                    "f"(C[0]), "f"(C[1]), "f"(C[2]), "f"(C[3]));
+            }
+          )";
+    asm_code = std::regex_replace(asm_code, std::regex("A"), new_a_ref);
+    asm_code = std::regex_replace(asm_code, std::regex("B"), new_b_ref);
+    asm_code = std::regex_replace(asm_code, std::regex("C"), new_c_ref);
+    asm_code = std::regex_replace(asm_code, std::regex("D"), new_c_ref);
+
+    this->stream << asm_code;
   } else {
     CodeGenC::VisitExpr_(op, os);
   }
