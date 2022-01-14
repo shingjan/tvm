@@ -129,7 +129,7 @@ void TransformLayout(ScheduleState self, const StmtSRef& block_sref, int buffer_
                      bool is_write_index, const IndexMap& index_map) {
   const BlockNode* block_ptr = TVM_SREF_TO_BLOCK(block_ptr, block_sref);
   Buffer old_buffer = GetNthAccessBuffer(self, GetRef<Block>(block_ptr), buffer_index,
-                                         /*is_write=*/!is_write_index);
+                                         /*is_write=*/is_write_index);
   Optional<StmtSRef> defining_site_sref;
   bool is_alloc;
   std::tie(defining_site_sref, is_alloc) = GetBufferDefiningSite(block_sref, old_buffer);
