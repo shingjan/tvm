@@ -86,8 +86,6 @@ def test_integration_matmul():
         i, j, k = sch.get_loops(block)
 
         # Step 2. Rule-Multi-Level-Tiling
-        # i_factors = sch.sample_perfect_tile(i, n=5, decision=[8, 1, 2, 1, 4])
-        # j_factors = sch.sample_perfect_tile(j, n=5, decision=[1, 8, 4, 1, 2])
         i1, i2 = sch.split(i, factors=[None, 16])
         sch.bind(i1, "blockIdx.x")
 
@@ -103,37 +101,79 @@ def test_integration_matmul():
             f_0, f_1 = sch.split(fused, factors=[None, warp_size])
             # sch.reorder(f_1, f_2, f_0, f_3)
             sch.bind(f_1, "threadIdx.x")
-            # sch.bind(f_0, 'vthread.z')
-            # sch.compute_at(block_read_local, f_2)
 
         fetch_to_shared(block, 1, 2)
-
         fetch_to_shared(block, 2, 2)
 
-        # Step 3. Postproc-Rewrite-Tensorize
-        # Step 3.1. Cache read
+        # fetch to warp - A 16 * 8 -> 32 * 4
+        A_warp = sch.cache_read(block, 1, "warp")
+        sch.transform_layout(
+            A_warp,
+            buffer_index=0,
+            is_write_index=True,
+            index_map=lambda i, j: ((i % 8) * 4 + j // 2, (i // 8) * 2 + j % 2),
+        )
+        warp_loop1, warp_loop2 = sch.get_loops(A_warp)[-2:]
+        f_0, f_1 = sch.split(warp_loop1, factors=[None, 8])
+        f_2, f_3 = sch.split(warp_loop2, factors=[None, 2])
+        sch.reorder(f_1, f_2, f_0, f_3)
+        fused_1 = sch.fuse(f_1, f_2)
+        fused_2 = sch.fuse(f_0, f_3)
+        sch.bind(fused_1, "threadIdx.x")
 
-        # sch.cache_read("local")
-        # or just do it in shared memory
-        # nvidia wmma/warp memory -> TVM abstraction -> ends up in local memory
-        # register tensor intrinsics
-        # better just do it in shared memory using tensorize
+        # fetch to warp - B 8 * 8 -> 32 * 2
+        B_warp = sch.cache_read(block, 2, "warp")
+        sch.transform_layout(
+            B_warp,
+            buffer_index=0,
+            is_write_index=True,
+            index_map=lambda i, j: (i // 2 + j * 4, i % 2),
+        )
+        # fused = sch.fuse(*sch.get_loops(block)[-3:-2])
+        warp_loop1, warp_loop2 = sch.get_loops(B_warp)[-2:]
+        f_0, f_1 = sch.split(warp_loop1, factors=[4, 2])
+        sch.reorder(warp_loop2, f_0, f_1)
+        fused_1 = sch.fuse(warp_loop2, f_0)
+        sch.bind(fused_1, "threadIdx.x")
+
+        # fetch to C 16 * 8 -> 32 * 4
+        C_warp = sch.cache_write(block, 0, "warp")
+        sch.reverse_compute_at(C_warp, sch.get_loops(block)[2])
+        # need to do a reverse_compute_at to place it under blockidx.x
+        sch.transform_layout(
+            C_warp,
+            buffer_index=0,
+            is_write_index=False,
+            index_map=lambda i, j: ((i % 8) * 4 + j // 2, (i // 8) * 2 + j % 2),
+        )
+        print(sch.mod["main"].script())
+        warp_loop1, warp_loop2 = sch.get_loops(C_warp)[-2:]
+        f_0, f_1 = sch.split(warp_loop1, factors=[None, 8])
+        f_2, f_3 = sch.split(warp_loop2, factors=[None, 2])
+        sch.reorder(f_1, f_2, f_0, f_3)
+        fused_1 = sch.fuse(f_1, f_2)
+        fused_2 = sch.fuse(f_0, f_3)
+
+        sch.bind(fused_1, "threadIdx.x")
+        print(sch.mod["main"].script())
 
         # Step 3.3. Decompose -> this may be needed
         loop = sch.get_loops(block)[1]
-
         block_init_c = sch.decompose_reduction(block, loop)
 
-        sch.tensorize(i2, "mma_sync")
+        # print(sch.mod["main"].script())
+
+        # tensorize
+        # sch.tensorize(i2, "mma_sync")
 
     sch = tir.Schedule(workload)
     schedule(sch)
 
-    if sch is None:
-        print("No valid schedule found")
-    else:
-        print(sch.mod["main"].script())
-        print(tvm.lower(sch.mod["main"], None, simple_mode=True))
+    # if sch is None:
+    #     print("No valid schedule found")
+    # else:
+    #     print(sch.mod["main"].script())
+    #     print(tvm.lower(sch.mod["main"], None, simple_mode=True))
 
     dev = tvm.device("cuda", 0)
     a_np = np.random.uniform(size=(N, K)).astype("float16")
