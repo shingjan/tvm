@@ -233,28 +233,47 @@ class IndexMap(Object):
 
 @register_object("tir.TensorIntrin")
 class TensorIntrin(Object):
-    """A function declaration expression.
+    """A tensor intrinsic.
 
     Parameters
     ----------
-    desc_func: PrimFunc
-        The function to describe the computation
+    desc : PrimFunc
+        The function to describe the computation.
 
-    intrin_func: PrimFunc
-        The function for execution
+    impl : PrimFunc
+        The function of the implementation for the execution.
     """
 
-    def __init__(self, desc_func, intrin_func):
-        self.__init_handle_by_constructor__(
-            _ffi_api.TensorIntrin, desc_func, intrin_func  # type: ignore  # pylint: disable=no-member
-        )
+    def __init__(self, desc, impl):
+        self.__init_handle_by_constructor__(_ffi_api.TensorIntrin, desc, impl)
 
     @staticmethod
-    def register(name: str, desc_func: PrimFunc, intrin_func: PrimFunc):
-        return _ffi_api.TensorIntrinRegister(  # pylint: disable=no-member
-            name, desc_func, intrin_func
-        )
+    def register(name: str, desc: PrimFunc, impl: PrimFunc):
+        """Register a tensor intrinsic with its name.
+
+        Parameters
+        ----------
+        name : str
+            The name of the TensorIntrin to register.
+        desc : PrimFunc
+            The function to describe the computation.
+        impl : PrimFunc
+            The function of the implementation for the execution.
+        """
+        return _ffi_api.TensorIntrinRegister(name, TensorIntrin(desc, impl))  # type: ignore
 
     @staticmethod
     def get(name: str):
-        return _ffi_api.TensorIntrinGet(name)  # pylint: disable=no-member
+        """Look up a tensor intrinsic by its name.
+
+        Parameters
+        ----------
+        name : str
+            The name of the TensorIntrin to look up.
+
+        Returns
+        -------
+        result : TensorIntrin
+            The TensorIntrin with the specified name.
+        """
+        return _ffi_api.TensorIntrinGet(name)  # pylint: type: ignore

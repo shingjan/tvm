@@ -18,6 +18,7 @@
  */
 #include <unordered_map>
 
+#include "../ir_comparator.h"
 #include "../utils.h"
 
 namespace tvm {
@@ -846,7 +847,7 @@ Array<StmtSRef> CollectComputeLocation(const ScheduleState& self, const StmtSRef
 
 class AutoTensorizeComparator : public tir::TensorizeComparator {
  public:
-  AutoTensorizeComparator() : tir::TensorizeComparator(false) {}
+  AutoTensorizeComparator() : tir::TensorizeComparator(IRModule(nullptr), false) {}
 
   bool VisitStmt(const tir::Stmt& n, const tir::Stmt& rhs) override {
     if (n.same_as(rhs)) return true;
@@ -865,8 +866,8 @@ class AutoTensorizeComparator : public tir::TensorizeComparator {
     if (lhs.same_as(rhs)) return true;
     // Remap both buffer itself and buffer data
     // Skip buffer shape
-    bool equal = DefEqual(lhs, rhs) && DefEqual(lhs->data, rhs->data) &&
-                 lhs->buffer_type == rhs->buffer_type && CompareType(lhs->dtype, rhs->dtype);
+    bool equal = DefEqual(lhs->data, rhs->data) && lhs->buffer_type == rhs->buffer_type &&
+                 lhs->dtype == rhs->dtype;
     if (equal) rhs_buffer_map_[rhs] = lhs;
     return equal;
   }

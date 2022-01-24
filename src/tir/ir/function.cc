@@ -196,39 +196,6 @@ TVM_REGISTER_GLOBAL("tir.IndexMap")
 TVM_REGISTER_GLOBAL("tir.IndexMapFromFunc").set_body_typed(IndexMap::FromFunc);
 TVM_REGISTER_GLOBAL("tir.IndexMapApply").set_body_method<IndexMap>(&IndexMapNode::Apply);
 
-TensorIntrin::TensorIntrin(PrimFunc desc_func, PrimFunc intrin_func) {
-  // check the number of func var is equal
-  CHECK_EQ(desc_func->params.size(), intrin_func->params.size());
-  CHECK_EQ(desc_func->buffer_map.size(), intrin_func->buffer_map.size());
-
-  // check both functions' bodies are directly block
-  const auto* desc_realize =
-      Downcast<BlockRealize>(desc_func->body)->block->body.as<BlockRealizeNode>();
-  const auto* intrin_realize =
-      Downcast<BlockRealize>(intrin_func->body)->block->body.as<BlockRealizeNode>();
-  CHECK(desc_realize != nullptr) << "description function's body expect a directly block";
-  CHECK(intrin_realize != nullptr) << "intrinsic function's body expect a directly block";
-
-  const Block& desc_block = desc_realize->block;
-  const Block& intrin_block = intrin_realize->block;
-
-  // check block var number and iter type
-  CHECK_EQ(desc_block->iter_vars.size(), intrin_block->iter_vars.size())
-      << "Two blocks should have the same number of block vars";
-  for (size_t i = 0; i < desc_block->iter_vars.size(); i++) {
-    const IterVar& desc_var = desc_block->iter_vars[i];
-    const IterVar& intrin_var = intrin_block->iter_vars[i];
-    CHECK(desc_var->iter_type == intrin_var->iter_type)
-        << "Block iter_type mismatch between " << desc_var->iter_type << " and "
-        << intrin_var->iter_type;
-  }
-
-  auto n = make_object<TensorIntrinNode>();
-  n->description = std::move(desc_func);
-  n->implementation = std::move(intrin_func);
-  data_ = std::move(n);
-}
-
 class TensorIntrinManager {
  public:
   Map<String, tir::TensorIntrin> reg;
@@ -239,19 +206,36 @@ class TensorIntrinManager {
   }
 };
 
-TensorIntrin TensorIntrin::Register(String name, PrimFunc desc_func, PrimFunc intrin_func) {
+TensorIntrin::TensorIntrin(PrimFunc desc, PrimFunc impl) {
+  // Check the number of func var is equal
+  CHECK_EQ(desc->params.size(), impl->params.size())
+      << "ValueError: The number of parameters of the description and the implementation of the "
+         "tensor intrinsic doesn't match.";
+  for (size_t i = 0; i < desc->params.size(); i++) {
+    CHECK(desc->params[i]->dtype.is_handle()) << "ValueError: Parameters of the description of the "
+                                                 "tensor intrinsic should be handle only.";
+    CHECK(impl->params[i]->dtype.is_handle()) << "ValueError: Parameters of the implementation of "
+                                                 "the tensor intrinsic should be handle only.";
+  }
+  ICHECK_EQ(desc->buffer_map.size(), impl->buffer_map.size());
+
+  ObjectPtr<TensorIntrinNode> n = make_object<TensorIntrinNode>();
+  n->desc = std::move(desc);
+  n->impl = std::move(impl);
+  data_ = std::move(n);
+}
+
+void TensorIntrin::Register(String name, TensorIntrin intrin) {
   TensorIntrinManager* manager = TensorIntrinManager::Global();
-  ICHECK_EQ(manager->reg.count(name), 0)
+  CHECK_EQ(manager->reg.count(name), 0)
       << "ValueError: TensorIntrin '" << name << "' has already been registered";
-  TensorIntrin intrin(desc_func, intrin_func);
   manager->reg.Set(name, intrin);
-  return intrin;
 }
 
 TensorIntrin TensorIntrin::Get(String name) {
   const TensorIntrinManager* manager = TensorIntrinManager::Global();
-  ICHECK_EQ(manager->reg.count(name), 1)
-      << "ValueError: TensorIntrin '" << name << "' is not registered";
+  auto it = manager->reg.find(name);
+  CHECK(it != manager->reg.end()) << "ValueError: TensorIntrin '" << name << "' is not registered";
   return manager->reg.at(name);
 }
 

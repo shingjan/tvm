@@ -136,8 +136,7 @@ void LeafBlockRemovalPlan(const ScheduleState& self, const StmtSRef& leaf_block_
   throw OnlyLeafError(self->mod, GetRef<Block>(leaf_block), GetRef<Block>(scope_block));
 }
 
-/******** Utilities for tensorization ********/
-
+/******** IR Substitution ********/
 class IRSubstituteInScope : public StmtExprMutator {
  public:
   explicit IRSubstituteInScope(std::function<PrimExpr(const VarNode*)> fmap)
@@ -170,63 +169,19 @@ class IRSubstituteInScope : public StmtExprMutator {
 
  private:
   const std::function<PrimExpr(const VarNode*)> fmap_;
+  arith::Analyzer analyzer;
 };
 
-Stmt SubstituteInScope(const Stmt& stmt,
-                       const std::function<PrimExpr(const VarNode*)>& value_func) {
-  return IRSubstituteInScope(value_func)(stmt);
-}
-
-Stmt SubstituteInScope(const Stmt& stmt,
-                       const std::unordered_map<const VarNode*, PrimExpr>& var_map) {
-  auto vmap = [&](const VarNode* v) -> PrimExpr {
-    const auto& it = var_map.find(v);
-    if (it != var_map.end()) {
-      return it->second;
+Stmt SubstituteInScope(const Stmt& stmt, const Map<Var, PrimExpr>& subst_map) {
+  auto fmap = [&](const VarNode* v) -> PrimExpr {
+    const auto& it = subst_map.find(GetRef<Var>(v));
+    if (it != subst_map.end()) {
+      return (*it).second;
     } else {
       return NullValue<PrimExpr>();
     }
   };
-  return IRSubstituteInScope(vmap)(stmt);
-}
-
-PrimExpr SubstituteInScope(const PrimExpr& expr,
-                           const std::unordered_map<const VarNode*, PrimExpr>& var_map) {
-  auto vmap = [&](const VarNode* v) -> PrimExpr {
-    const auto& it = var_map.find(v);
-    if (it != var_map.end()) {
-      return it->second;
-    } else {
-      return NullValue<PrimExpr>();
-    }
-  };
-  return IRSubstituteInScope(vmap)(expr);
-}
-
-Stmt SubstituteInScope(const Stmt& stmt,
-                       const std::unordered_map<const VarNode*, const VarNode*>& var_map) {
-  auto vmap = [&](const VarNode* v) -> PrimExpr {
-    const auto& it = var_map.find(v);
-    if (it != var_map.end()) {
-      return GetRef<Var>(it->second);
-    } else {
-      return NullValue<PrimExpr>();
-    }
-  };
-  return IRSubstituteInScope(vmap)(stmt);
-}
-
-PrimExpr SubstituteInScope(const PrimExpr& expr,
-                           const std::unordered_map<const VarNode*, const VarNode*>& var_map) {
-  auto vmap = [&](const VarNode* v) -> PrimExpr {
-    const auto& it = var_map.find(v);
-    if (it != var_map.end()) {
-      return GetRef<Var>(it->second);
-    } else {
-      return NullValue<PrimExpr>();
-    }
-  };
-  return IRSubstituteInScope(vmap)(expr);
+  return IRSubstituteInScope(std::move(fmap))(stmt);
 }
 
 }  // namespace tir

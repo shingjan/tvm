@@ -247,30 +247,52 @@ class IndexMap : public ObjectRef {
 };
 
 /*!
- * \brief Tensor TensorIntrin for Tensorization
+ * \brief Tensor intrinsics for tensorization
  */
 class TensorIntrinNode : public Object {
  public:
   /*! \brief The function to describe the computation. */
-  PrimFunc description;
-  /*! \brief The intrinsic function for lower-level implement. */
-  PrimFunc implementation;
+  PrimFunc desc;
+  /*! \brief The function of the implementation for the execution. */
+  PrimFunc impl;
 
   void VisitAttrs(AttrVisitor* v) {
-    v->Visit("description", &description);
-    v->Visit("implementation", &implementation);
+    v->Visit("desc", &desc);
+    v->Visit("impl", &impl);
   }
 
   static constexpr const char* _type_key = "tir.TensorIntrin";
   TVM_DECLARE_FINAL_OBJECT_INFO(TensorIntrinNode, Object);
 };
 
+/*!
+ * \brief Managed reference to TensorIntrinNode.
+ */
 class TensorIntrin : public ObjectRef {
  public:
-  TVM_DLL explicit TensorIntrin(PrimFunc desc_func, PrimFunc intrin_func);
+  /*!
+   * \brief Constructor
+   * \param desc The function to describe the computation.
+   * \param impl The function of the implementation for the execution.
+   */
+  TVM_DLL explicit TensorIntrin(PrimFunc desc, PrimFunc impl);
 
-  TVM_DLL static TensorIntrin Register(String name, PrimFunc desc_func, PrimFunc intrin_func);
+  /*!
+   * \brief Create and register a TensorIntrin. After registration, the TensorIntrin can be looked
+   * up with its name.
+   * \param name The name of the TensorIntrin to register
+   * \param intrin The TensorIntrin to register.
+   * \throws This method throws an exception if the TensorIntrin with the specified name already
+   *         exists.
+   */
+  TVM_DLL static void Register(String name, TensorIntrin intrin);
 
+  /*!
+   * \brief Look up TensorIntrin by name. Raises an exception if not found.
+   * \param name The name of the TensorIntrin.
+   * \return The TensorIntrin with the specified name.
+   * \throws This method throws an exception if the TensorIntrin does not exist.
+   */
   TVM_DLL static TensorIntrin Get(String name);
 
   TVM_DEFINE_OBJECT_REF_METHODS(TensorIntrin, ObjectRef, TensorIntrinNode)
