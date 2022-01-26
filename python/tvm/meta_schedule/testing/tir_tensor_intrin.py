@@ -260,60 +260,36 @@ def wmma_store_impl(a: T.handle, c: T.handle) -> None:
             A.data, 16, 16, 16, A.elem_offset // 256 + T.floordiv(T.floormod(A.elem_offset, 256), 16), C.access_ptr("w"), s1, "row_major",
             dtype="handle"))
 
+
 @T.prim_func
 def mma_sync_desc(a: T.handle, b: T.handle, c: T.handle) -> None:
-    A = T.match_buffer(a, (16, 8), "float16", align=128, offset_factor=1, scope="shared")
-    B = T.match_buffer(b, (8, 8), "float16", align=128, offset_factor=1, scope="shared")
-    C = T.match_buffer(c, (16, 8), "float32", align=128, offset_factor=1, scope="global")
-
+    A = T.match_buffer(a, [32, 4], dtype="float16", scope="warp")
+    B = T.match_buffer(b, [32, 2], dtype="float16", scope="warp")
+    C = T.match_buffer(c, [32, 4], dtype="float32", scope="warp")
     with T.block("root"):
-        vi = T.axis.S(16, 0)
-        vj = T.axis.S(8, 0)
-        vk = T.axis.R(16, 0)
-        for i, j, k in T.grid(16, 8, 8):
-            with T.block("update"):
-                vii = T.axis.S(16, vi + i)
-                vjj = T.axis.S(8, vj + j)
-                vkk = T.axis.R(8, vk + k)
-                C[vii, vjj] = C[vii, vjj] + T.cast(A[vii, vkk], "float32") * T.cast(B[vkk, vjj], "float32")
-                    
+        for i0 in T.serial(16):
+            T.reads(C[0 : 32, 0 : 4], A[0 : 32, 0 : 4], B[0 : 32, 0 : 2])
+            T.writes(C[0 : 32, 0 : 4])
+            for i1, i2 in T.grid(8, 8):
+                with T.block("C"):
+                    i, j, k = T.axis.remap("SSR", [i0, i1, i2])
+                    T.reads(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2], A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], B[j * 4 + k // 2, k % 2])
+                    T.writes(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2])
+                    C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] = C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] + T.cast(A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], "float32") * T.cast(B[j * 4 + k // 2, k % 2], "float32")
 
 
 @T.prim_func
 def mma_sync_impl(a: T.handle, b: T.handle, c: T.handle) -> None:
-    A = T.match_buffer(a, (16, 8), "float16", align=128, offset_factor=1, scope="shared")
-    B = T.match_buffer(b, (8, 8), "float16", align=128, offset_factor=1, scope="shared")
-    C = T.match_buffer(c, (16, 8), "float32", align=128, offset_factor=1, scope="global")
-
+    A = T.match_buffer(a, (32, 4), "float16", align=128, offset_factor=1, scope="warp")
+    B = T.match_buffer(b, (32, 2), "float16", align=128, offset_factor=1, scope="warp")
+    C = T.match_buffer(c, (32, 4), "float32", align=128, offset_factor=1, scope="warp")
 
     with T.block("root"):
+        T.reads(C[0 : 32, 0 : 4], A[0 : 32, 0 : 4], B[0 : 32, 0 : 2])
+        T.writes(C[0 : 32, 0 : 4])
         tx = T.env_thread("threadIdx.x")
         T.launch_thread(tx, 32)
-        MultiA = T.allocate([4], "float16", scope="local")
-        MultiB = T.allocate([2], "float16", scope="local")
-        Accum = T.allocate([4], "float32", scope="local")
-        for i in range(4):
-            Accum[i] = T.float32(0)
-
-        for mma_multi_a_col in range(4):
-            MultiA[mma_multi_a_col] = A[
-                (tx % 32) // 4 + mma_multi_a_col // 2 * 8, (tx % 32) % 4 * 2 + mma_multi_a_col % 2
-            ]
-        for mma_multi_b_col in range(4):
-            MultiB[mma_multi_b_col] = B[
-                (tx % 32) // 4 + mma_multi_b_col // 2 * 8, (tx % 32) % 4 * 2 + mma_multi_b_col % 2
-            ]
-
-        vi = T.axis.S(16, 0)
-        vj = T.axis.S(8, 0)
-        vk = T.axis.R(8, 0)
-        T.reads([C[vi: vi+16, vj: vj+8], A[vi: vi+16, vk: vk+8], B[vk: vk+8, vj: vj+8]])
-        T.writes(C[vi: vi+16, vj: vj+8])
-        T.evaluate(T.call_extern("mma_m16n8k8_row_row_fp16fp16fp32", MultiA, 0, MultiB, 0, Accum, 0, dtype="float32",))
-        for mma_accum_c_id in range(4):
-            C[
-                (tx % 32) // 4 + mma_accum_c_id // 2 * 8, (tx % 32) % 4 * 2 + mma_accum_c_id % 2
-            ] = T.load("float32", Accum, mma_accum_c_id)
+        T.evaluate(T.call_extern("mma_m16n8k8_row_row_fp16fp16fp32", A.data, tx * 4, B.data, tx * 4, C.data, tx * 4, dtype="float32",))
 
 # fmt: on
 # pylint: enable=invalid-name,no-member,line-too-long,too-many-nested-blocks

@@ -79,6 +79,7 @@ def test_integration_matmul():
     K = 8
     workload = te_workload.matmul_fp16(n=N, m=M, k=K)
     workload = te.create_prim_func(workload)
+
     # a = mk b = nk / kk c = nn
     # scope = local
     def schedule(sch: tir.Schedule):
@@ -89,23 +90,18 @@ def test_integration_matmul():
         i1, i2 = sch.split(i, factors=[None, 16])
         sch.bind(i1, "blockIdx.x")
 
-        # num_ty = sch.get(i_factors[2]) * sch.get(j_factors[2])
-
         def fetch_to_shared(block, idx, ndim):
-            # shared [128 x 32]
             block_read = sch.cache_read(block, idx, "shared")
-            # block_read_local = sch.cache_read(block_read, 0, "local")
             sch.compute_at(block_read, i1)
             warp_size = 32
             fused = sch.fuse(*sch.get_loops(block_read)[-ndim:])
             f_0, f_1 = sch.split(fused, factors=[None, warp_size])
-            # sch.reorder(f_1, f_2, f_0, f_3)
             sch.bind(f_1, "threadIdx.x")
 
         fetch_to_shared(block, 1, 2)
         fetch_to_shared(block, 2, 2)
 
-        # fetch to warp - A 16 * 8 -> 32 * 4
+        # fetch to A_warp 16 * 8 -> 32 * 4
         A_warp = sch.cache_read(block, 1, "warp")
         sch.transform_layout(
             A_warp,
@@ -121,7 +117,7 @@ def test_integration_matmul():
         fused_2 = sch.fuse(f_0, f_3)
         sch.bind(fused_1, "threadIdx.x")
 
-        # fetch to warp - B 8 * 8 -> 32 * 2
+        # fetch to B_warp 8 * 8 -> 32 * 2
         B_warp = sch.cache_read(block, 2, "warp")
         sch.transform_layout(
             B_warp,
@@ -129,16 +125,15 @@ def test_integration_matmul():
             is_write_index=True,
             index_map=lambda i, j: (i // 2 + j * 4, i % 2),
         )
-        # fused = sch.fuse(*sch.get_loops(block)[-3:-2])
         warp_loop1, warp_loop2 = sch.get_loops(B_warp)[-2:]
         f_0, f_1 = sch.split(warp_loop1, factors=[4, 2])
         sch.reorder(warp_loop2, f_0, f_1)
         fused_1 = sch.fuse(warp_loop2, f_0)
         sch.bind(fused_1, "threadIdx.x")
 
-        # fetch to C 16 * 8 -> 32 * 4
+        # fetch to C_warp 16 * 8 -> 32 * 4
         C_warp = sch.cache_write(block, 0, "warp")
-        sch.reverse_compute_at(C_warp, sch.get_loops(block)[2])
+        sch.reverse_compute_at(C_warp, sch.get_loops(block)[0])
         # need to do a reverse_compute_at to place it under blockidx.x
         sch.transform_layout(
             C_warp,
@@ -146,34 +141,42 @@ def test_integration_matmul():
             is_write_index=False,
             index_map=lambda i, j: ((i % 8) * 4 + j // 2, (i // 8) * 2 + j % 2),
         )
-        print(sch.mod["main"].script())
         warp_loop1, warp_loop2 = sch.get_loops(C_warp)[-2:]
         f_0, f_1 = sch.split(warp_loop1, factors=[None, 8])
         f_2, f_3 = sch.split(warp_loop2, factors=[None, 2])
         sch.reorder(f_1, f_2, f_0, f_3)
         fused_1 = sch.fuse(f_1, f_2)
         fused_2 = sch.fuse(f_0, f_3)
-
         sch.bind(fused_1, "threadIdx.x")
-        print(sch.mod["main"].script())
 
-        # Step 3.3. Decompose -> this may be needed
+        # Decompose -> separate C_init from C_warp
         loop = sch.get_loops(block)[1]
         block_init_c = sch.decompose_reduction(block, loop)
 
-        # print(sch.mod["main"].script())
+        # C_init() 16 * 8 -> 32 * 4
+        # as binding is already transformed by previous step
+        # only split/reorder/fuse is needed here
+        C_init = block_init_c
+        init_loop1, init_loop2 = sch.get_loops(C_init)[-2:]
+        f_0, f_1 = sch.split(init_loop1, factors=[None, 8])
+        f_2, f_3 = sch.split(init_loop2, factors=[None, 2])
+        sch.reorder(f_1, f_2, f_0, f_3)
+        fused_1 = sch.fuse(f_1, f_2)
+        fused_2 = sch.fuse(f_0, f_3)
+        sch.bind(fused_1, "threadIdx.x")
 
         # tensorize
-        # sch.tensorize(i2, "mma_sync")
+        i0, i1, i2, i3 = sch.get_loops(block)
+        sch.tensorize(i1, "mma_sync")
 
     sch = tir.Schedule(workload)
     schedule(sch)
 
-    # if sch is None:
-    #     print("No valid schedule found")
-    # else:
-    #     print(sch.mod["main"].script())
-    #     print(tvm.lower(sch.mod["main"], None, simple_mode=True))
+    if sch is None:
+        print("No valid schedule found")
+    else:
+        print(sch.mod["main"].script())
+        print(tvm.lower(sch.mod["main"], None, simple_mode=True))
 
     dev = tvm.device("cuda", 0)
     a_np = np.random.uniform(size=(N, K)).astype("float16")
@@ -185,7 +188,7 @@ def test_integration_matmul():
     # sys.exit(0)
     f = tvm.build(sch.mod["main"], target="cuda", name="dense")
     f(a, b, c)
-    # print(f.imported_modules[0].get_source())
+    print(f.imported_modules[0].get_source())
     tvm.testing.assert_allclose(c.numpy(), c_np, rtol=1e-3)
 
     evaluator = f.time_evaluator(f.entry_name, dev, number=1000)

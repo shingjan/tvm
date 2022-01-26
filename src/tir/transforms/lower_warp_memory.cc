@@ -238,6 +238,25 @@ class WarpAccessRewriter : protected StmtExprMutator {
     return StmtExprMutator::VisitExpr_(op);
   }
 
+  PrimExpr VisitExpr_(const CallNode* op) override {
+    if (op->op.same_as(builtin::call_extern()) &&
+        Downcast<StringImm>(op->args[0])->value == "mma_m16n8k8_row_row_fp16fp16fp32") {
+      Array<PrimExpr> new_args = op->args;
+      PrimExpr local_index, group;
+      // 2,4,6 are the indices for offset/bias of Multiplicand A, B and Accumulator C for MMA
+      // instruction. Arguments looks like [mma_name, Multiplicand A, offset/bias of A, Multiplicand
+      // B, offset/bias of B, Accumulator C, offset/bias of C]
+      std::tie(local_index, group) = SplitIndexByGroup(op->args[2]);
+      new_args.Set(2, local_index);
+      std::tie(local_index, group) = SplitIndexByGroup(op->args[4]);
+      new_args.Set(4, local_index);
+      std::tie(local_index, group) = SplitIndexByGroup(op->args[6]);
+      new_args.Set(6, local_index);
+      return Call(op->dtype, op->op, new_args);
+    }
+    return StmtExprMutator::VisitExpr_(op);
+  }
+
   Stmt VisitStmt_(const StoreNode* op) override {
     if (op->buffer_var.get() == buffer_) {
       PrimExpr local_index, group;
