@@ -267,15 +267,14 @@ def mma_sync_desc(a: T.handle, b: T.handle, c: T.handle) -> None:
     B = T.match_buffer(b, [32, 2], dtype="float16", scope="warp")
     C = T.match_buffer(c, [32, 4], dtype="float32", scope="warp")
     with T.block("root"):
-        for i0 in T.serial(16):
-            T.reads(C[0 : 32, 0 : 4], A[0 : 32, 0 : 4], B[0 : 32, 0 : 2])
-            T.writes(C[0 : 32, 0 : 4])
-            for i1, i2 in T.grid(8, 8):
-                with T.block("C"):
-                    i, j, k = T.axis.remap("SSR", [i0, i1, i2])
-                    T.reads(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2], A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], B[j * 4 + k // 2, k % 2])
-                    T.writes(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2])
-                    C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] = C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] + T.cast(A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], "float32") * T.cast(B[j * 4 + k // 2, k % 2], "float32")
+        T.reads(C[0 : 32, 0 : 4], A[0 : 32, 0 : 4], B[0 : 32, 0 : 2])
+        T.writes(C[0 : 32, 0 : 4])
+        for i0, i1, i2 in T.grid(16, 8, 8):
+            with T.block("C"):
+                i, j, k = T.axis.remap("SSR", [i0, i1, i2])
+                T.reads(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2], A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], B[j * 4 + k // 2, k % 2])
+                T.writes(C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2])
+                C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] = C[i % 8 * 4 + j // 2, i // 8 * 2 + j % 2] + T.cast(A[i % 8 * 4 + k // 2, i // 8 * 2 + k % 2], "float32") * T.cast(B[j * 4 + k // 2, k % 2], "float32")
 
 
 @T.prim_func
