@@ -35,23 +35,29 @@ class TransformLayoutRewriter : private StmtExprMutator {
   static std::pair<Stmt, Map<Block, Block>> Rewrite(const Stmt& scope_stmt,
                                                     const Buffer& old_buffer,
                                                     const Buffer& new_buffer,
-                                                    const IndexMap& index_map) {
-    TransformLayoutRewriter rewriter(old_buffer, new_buffer, index_map);
+                                                    const IndexMap& index_map,
+                                                    arith::Analyzer* analyzer) {
+    TransformLayoutRewriter rewriter(old_buffer, new_buffer, index_map, analyzer);
     Stmt result = rewriter(scope_stmt);
     return {result, rewriter.block_sref_reuse_};
   }
 
  private:
   TransformLayoutRewriter(const Buffer& old_buffer, const Buffer& new_buffer,
-                          const IndexMap& index_map)
+                          const IndexMap& index_map, arith::Analyzer* analyzer)
       : old_buffer_(old_buffer),
         new_buffer_(new_buffer),
         index_map_(index_map),
+        analyzer_(analyzer),
         buffer_data_to_buffer_{{new_buffer->data, new_buffer}} {}
 
   void RewriteBufferAccess(Buffer* buffer, Array<PrimExpr>* indices) {
     *buffer = new_buffer_;
     *indices = index_map_->Apply(*indices);
+    auto fmutate = [this](const PrimExpr& index) {
+      return analyzer_->Simplify(index);
+    };
+    (*indices).MutateByApply(fmutate);
   }
 
   PrimExpr VisitExpr_(const BufferLoadNode* op) final {
@@ -86,6 +92,9 @@ class TransformLayoutRewriter : private StmtExprMutator {
 
   Stmt VisitStmt_(const BlockNode* op) final {
     Block block = Downcast<Block>(StmtExprMutator::VisitStmt_(op));
+    for (const auto& iter_var : op->iter_vars){
+      analyzer_->Bind(iter_var->var, iter_var->dom);
+    }
     auto infered_access_regions = GetBlockReadWriteRegion(block, buffer_data_to_buffer_);
     auto* n = block.CopyOnWrite();
     RewriteAccessRegion(&n->reads, infered_access_regions[0]);
@@ -97,6 +106,7 @@ class TransformLayoutRewriter : private StmtExprMutator {
   const Buffer& old_buffer_;
   const Buffer& new_buffer_;
   const IndexMap& index_map_;
+  arith::Analyzer* analyzer_;
   Map<Var, Buffer> buffer_data_to_buffer_;
   Map<Block, Block> block_sref_reuse_;
 };
@@ -151,8 +161,9 @@ void TransformLayout(ScheduleState self, const StmtSRef& block_sref, int buffer_
   // Step 2: Rewrite access indices and regions of the buffer
   Stmt new_stmt;
   Map<Block, Block> block_sref_reuse;
+  arith::Analyzer analyzer;
   std::tie(new_stmt, block_sref_reuse) = TransformLayoutRewriter::Rewrite(
-      GetRef<Block>(scope_block), old_buffer, new_buffer, index_map);
+      GetRef<Block>(scope_block), old_buffer, new_buffer, index_map, &analyzer);
   Block new_scope_block = Downcast<Block>(new_stmt);
 
   // Step 3: Rewrite alloc_buffer of the block or buffer_map of the PrimFunc.
