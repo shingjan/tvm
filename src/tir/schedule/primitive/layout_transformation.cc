@@ -91,10 +91,11 @@ class TransformLayoutRewriter : private StmtExprMutator {
   }
 
   Stmt VisitStmt_(const BlockNode* op) final {
-    Block block = Downcast<Block>(StmtExprMutator::VisitStmt_(op));
     for (const auto& iter_var : op->iter_vars){
       analyzer_->Bind(iter_var->var, iter_var->dom);
     }
+    Block block = Downcast<Block>(StmtExprMutator::VisitStmt_(op));
+
     auto infered_access_regions = GetBlockReadWriteRegion(block, buffer_data_to_buffer_);
     auto* n = block.CopyOnWrite();
     RewriteAccessRegion(&n->reads, infered_access_regions[0]);
