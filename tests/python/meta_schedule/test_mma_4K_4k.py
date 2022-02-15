@@ -153,7 +153,7 @@ def test_integration_matmul():
 
         # fetch to warp - A 4096 * 4096 -> 256 * 512 * 16 * 8 -> 256 * 512 * 32 * 4
         A_warp = sch.cache_read(block_outer, 1, "warp")
-        print(sch.mod["main"].script())
+        sch.compute_at(A_warp, k1)
         def lambda_a(i, j):
             i_0 = i // 16
             j_0 = j // 8
@@ -170,48 +170,48 @@ def test_integration_matmul():
             index_map=lambda_a,
         )
         warp_loop1, warp_loop2 = sch.get_loops(A_warp)[-2:]
-        f_0, f_1 = sch.split(warp_loop1, factors=[4, 16])
-        f_2, f_3 = sch.split(warp_loop2, factors=[2, 8])
-        sch.reorder(f_0, f_2, f_1, f_3)
-        f_4, f_5 = sch.split(f_1, factors=[2, 8])
-        f_6, f_7 = sch.split(f_3, factors=[4, 2])
-        sch.reorder(f_5, f_6, f_4, f_7)
-        fused_1 = sch.fuse(f_5, f_6)
-        fused_2 = sch.fuse(f_4, f_7)
+        # 32 * 8 -> 2 * 32 * 4
+        f_0, f_1 = sch.split(warp_loop1, factors=[2, 16])
+        f_2, f_3 = sch.split(warp_loop2, factors=[2, 4])
+        fused_1 = sch.fuse(f_1, f_2)
+        # sch.reorder(f_0, f_2, f_1, f_3)
+        # f_4, f_5 = sch.split(f_1, factors=[2, 8])
+        # f_6, f_7 = sch.split(f_3, factors=[4, 2])
+        # sch.reorder(f_5, f_6, f_4, f_7)
+        # fused_1 = sch.fuse(f_5, f_6)
+        # fused_2 = sch.fuse(f_4, f_7)
         sch.bind(fused_1, "threadIdx.x")
-        # sch.reorder(sch.get_loops(A_warp)[-3], sch.get_loops(A_warp)[-4])
-        # sch.bind(sch.get_loops(A_warp)[-3], "threadIdx.y")
-        print(sch.mod["main"].script())
-        # 'i0_0_0_i1_0_0_i0_0_1_i1_0_1_fused'  'i1_0_2_i0_0_2_fused'  is not bound to any variables
 
         # fetch to warp - B 4096 * 4096 -> 512 * 512 * 8 * 8 -> 512 * 512 * 32 * 2
         B_warp = sch.cache_read(block_outer, 2, "warp")
+        sch.compute_at(B_warp, k1)
+        def lambda_b(i, j):
+            i_0 = i // 8
+            j_0 = j // 8
+            k_0 = i % 8
+            l_0 = j % 8
+            k_1 = k_0 // 2 + l_0 * 4
+            l_1 = k_0 % 2
+            return i_0, j_0, k_1, l_1
+        
         sch.transform_layout(
             B_warp,
             buffer_index=0,
             is_write_index=True,
-            index_map=lambda i, j: (i // 8, j // 8, i % 8, j % 8),
-        )
-        sch.transform_layout(
-            B_warp,
-            buffer_index=0,
-            is_write_index=True,
-            index_map=lambda i, j, k, l: (i, j, k // 2 + l * 4, k % 2),
+            index_map=lambda_b,
         )
         warp_loop1, warp_loop2 = sch.get_loops(B_warp)[-2:]
-        f_0, f_1 = sch.split(warp_loop1, factors=[2, 8])
-        f_2, f_3 = sch.split(warp_loop2, factors=[8, 8])
-        sch.reorder(f_0, f_3, f_1, f_2)
-        f_4, f_5 = sch.split(f_1, factors=[4, 2])
-        sch.reorder(f_2, f_4, f_5)
-        fused_1 = sch.fuse(f_2, f_4)
+        # 8 * 32 -> 4 * 32 * 2
+        f_0, f_1 = sch.split(warp_loop1, factors=[4, 2])
+        f_2, f_3 = sch.split(warp_loop2, factors=[16, 2])
+        # sch.reorder(f_0, f_3, f_1, f_2)
+        # f_4, f_5 = sch.split(f_1, factors=[4, 2])
+        # sch.reorder(f_2, f_4, f_5)
+        fused_1 = sch.fuse(f_1, f_2)
         sch.bind(fused_1, "threadIdx.x")
 
         # fetch to C 4096 * 4096 -> 256 * 512 * 16 * 8 -> 256 * 512 * 32 * 4
         C_warp = sch.cache_write(block_outer, 0, "warp")
-        for loop in sch.get_loops(block_outer):
-            print(sch.show(loop))
-            print("++++++++\n")
         sch.reverse_compute_at(C_warp, sch.get_loops(block_outer)[2])
         # need to do a reverse_compute_at to place it under blockidx.x
         sch.transform_layout(
@@ -227,14 +227,15 @@ def test_integration_matmul():
             index_map=lambda i, j, k, l: (i, j, (k % 8) * 4 + l // 2, (k // 8) * 2 + l % 2),
         )
         warp_loop1, warp_loop2 = sch.get_loops(C_warp)[-2:]
-        f_0, f_1 = sch.split(warp_loop1, factors=[2, 16])
-        f_2, f_3 = sch.split(warp_loop2, factors=[4, 8])
-        sch.reorder(f_0, f_2, f_1, f_3)
-        f_4, f_5 = sch.split(f_1, factors=[2, 8])
-        f_6, f_7 = sch.split(f_3, factors=[4, 2])
-        sch.reorder(f_5, f_6, f_4, f_7)
-        fused_1 = sch.fuse(f_5, f_6)
-        fused_2 = sch.fuse(f_4, f_7)
+        # 32 * 32 -> 8 * 32 * 4
+        f_0, f_1 = sch.split(warp_loop1, factors=[8, 4])
+        f_2, f_3 = sch.split(warp_loop2, factors=[8, 4])
+        # sch.reorder(f_0, f_2, f_1, f_3)
+        # f_4, f_5 = sch.split(f_1, factors=[2, 8])
+        # f_6, f_7 = sch.split(f_3, factors=[4, 2])
+        # sch.reorder(f_5, f_6, f_4, f_7)
+        fused_1 = sch.fuse(f_1, f_2)
+        # fused_2 = sch.fuse(f_4, f_7)
         sch.bind(fused_1, "threadIdx.x")
 
         # Step 3.3. Decompose -> this may be needed
@@ -245,22 +246,21 @@ def test_integration_matmul():
         # C_init() 16 * 8 -> 32 * 4
         # as binding is already transformed by previous step
         # only split/reorder/fuse is needed here
-        print(sch.mod["main"].script())
-        C_init = block_init_c
-        init_loop1, init_loop2 = sch.get_loops(C_init)[-2:]
-        f_0, f_1 = sch.split(init_loop1, factors=[None, 8])
-        f_2, f_3 = sch.split(init_loop2, factors=[None, 1])
-        sch.reorder(f_1, f_2, f_0, f_3)
-        fused_1 = sch.fuse(f_1, f_2)
-        fused_2 = sch.fuse(f_0, f_3)
-        sch.bind(fused_1, "threadIdx.x")
-        print(sch.mod["main"].script())
+        # C_init = block_init_c
+        # init_loop1, init_loop2 = sch.get_loops(C_init)[-2:]
+        # f_0, f_1 = sch.split(init_loop1, factors=[None, 8])
+        # f_2, f_3 = sch.split(init_loop2, factors=[None, 1])
+        # sch.reorder(f_1, f_2, f_0, f_3)
+        # fused_1 = sch.fuse(f_1, f_2)
+        # fused_2 = sch.fuse(f_0, f_3)
+        # sch.bind(fused_1, "threadIdx.x")
+        # print(sch.mod["main"].script())
 
         # print(sch.mod["main"].script())
 
         # tensorize
-        # i0, i1, i2, i3 = sch.get_loops(block)
-        # sch.tensorize(i1, "mma_sync")
+        loop1, loop2, loop3 = sch.get_loops(block_inner)
+        sch.tensorize(loop1, "mma_sync")
 
     sch = tir.Schedule(workload)
     schedule(sch)
