@@ -214,17 +214,20 @@ def test_integration_matmul():
         C_warp = sch.cache_write(block_outer, 0, "warp")
         sch.reverse_compute_at(C_warp, sch.get_loops(block_outer)[2])
         # need to do a reverse_compute_at to place it under blockidx.x
+        def lambda_c(i, j):
+            i_0 = i // 16
+            j_0 = j // 8
+            k_0 = i % 16
+            l_0 = j % 8
+            k_1 = (k_0 % 8) * 4 + l_0 // 2
+            l_1 = (k_0 // 8) * 2 + l_0 % 2
+            return i_0, j_0, k_1, l_1
+
         sch.transform_layout(
             C_warp,
             buffer_index=0,
             is_write_index=False,
-            index_map=lambda i, j: (i // 16, j // 8, i % 16, j % 8),
-        )
-        sch.transform_layout(
-            C_warp,
-            buffer_index=0,
-            is_write_index=False,
-            index_map=lambda i, j, k, l: (i, j, (k % 8) * 4 + l // 2, (k // 8) * 2 + l % 2),
+            index_map=lambda_c,
         )
         warp_loop1, warp_loop2 = sch.get_loops(C_warp)[-2:]
         # 32 * 32 -> 8 * 32 * 4
@@ -261,6 +264,7 @@ def test_integration_matmul():
         # tensorize
         loop1, loop2, loop3 = sch.get_loops(block_inner)
         sch.tensorize(loop1, "mma_sync")
+        print(sch.mod["main"].script())
 
     sch = tir.Schedule(workload)
     schedule(sch)
