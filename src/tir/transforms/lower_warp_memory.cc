@@ -243,15 +243,21 @@ class WarpAccessRewriter : protected StmtExprMutator {
         Downcast<StringImm>(op->args[0])->value == "mma_m16n8k8_row_row_fp16fp16fp32") {
       Array<PrimExpr> new_args = op->args;
       PrimExpr local_index, group;
-      // 2,4,6 are the indices for offset/bias of Multiplicand A, B and Accumulator C for MMA
-      // instruction. Arguments looks like [mma_name, Multiplicand A, offset/bias of A, Multiplicand
-      // B, offset/bias of B, Accumulator C, offset/bias of C]
-      std::tie(local_index, group) = SplitIndexByGroup(op->args[2]);
-      new_args.Set(2, local_index);
-      std::tie(local_index, group) = SplitIndexByGroup(op->args[4]);
-      new_args.Set(4, local_index);
-      std::tie(local_index, group) = SplitIndexByGroup(op->args[6]);
-      new_args.Set(6, local_index);
+      bool changed = false;
+      // Arguments here look like [mma_name, Multiplicand A, offset/bias of A, Multiplicand
+      // B, offset/bias of B, Accumulator C, offset/bias of C]. Therefore 2,4,6 are the indices 
+      // for offset/bias of Multiplicand A, B and Accumulator C for MMA instruction where 1,3,5
+      // are the indices for Multiplicand A, B and Accumulator C.
+      // Because this pass only process one buffer at a time, we need to make sure this function
+      // only changes the offset of the buffer being processed
+      for (int i = 1; i < 6; i += 2) {
+        if (op->args[i].get() == buffer_) {
+          std::tie(local_index, group) = SplitIndexByGroup(op->args[i + 1]);
+          new_args.Set(i + 1, local_index);
+          changed = true;
+        }
+      }
+      if (!changed) return GetRef<PrimExpr>(op);
       return Call(op->dtype, op->op, new_args);
     }
     return StmtExprMutator::VisitExpr_(op);

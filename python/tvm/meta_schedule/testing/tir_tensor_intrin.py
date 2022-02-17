@@ -288,7 +288,7 @@ def mma_sync_impl(a: T.handle, b: T.handle, c: T.handle) -> None:
         T.writes(C[0 : 32, 0 : 4])
         tx = T.env_thread("threadIdx.x")
         T.launch_thread(tx, 32)
-        T.evaluate(T.call_extern("mma_m16n8k8_row_row_fp16fp16fp32", A.data, A.elem_offset + tx * 4, B.data, B.elem_offset + tx * 4, C.data, C.elem_offset + tx * 4, dtype="float32",))
+        T.evaluate(T.call_extern("mma_m16n8k8_row_row_fp16fp16fp32", A.data, A.elem_offset + tx * 4, B.data, B.elem_offset + tx * 2, C.data, C.elem_offset + tx * 4, dtype="float32",))
 
 # fmt: on
 # pylint: enable=invalid-name,no-member,line-too-long,too-many-nested-blocks

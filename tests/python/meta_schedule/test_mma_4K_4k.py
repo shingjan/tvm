@@ -74,9 +74,9 @@ def matmul_16(
 
 
 def test_integration_matmul():
-    N = 64
-    M = 64
-    K = 16
+    N = 4096
+    M = 4096
+    K = 4096
     workload = te_workload.matmul_fp16(n=N, m=M, k=K)
     workload = te.create_prim_func(workload)
 
@@ -103,9 +103,9 @@ def test_integration_matmul():
         # Step 2. Rule-Multi-Level-Tiling
         # i_factors = sch.sample_perfect_tile(i, n=5, decision=[8, 1, 2, 1, 4])
         # j_factors = sch.sample_perfect_tile(j, n=5, decision=[1, 8, 4, 1, 2])
-        i_factors = [1, 1, 2, 1, 2]
-        j_factors = [1, 1, 2, 1, 4]
-        k_factors = [1, 2, 1]
+        i_factors = [64, 1, 2, 1, 2]
+        j_factors = [2, 32, 2, 1, 4]
+        k_factors = [256, 2, 1]
         i0, i1, i2, i3, i4 = sch.split(i, factors=i_factors)
         j0, j1, j2, j3, j4 = sch.split(j, factors=j_factors)
         k0, k1, k2 = sch.split(k, k_factors)
@@ -203,7 +203,6 @@ def test_integration_matmul():
         i_0, k_0 = sch.split(warp_loop1, factors=[None, 8]) # 1 * 8
         j_0, l_0 = sch.split(warp_loop2, factors=[None, 8]) # 4 * 8
         k_0_1, l_0_1 = sch.split(k_0, [None, 2]) # 4 * 2
-        # 1 * 4 * 2 * 4 * 8
         sch.reorder(i_0, j_0, l_0, k_0_1, l_0_1)
         k_1 = sch.fuse(l_0, k_0_1)
         sch.bind(k_1, "threadIdx.x")
@@ -247,10 +246,6 @@ def test_integration_matmul():
         # only split/reorder/fuse is needed here
         C_init = sch.get_block("C_init")
         init_loop1, init_loop2 = sch.get_loops(C_init)[-2:]
-        # print(sch.show(C_init))
-        # for loop in sch.get_loops(C_init):
-        #     print(sch.show(loop))
-        #     print("+++++\n")
         f_0, f_1 = sch.split(init_loop1, factors=[None, 8])
         f_2, f_3 = sch.split(init_loop2, factors=[None, 2])
         sch.reorder(f_1, f_2, f_0, f_3)
@@ -262,16 +257,15 @@ def test_integration_matmul():
         # tensorize
         loop1, loop2, loop3 = sch.get_loops(block_inner)
         sch.tensorize(loop1, "mma_sync")
-        print(sch.mod["main"].script())
 
     sch = tir.Schedule(workload)
     schedule(sch)
 
-    # if sch is None:
-    #     print("No valid schedule found")
-    # else:
-    #     print(sch.mod["main"].script())
-    #     print(tvm.lower(sch.mod["main"], None, simple_mode=True))
+    if sch is None:
+        print("No valid schedule found")
+    else:
+        print(sch.mod["main"].script())
+        print(tvm.lower(sch.mod["main"], None, simple_mode=True))
 
     dev = tvm.device("cuda", 0)
     a_np = np.random.uniform(size=(N, K)).astype("float16")
@@ -283,15 +277,14 @@ def test_integration_matmul():
     # sys.exit(0)
     f = tvm.build(sch.mod["main"], target="cuda", name="dense")
     f(a, b, c)
-    print(f.imported_modules[0].get_source())
+    # print(f.imported_modules[0].get_source())
     tvm.testing.assert_allclose(c.numpy(), c_np, rtol=1e-3)
 
-    # evaluator = f.time_evaluator(f.entry_name, dev, number=1000)
-    # gflops = (N * M * K) * 2 / 1e9
-    # time_ms = evaluator(a, b, c).mean * 1e3
-    # print("matmul with tensor core: %f ms, %f GFLOPS" % (time_ms, gflops / (time_ms / 1e3)))
+    evaluator = f.time_evaluator(f.entry_name, dev, number=1000)
+    gflops = (N * M * K) * 2 / 1e9
+    time_ms = evaluator(a, b, c).mean * 1e3
+    print("matmul with tensor core: %f ms, %f GFLOPS" % (time_ms, gflops / (time_ms / 1e3)))
 
 
 if __name__ == "__main__":
     test_integration_matmul()
-    # test_matmul()
