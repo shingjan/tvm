@@ -31,7 +31,7 @@ import sys
 TARGET = tvm.target.Target("nvidia/geforce-rtx-3070")
 
 TASK = "gemm"
-USE_MANUAL_CODE = False
+USE_MANUAL_CODE = True
 
 
 @tvm.register_func("tvm_callback_cuda_compile", override=True)
@@ -177,8 +177,9 @@ def test_integration_matmul():
         l_0_0, l_0_1 = sch.split(l_0, [None, 2])
         sch.reorder(i_0, j_0, k_0_1, l_0_0, k_0_0, l_0_1)
         k_1 = sch.fuse(k_0_1, l_0_0)
-        l_1 = sch.fuse(k_0_0, l_0_1)
         sch.bind(k_1, "threadIdx.x")
+        #l_1 = sch.fuse(k_0_0, l_0_1)
+        sch.vectorize(l_0_1) # this will cause correctness issue
 
         # fetch to warp - B 4096 * 4096 -> 512 * 512 * 8 * 8 -> 512 * 512 * 32 * 2
         B_warp = sch.cache_read(block_outer, 2, "warp")
@@ -206,6 +207,7 @@ def test_integration_matmul():
         sch.reorder(i_0, j_0, l_0, k_0_1, l_0_1)
         k_1 = sch.fuse(l_0, k_0_1)
         sch.bind(k_1, "threadIdx.x")
+        #sch.vectorize(l_0_1) # this will cause correctness issue
 
         # fetch to C 4096 * 4096 -> 256 * 512 * 16 * 8 -> 256 * 512 * 32 * 4
         C_warp = sch.cache_write(block_outer, 0, "warp")
@@ -234,8 +236,9 @@ def test_integration_matmul():
         l_0_0, l_0_1 = sch.split(l_0, [None, 2])
         sch.reorder(i_0, j_0, k_0_1, l_0_0, k_0_0, l_0_1)
         k_1 = sch.fuse(k_0_1, l_0_0)
-        l_1 = sch.fuse(k_0_0, l_0_1)
         sch.bind(k_1, "threadIdx.x")
+        #l_1 = sch.fuse(k_0_0, l_0_1)
+        sch.vectorize(l_0_1) 
 
         # Step 3.3. Decompose -> this may be needed
         loop = sch.get_loops(block_outer)[2]
@@ -252,6 +255,7 @@ def test_integration_matmul():
         fused_1 = sch.fuse(f_1, f_2)
         fused_2 = sch.fuse(f_0, f_3)
         sch.bind(fused_1, "threadIdx.x")
+        sch.vectorize(fused_2)
 
 
         # tensorize
@@ -277,8 +281,8 @@ def test_integration_matmul():
     # sys.exit(0)
     f = tvm.build(sch.mod["main"], target="cuda", name="dense")
     f(a, b, c)
-    # print(f.imported_modules[0].get_source())
-    tvm.testing.assert_allclose(c.numpy(), c_np, rtol=1e-3)
+    print(f.imported_modules[0].get_source())
+    tvm.testing.assert_allclose(c.numpy(), c_np, rtol=1e-3, atol=1e-3)
 
     evaluator = f.time_evaluator(f.entry_name, dev, number=1000)
     gflops = (N * M * K) * 2 / 1e9
