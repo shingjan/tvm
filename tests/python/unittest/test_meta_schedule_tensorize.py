@@ -9,19 +9,19 @@ from tvm.meta_schedule.tune_context import TuneContext
 from tvm.te import create_prim_func
 from tvm.meta_schedule.testing import te_workload
 from tvm.target import Target
-from tvm.meta_schedule import schedule_rule, ReplayTraceConfig
+from tvm.meta_schedule import schedule_rule, ReplayTraceConfig, postproc, tune_tir
 from tvm.meta_schedule.testing import tir_tensor_intrin
 from tvm import tir
 import tvm
 import numpy as np
 
 
-def _create_context(mod, target, rule) -> TuneContext:
+def _create_context(mod, target, rules) -> TuneContext:
     ctx = TuneContext(
         mod=mod,
         target=target,
         space_generator=PostOrderApply(),
-        sch_rules=[rule],
+        sch_rules=rules,
         task_name="test",
     )
     ctx.space_generator.initialize_with_tune_context(ctx)
@@ -29,7 +29,7 @@ def _create_context(mod, target, rule) -> TuneContext:
         sch_rule.initialize_with_tune_context(ctx)
     return ctx
 
-
+@pytest.mark.skip("Integeration test")
 def test_matmul_schedule():
     N = 512
     M = 512
@@ -44,65 +44,43 @@ def test_matmul_schedule():
 
     def schedule(sch: tir.Schedule):
         b0 = sch.get_block(name="C", func_name="main")
+        b1 = sch.get_block(name="root", func_name="main")
         sch.annotate(block_or_loop=b0, ann_key="meta_schedule.tiling_structure", ann_val="SSSRRSRS")
-        l1, l2, l3 = sch.get_loops(block=b0)
-        l4, l5 = sch.split(loop=l1, factors=[32, 16])
-        l6, l7 = sch.split(loop=l2, factors=[32, 16])
-        l8, l9 = sch.split(loop=l3, factors=[32, 16])
-        l10, l11, l12, l13, l14, l15 = sch.get_loops(block=b0)
-        sch.reorder(l12, l14, l5, l7, l9)
-        b16 = sch.blockize(loop=l5)
-        sch.annotate(block_or_loop=b0, ann_key="meta_schedule.auto_tensorize", ann_val="wmma_sync")
-        sch.annotate(block_or_loop=b16, ann_key="meta_schedule.auto_tensorize", ann_val="wmma_fill")
-        b17 = sch.get_block(name="root", func_name="main")
-        sch.annotate(block_or_loop=b17, ann_key="meta_schedule.tensor_core_enabled", ann_val="1")
-        b18 = sch.cache_write(block=b16, write_buffer_index=0, storage_scope="local")
-        b19 = sch.cache_write(block=b16, write_buffer_index=0, storage_scope="wmma.accumulator")
-        sch.annotate(
-            block_or_loop=b19, ann_key="meta_schedule.auto_tensorize", ann_val="wmma_store"
-        )
-        l20, l21, l22 = sch.get_loops(block=b16)
-        v23, v24, v25, v26, v27 = sch.sample_perfect_tile(loop=l20, n=5, max_innermost_factor=64)
-        l28, l29, l30, l31, l32 = sch.split(loop=l20, factors=[v23, v24, v25, v26, v27])
-        v33, v34, v35, v36, v37 = sch.sample_perfect_tile(loop=l21, n=5, max_innermost_factor=64)
-        l38, l39, l40, l41, l42 = sch.split(loop=l21, factors=[v33, v34, v35, v36, v37])
-        v43, v44, v45 = sch.sample_perfect_tile(loop=l22, n=3, max_innermost_factor=64)
-        l46, l47, l48 = sch.split(loop=l22, factors=[v43, v44, v45])
-        sch.reorder(l28, l38, l29, l39, l30, l40, l46, l47, l31, l41, l48, l32, l42)
-        l49 = sch.fuse(l28, l38)
-        sch.bind(loop=l49, thread_axis="blockIdx.x")
-        l50 = sch.fuse(l29, l39)
-        sch.bind(loop=l50, thread_axis="blockIdx.y")
-        l51 = sch.fuse(l30, l40)
-        sch.bind(loop=l51, thread_axis="threadIdx.y")
-        b52 = sch.cache_read(block=b16, read_buffer_index=1, storage_scope="shared")
-        sch.compute_at(block=b52, loop=l46, preserve_unit_loops=True)
-        l53, l54, l55, l56, l57, l58 = sch.get_loops(block=b52)
-        l59 = sch.fuse(l57, l58)
-        v60 = sch.sample_categorical(candidates=[1, 2, 3, 4], probs=[0.25, 0.25, 0.25, 0.25])
-        sch.annotate(block_or_loop=b52, ann_key="meta_schedule.cooperative_fetch", ann_val=v60)
-        b61 = sch.cache_read(block=b16, read_buffer_index=2, storage_scope="shared")
-        sch.compute_at(block=b61, loop=l46, preserve_unit_loops=True)
-        l62, l63, l64, l65, l66, l67 = sch.get_loops(block=b61)
-        l68 = sch.fuse(l66, l67)
-        v69 = sch.sample_categorical(candidates=[1, 2, 3, 4], probs=[0.25, 0.25, 0.25, 0.25])
-        sch.annotate(block_or_loop=b61, ann_key="meta_schedule.cooperative_fetch", ann_val=v69)
-        b70 = sch.cache_read(block=b16, read_buffer_index=1, storage_scope="wmma.matrix_a")
-        b71 = sch.cache_read(block=b16, read_buffer_index=2, storage_scope="wmma.matrix_b")
-        sch.compute_at(block=b70, loop=l48, preserve_unit_loops=True)
-        sch.compute_at(block=b71, loop=l48, preserve_unit_loops=True)
-        sch.annotate(
-            block_or_loop=b70, ann_key="meta_schedule.auto_tensorize", ann_val="wmma_load_a"
-        )
-        sch.annotate(
-            block_or_loop=b71, ann_key="meta_schedule.auto_tensorize", ann_val="wmma_load_b"
-        )
-        sch.reverse_compute_at(block=b19, loop=l51, preserve_unit_loops=True)
-        sch.reverse_compute_at(block=b18, loop=l51, preserve_unit_loops=True)
+        l2, l3, l4 = sch.get_loops(block=b0)
+        v5, v6, v7, v8, v9 = sch.sample_perfect_tile(loop=l2, n=5, max_innermost_factor=64, decision=[1, 1, 1, 16, 2])
+        l10, l11, l12, l13, l14 = sch.split(loop=l2, factors=[v5, v6, v7, v8, v9])
+        v15, v16, v17, v18, v19 = sch.sample_perfect_tile(loop=l3, n=5, max_innermost_factor=64, decision=[1, 1, 8, 2, 2])
+        l20, l21, l22, l23, l24 = sch.split(loop=l3, factors=[v15, v16, v17, v18, v19])
+        v25, v26, v27 = sch.sample_perfect_tile(loop=l4, n=3, max_innermost_factor=64, decision=[2, 2, 8])
+        l28, l29, l30 = sch.split(loop=l4, factors=[v25, v26, v27])
+        sch.reorder(l10, l20, l11, l21, l12, l22, l28, l29, l13, l23, l30, l14, l24)
+        l31 = sch.fuse(l10, l20)
+        sch.bind(loop=l31, thread_axis="blockIdx.x")
+        l32 = sch.fuse(l11, l21)
+        sch.bind(loop=l32, thread_axis="blockIdx.y")
+        l33 = sch.fuse(l12, l22)
+        sch.bind(loop=l33, thread_axis="threadIdx.y")
+        sch.annotate(block_or_loop=b0, ann_key="meta_schedule.thread_extent_low_inclusive", ann_val=32)
+        sch.annotate(block_or_loop=b0, ann_key="meta_schedule.thread_extent_high_inclusive", ann_val=1024)
+        b34 = sch.cache_read(block=b0, read_buffer_index=1, storage_scope="shared")
+        sch.compute_at(block=b34, loop=l28, preserve_unit_loops=True)
+        l35, l36, l37, l38, l39, l40 = sch.get_loops(block=b34)
+        l41 = sch.fuse(l39, l40)
+        v42 = sch.sample_categorical(candidates=[1, 2, 3, 4], probs=[0.25, 0.25, 0.25, 0.25], decision=2)
+        sch.annotate(block_or_loop=b34, ann_key="meta_schedule.cooperative_fetch", ann_val=v42)
+        b43 = sch.cache_read(block=b0, read_buffer_index=2, storage_scope="shared")
+        sch.compute_at(block=b43, loop=l28, preserve_unit_loops=True)
+        l44, l45, l46, l47, l48, l49 = sch.get_loops(block=b43)
+        l50 = sch.fuse(l48, l49)
+        v51 = sch.sample_categorical(candidates=[1, 2, 3, 4], probs=[0.25, 0.25, 0.25, 0.25], decision=0)
+        sch.annotate(block_or_loop=b43, ann_key="meta_schedule.cooperative_fetch", ann_val=v51)
+        v52 = sch.sample_categorical(candidates=[0, 16, 64, 512, 1024], probs=[0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.20000000000000001, 0.20000000000000001], decision=2)
+        sch.annotate(block_or_loop=b1, ann_key="meta_schedule.unroll_explicit", ann_val=v52)
 
     sch = tir.Schedule(workload)
 
     schedule(sch)
+
     from tvm.meta_schedule import (  # pylint: disable=import-outside-toplevel
         postproc as M,
     )
@@ -111,13 +89,13 @@ def test_matmul_schedule():
     ctx = _create_context(
         create_prim_func(
             te_workload.matmul_fp16(
-                n=16,
-                m=16,
-                k=32,
+                n=512,
+                m=512,
+                k=512,
             )
         ),
         target=target,
-        rule=multi_level_tiling_tensor_core(target=target),
+        rules=multi_level_tiling_tensor_core(target=target),
     )
 
     postpocs = [
@@ -130,7 +108,7 @@ def test_matmul_schedule():
     for postproc in postpocs:
         postproc.initialize_with_tune_context(ctx)
         if postproc.apply(sch) == False:
-            print("failed")
+            print("failed: ")
 
     # sch: tir.Schedule = tvm.meta_schedule.tune_tir(
     #     mod=workload,
@@ -168,9 +146,114 @@ def test_matmul_schedule():
     print("matmul with tensor core: %f ms, %f GFLOPS" % (time_ms, gflops / (time_ms / 1e3)))
 
 
-@pytest.mark.skip("Integration test")
 def test_tune_matmul_cuda_tensor_core():
-    n = 512
+    print(tir.TensorIntrin.get("wmma_sync"))
+    def sch_rules():
+        return [
+            schedule_rule.AutoInline(
+                into_producer=False,
+                into_consumer=True,
+                inline_const_tensor=True,
+                disallow_if_then_else=False,
+                require_injective=False,
+                require_ordered=False,
+                disallow_op=None,
+            ),
+            schedule_rule.MultiLevelTiling(
+                structure="SSSRRSRS",
+                tile_binds=["blockIdx.x", "blockIdx.y", "threadIdx.y"],
+                use_tensor_core=True,
+                max_innermost_factor=64,
+                vector_load_lens=[1, 2, 3, 4],
+                reuse_read=schedule_rule.ReuseType(
+                    req="must",
+                    levels=[4],
+                    scope="shared",
+                ),
+                reuse_write=schedule_rule.ReuseType(
+                    req="no",
+                    levels=[],
+                    scope="",
+                ),
+            ),
+            schedule_rule.AutoInline(
+                into_producer=True,
+                into_consumer=True,
+                inline_const_tensor=True,
+                disallow_if_then_else=False,
+                require_injective=False,
+                require_ordered=False,
+                disallow_op=None,
+            ),
+            schedule_rule.ParallelizeVectorizeUnroll(
+                max_jobs_per_core=-1,  # disable parallelize
+                max_vectorize_extent=-1,  # disable vectorize
+                unroll_max_steps=[0, 16, 64, 512, 1024],
+                unroll_explicit=True,
+            ),
+        ]
+
+    def postprocs():
+        return [
+            #postproc.RewriteCooperativeFetch(),
+            postproc.RewriteParallelVectorizeUnroll(),
+            postproc.RewriteReductionBlock(),
+            postproc.RewriteTensorCore(),
+            postproc.VerifyGPUCode(),
+        ]
+
+    rule_list = [
+            schedule_rule.AutoInline(
+                into_producer=False,
+                into_consumer=True,
+                inline_const_tensor=True,
+                disallow_if_then_else=False,
+                require_injective=False,
+                require_ordered=False,
+                disallow_op=None,
+            ),
+            schedule_rule.MultiLevelTiling(
+                structure="SSSRRSRS",
+                tile_binds=["blockIdx.x", "blockIdx.y", "threadIdx.y"],
+                use_tensor_core=True,
+                max_innermost_factor=64,
+                vector_load_lens=[1, 2, 3, 4],
+                reuse_read=schedule_rule.ReuseType(
+                    req="must",
+                    levels=[4],
+                    scope="shared",
+                ),
+                reuse_write=schedule_rule.ReuseType(
+                    req="no",
+                    levels=[],
+                    scope="",
+                ),
+            ),
+            schedule_rule.AutoInline(
+                into_producer=True,
+                into_consumer=True,
+                inline_const_tensor=True,
+                disallow_if_then_else=False,
+                require_injective=False,
+                require_ordered=False,
+                disallow_op=None,
+            ),
+            schedule_rule.ParallelizeVectorizeUnroll(
+                max_jobs_per_core=-1,  # disable parallelize
+                max_vectorize_extent=-1,  # disable vectorize
+                unroll_max_steps=[0, 16, 64, 512, 1024],
+                unroll_explicit=True,
+            ),
+    ]
+    postproc_list = [            
+            postproc.RewriteCooperativeFetch(),
+            postproc.RewriteParallelVectorizeUnroll(),
+            postproc.RewriteReductionBlock(),
+            postproc.RewriteTensorCore(),
+            postproc.VerifyGPUCode(),
+            ]
+
+    n = 32
     mod = create_prim_func(te_workload.matmul_fp16(n, n, n))
     target = Target("nvidia/geforce-rtx-3070")
     config = ReplayTraceConfig(
@@ -178,86 +261,58 @@ def test_tune_matmul_cuda_tensor_core():
         num_trials_total=320,
     )
 
-    class DefaultTensorCore:
-        @staticmethod
-        def _sch_rules():
-            from tvm.meta_schedule import (  # pylint: disable=import-outside-toplevel
-                schedule_rule as M,
-            )
+    # import tempfile
 
-            return [
-                M.AutoInline(
-                    into_producer=False,
-                    into_consumer=True,
-                    inline_const_tensor=True,
-                    disallow_if_then_else=False,
-                    require_injective=False,
-                    require_ordered=False,
-                    disallow_op=None,
-                ),
-                M.MultiLevelTiling(
-                    structure="SSSRRSRS",
-                    tile_binds=["blockIdx.x", "blockIdx.y", "threadIdx.y"],
-                    use_tensor_core=True,
-                    max_innermost_factor=64,
-                    vector_load_lens=[1, 2, 3, 4],
-                    reuse_read=schedule_rule.ReuseType(
-                        req="must",
-                        levels=[4],
-                        scope="shared",
-                    ),
-                    reuse_write=schedule_rule.ReuseType(
-                        req="no",
-                        levels=[],
-                        scope="",
-                    ),
-                ),
-                M.AutoInline(
-                    into_producer=True,
-                    into_consumer=True,
-                    inline_const_tensor=True,
-                    disallow_if_then_else=False,
-                    require_injective=False,
-                    require_ordered=False,
-                    disallow_op=None,
-                ),
-                M.ParallelizeVectorizeUnroll(
-                    max_jobs_per_core=-1,  # disable parallelize
-                    max_vectorize_extent=-1,  # disable vectorize
-                    unroll_max_steps=[0, 16, 64, 512, 1024],
-                    unroll_explicit=True,
-                ),
-            ]
+    # with tempfile.TemporaryDirectory() as work_dir:
+    #     sch: tir.Schedule = tune_tir(
+    #         mod=mod,
+    #         target=target,
+    #         config=config,
+    #         work_dir=work_dir,
+    #         space=PostOrderApply(),
+    #         sch_rules=sch_rules,
+    #         postprocs=postprocs,
+    #         num_threads=None,
+    #     )
 
-        @staticmethod
-        def _postproc():
-            from tvm.meta_schedule import (  # pylint: disable=import-outside-toplevel
-                postproc as M,
-            )
+    # func = tvm.build(sch.mod["main"], [], "cuda")
+    # ctx = tvm.device("cuda", 0)
+    # print(sch.trace)
+    # print(sch.mod.script())
+    # print(func.imported_modules[0].get_source())
+    # a_np = np.random.uniform(size=(n, n)).astype("float16")
+    # b_np = np.random.uniform(size=(n, n)).astype("float16")
+    # a = tvm.nd.array(a_np, ctx)
+    # b = tvm.nd.array(b_np, ctx)
+    # c = tvm.nd.array(np.zeros((n, n), dtype="float32"), ctx)
+    # evaluator = func.time_evaluator(func.entry_name, ctx, number=3, repeat=1, min_repeat_ms=40)
+    # print("matmul with tensor core: %f ms" % (evaluator(a, b, c).mean * 1e3))
 
-            return [
-                M.RewriteCooperativeFetch(),
-                M.RewriteParallelVectorizeUnroll(),
-                M.RewriteReductionBlock(),
-                M.RewriteTensorCore(),
-                M.VerifyGPUCode(),
-            ]
+    # np.testing.assert_allclose(
+    #     c.asnumpy(),
+    #     np.matmul(a_np.astype("float32"), b_np.astype("float32")),
+    #     rtol=1e-4,
+    #     atol=1e-4,
+    # )
 
     ctx = _create_context(
         create_prim_func(
             te_workload.matmul_fp16(
-                n=512,
-                m=512,
-                k=512,
+                n=n,
+                m=n,
+                k=n,
             )
         ),
         target=target,
-        rule=multi_level_tiling_tensor_core(target=target),
+        rules=rule_list,
     )
     spaces = ctx.space_generator.generate_design_space(mod=ctx.mod)
-    trace = ...
+    for schedule in spaces:
+        print(schedule.trace)
+    
     # run postproc on the trace
 
 
 if __name__ == "__main__":
-    test_matmul_schedule()
+    # test_matmul_schedule()
+    test_tune_matmul_cuda_tensor_core()
