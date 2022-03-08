@@ -260,6 +260,161 @@ def wmma_store_impl(a: T.handle, c: T.handle) -> None:
             A.data, 16, 16, 16, A.elem_offset // 256 + T.floordiv(T.floormod(A.elem_offset, 256), 16), C.access_ptr("w"), s1, "row_major",
             dtype="handle"))
 
+@T.prim_func
+def wmma_sync_int8_desc(a: T.handle, b: T.handle, c: T.handle) -> None:
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=1, scope="wmma.matrix_a")
+    B = T.match_buffer(b, (16, 16), "float16", align=128, offset_factor=1, scope="wmma.matrix_b")
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=1, scope="wmma.accumulator")
+
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        vk = T.axis.R(16, 0)
+        for i, j, k in T.grid(16, 16, 16):
+            with T.block("update"):
+                vii = T.axis.S(16, vi + i)
+                vjj = T.axis.S(16, vj + j)
+                vkk = T.axis.R(16, vk + k)
+                C[vii, vjj] = C[vii, vjj] + T.cast(A[vii, vkk], "float32") * T.cast(B[vkk, vjj],
+                                                                                        "float32")
+
+
+@T.prim_func
+def wmma_sync_int8_impl(a: T.handle, b: T.handle, c: T.handle) -> None:
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=16, scope="wmma.matrix_a")
+    B = T.match_buffer(b, (16, 16), "float16", align=128, offset_factor=16, scope="wmma.matrix_b")
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=16,
+                         scope="wmma.accumulator")
+
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        vk = T.axis.R(16, 0)
+        T.reads([C[vi: vi+16, vj: vj+16], A[vi: vi+16, vk: vk+16], B[vk: vk+16, vj: vj+16]])
+        T.writes(C[vi: vi+16, vj: vj+16])
+        T.evaluate(T.tvm_mma_sync(C.data, C.elem_offset // 256 + T.floordiv(T.floormod(C.elem_offset, 256), 16),
+                                      A.data, A.elem_offset // 256 + T.floordiv(T.floormod(A.elem_offset, 256), 16),
+                                      B.data, B.elem_offset // 256 + T.floordiv(T.floormod(B.elem_offset, 256), 16),
+                                      C.data, C.elem_offset // 256 + T.floordiv(T.floormod(C.elem_offset, 256), 16),
+                                      dtype="handle"))
+
+
+@T.prim_func
+def wmma_load_a_int8_desc(a: T.handle, c: T.handle) -> None:
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=16,
+                         scope="shared")
+    C = T.match_buffer(c, (16, 16), "float16", align=128, offset_factor=16,
+                         scope="wmma.matrix_a")
+
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        for i, j in T.grid(16, 16):
+            with T.block("load"):
+                vii = T.axis.S(16, vi + i)
+                vjj = T.axis.S(16, vj + j)
+                C[vii, vjj] = A[vii, vjj]
+
+
+@T.prim_func
+def wmma_load_a_int8_impl(a: T.handle, c: T.handle) -> None:
+    s1 = T.var("int32")
+    s0 = T.var("int32")
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=16, scope="shared", strides=[s1, s0])
+    C = T.match_buffer(c, (16, 16), "float16", align=128, offset_factor=16, scope="wmma.matrix_a")
+
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        T.reads(A[vi: vi+16, vj: vj+16])
+        T.writes(C[vi: vi+16, vj: vj+16])
+        T.evaluate(T.tvm_load_matrix_sync(
+            C.data, 16, 16, 16, C.elem_offset // 256 + T.floordiv(T.floormod(C.elem_offset, 256), 16), A.access_ptr("r"), s1, "row_major",
+            dtype="handle"))
+
+
+@T.prim_func
+def wmma_load_b_int8_desc(a: T.handle, c: T.handle) -> None:
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=16, scope="shared")
+    C = T.match_buffer(c, (16, 16), "float16", align=128, offset_factor=16, scope="wmma.matrix_b")
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        for i, j in T.grid(16, 16):
+            with T.block("load"):
+                vii = T.axis.S(16, vi + i)
+                vjj = T.axis.S(16, vj + j)
+                C[vii, vjj] = A[vii, vjj]
+
+
+@T.prim_func
+def wmma_load_b_int8_impl(a: T.handle, c: T.handle) -> None:
+    s1 = T.var("int32")
+    s0 = T.var("int32")
+    A = T.match_buffer(a, (16, 16), "float16", align=128, offset_factor=16, scope="shared", strides=[s1, s0])
+    C = T.match_buffer(c, (16, 16), "float16", align=128, offset_factor=16, scope="wmma.matrix_b")
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        T.reads(A[vi: vi+16, vj: vj+16])
+        T.writes(C[vi: vi+16, vj: vj+16])
+        T.evaluate(T.tvm_load_matrix_sync(
+            C.data, 16, 16, 16, C.elem_offset // 256 + T.floordiv(T.floormod(C.elem_offset, 256), 16), A.access_ptr("r"), s1, "row_major",
+            dtype="handle"))
+
+
+@T.prim_func
+def wmma_fill_int8_desc(c: T.handle) -> None:
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=16, scope="wmma.accumulator")
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        for i, j in T.grid(16, 16):
+            with T.block("init"):
+                vii = T.axis.S(16, vi + i)
+                vjj = T.axis.S(16, vj + j)
+                C[vii, vjj] = T.float32(0)
+
+
+@T.prim_func
+def wmma_fill_int8_impl(c: T.handle) -> None:
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=16, scope="wmma.accumulator")
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        T.reads([])
+        T.writes(C[vi : vi + 16, vj : vj + 16])
+        T.evaluate(T.tvm_fill_fragment(C.data, 16, 16, 16, C.elem_offset // 256 + T.floordiv(T.floormod(C.elem_offset, 256), 16), T.float32(0), dtype="handle"))
+
+
+@T.prim_func
+def wmma_store_int8_desc(a: T.handle, c: T.handle) -> None:
+    A = T.match_buffer(a, (16, 16), "float32", align=128, offset_factor=16, scope="wmma.accumulator")
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=16, scope="global")
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        for i, j in T.grid(16, 16):
+            with T.block("store"):
+                vii = T.axis.S(16, vi + i)
+                vjj = T.axis.S(16, vj + j)
+                C[vii, vjj] = A[vii, vjj]
+
+
+@T.prim_func
+def wmma_store_int8_impl(a: T.handle, c: T.handle) -> None:
+    s1 = T.var("int32")
+    s0 = T.var("int32")
+    A = T.match_buffer(a, (16, 16), "float32", align=128, offset_factor=16, scope="wmma.accumulator")
+    C = T.match_buffer(c, (16, 16), "float32", align=128, offset_factor=16, scope="global", strides=[s1, s0])
+    with T.block("root"):
+        vi = T.axis.S(16, 0)
+        vj = T.axis.S(16, 0)
+        T.reads(A[vi: vi + 16, vj: vj + 16])
+        T.writes(C[vi: vi+16, vj: vj+16])
+        T.evaluate(T.tvm_store_matrix_sync(
+            A.data, 16, 16, 16, A.elem_offset // 256 + T.floordiv(T.floormod(A.elem_offset, 256), 16), C.access_ptr("w"), s1, "row_major",
+            dtype="handle"))
 
 # fmt: on
 # pylint: enable=invalid-name,no-member,line-too-long,too-many-nested-blocks
@@ -304,4 +459,34 @@ WMMA_FILL = tir.TensorIntrin.register(
     "wmma_store",
     wmma_store_desc,
     wmma_store_impl,
+)
+
+WMMA_SYNC_INT8 = tir.TensorIntrin.register(
+    "wmma_sync_int8",
+    wmma_sync_int8_desc,
+    wmma_sync_int8_impl,
+)
+
+WMMA_LOAD_A_INT8 = tir.TensorIntrin.register(
+    "wmma_load_a_int8",
+    wmma_load_a_int8_desc,
+    wmma_load_a_int8_impl,
+)
+
+WMMA_LOAD_B_INT8 = tir.TensorIntrin.register(
+    "wmma_load_b_int8",
+    wmma_load_b_int8_desc,
+    wmma_load_b_int8_impl,
+)
+
+WMMA_FILL_INT8 = tir.TensorIntrin.register(
+    "wmma_fill_int8",
+    wmma_fill_int8_desc,
+    wmma_fill_int8_impl,
+)
+
+WMMA_FILL_INT8 = tir.TensorIntrin.register(
+    "wmma_store_int8",
+    wmma_store_int8_desc,
+    wmma_store_int8_impl,
 )
