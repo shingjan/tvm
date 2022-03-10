@@ -928,7 +928,7 @@ Optional<TensorizeInfo> GetTensorizeLoopMapping(const tir::ScheduleState& self,
       return true;
     };
     const auto* desc_body =
-        Downcast<tir::BlockRealize>(desc_func->body)->block->body.as<tir::BlockRealizeNode>();
+        Downcast<tir::BlockRealize>(desc_func->body).as<tir::BlockRealizeNode>();
     ICHECK(desc_body);
     tir::PostOrderVisit(desc_body->block->body, f_visit);
     std::reverse(desc_loops.begin(), desc_loops.end());
