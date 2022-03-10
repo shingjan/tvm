@@ -33,7 +33,7 @@ def test_manual_matmul():
     N = 512
     M = 512
     K = 512
-    workload = te_workload.matmul_fp16(n=N, m=M, k=K)
+    workload = te_workload.matmul_int8(n=N, m=M, k=K)
     workload = te.create_prim_func(workload)
 
     def schedule(sch: tir.Schedule):
@@ -105,7 +105,7 @@ def test_manual_matmul():
             # sch.compute_at(block_read_local, f_2)
             sch.vectorize(f_3)
 
-            sch.storage_align(block_read, 0, axis=-2, factor=32, offset=8)
+            sch.storage_align(block_read, 0, axis=-2, factor=32, offset=16)
 
 
         fetch_to_shared(block_outer, 1, 2)
@@ -141,16 +141,16 @@ def test_manual_matmul():
             j0, j1 = sch.split(j, factors=[None, 16])
             sch.reorder(i0, j0, i1, j1)
             return i1
-
-        sch.tensorize(loop, "wmma_sync")
+        print(sch.mod['main'].script())
+        sch.tensorize(loop, "wmma_sync_int8")
         loop = tile_wmma_fragment(block_read_a)
-        sch.tensorize(loop, "wmma_load_a")
+        sch.tensorize(loop, "wmma_load_a_int8")
         loop = tile_wmma_fragment(block_read_b)
-        sch.tensorize(loop, "wmma_load_b")
+        sch.tensorize(loop, "wmma_load_b_int8")
         loop = sch.get_loops(block_init_c_inner)[-2]
-        sch.tensorize(loop, "wmma_fill")
+        sch.tensorize(loop, "wmma_fill_int8")
         loop = sch.get_loops(block_write_c)[-2]
-        sch.tensorize(loop, "wmma_store")
+        sch.tensorize(loop, "wmma_store_int8")
 
     # task = ms.SearchTask(
     #         workload=workload,
@@ -204,12 +204,12 @@ def test_manual_matmul():
         print(tvm.lower(sch.mod['main'], None, simple_mode=True))
 
     dev = tvm.device("cuda", 0)
-    a_np = np.random.uniform(size=(N, K)).astype("float16")
-    b_np = np.random.uniform(size=(K, M)).astype("float16")
-    c_np = np.dot(a_np.astype("float32"), b_np.astype("float32"))
+    a_np = np.random.uniform(size=(N, K)).astype(np.int8)
+    b_np = np.random.uniform(size=(K, M)).astype(np.int8)
+    c_np = np.dot(a_np.astype(np.int32), b_np.astype(np.int32))
     a = tvm.nd.array(a_np, dev)
     b = tvm.nd.array(b_np, dev)
-    c = tvm.nd.array(np.zeros((N, M), dtype="float32"), dev)
+    c = tvm.nd.array(np.zeros((N, M), dtype=np.int32), dev)
     # sys.exit(0)
     f = tvm.build(sch.mod['main'], target="cuda", name="dense")
     print(f.imported_modules[0].get_source())
@@ -223,7 +223,7 @@ def test_manual_matmul():
 
 
 def test_tune_matmul():
-    print(tir.TensorIntrin.get("wmma_sync"))
+
     def sch_rules():
         return [
             schedule_rule.AutoInline(
@@ -337,19 +337,19 @@ def test_tune_matmul():
         num_trials_total=320,
     )
 
-    # import tempfile
+    import tempfile
 
-    # with tempfile.TemporaryDirectory() as work_dir:
-    #     sch: tir.Schedule = tune_tir(
-    #         mod=mod,
-    #         target=target,
-    #         config=config,
-    #         work_dir=work_dir,
-    #         space=PostOrderApply(),
-    #         sch_rules=sch_rules,
-    #         postprocs=postprocs,
-    #         num_threads=None,
-    #     )
+    with tempfile.TemporaryDirectory() as work_dir:
+        sch: tir.Schedule = tune_tir(
+            mod=mod,
+            target=target,
+            config=config,
+            work_dir=work_dir,
+            space=PostOrderApply(),
+            sch_rules=sch_rules,
+            postprocs=postprocs,
+            num_threads=None,
+        )
 
     # func = tvm.build(sch.mod["main"], [], "cuda")
     # ctx = tvm.device("cuda", 0)
@@ -382,9 +382,9 @@ def test_tune_matmul():
         target=target,
         rules=rule_list,
     )
-    spaces = ctx.space_generator.generate_design_space(mod=ctx.mod)
-    for schedule in spaces:
-        print(schedule.trace)
+    # spaces = ctx.space_generator.generate_design_space(mod=ctx.mod)
+    # for schedule in spaces:
+    #     print(schedule.trace)
     
     # run postproc on the trace
 

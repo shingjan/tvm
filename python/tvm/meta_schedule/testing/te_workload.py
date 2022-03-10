@@ -617,6 +617,19 @@ def matmul_relu(n: int, m: int, k: int) -> Tuple[te.Tensor, te.Tensor, te.Tensor
     d = topi.nn.relu(c)  # pylint: disable=invalid-name
     return (a, b, d)
 
+def matmul_int8(n: int, m: int, k: int) -> Tuple[te.Tensor, te.Tensor, te.Tensor]:
+    a = te.placeholder((n, k), name="A", dtype="int8")
+    b = te.placeholder((k, m), name="B", dtype="int8")
+    k = te.reduce_axis((0, k), name="k")
+
+    def f_compute(i, j):
+        v_a = tir.Cast(dtype="int32", value=a[i, k])
+        v_b = tir.Cast(dtype="int32", value=b[k, j])
+        return te.sum(v_a * v_b, axis=[k])
+
+    c = te.compute((n, m), f_compute, name="C")
+    return (a, b, c)
+
 
 def matmul_relu_fp16(n: int, m: int, k: int) -> Tuple[te.Tensor, te.Tensor, te.Tensor]:
     a = te.placeholder((n, k), name="A", dtype="float16")
