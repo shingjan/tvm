@@ -83,15 +83,22 @@ bool TensorizeComparator::VisitExpr(const PrimExpr& n, const PrimExpr& other) {
 
 bool TensorizeComparator::VisitStmt_(const ForNode* op, const Stmt& other) {
   const auto* rhs = other.as<ForNode>();
+  LOG(INFO) << "I am here1";
   if (!DefEqual(op->loop_var, rhs->loop_var)) return false;
+  LOG(INFO) << "I am here2";
   if (!VisitExpr(op->min, rhs->min)) return false;
+  LOG(INFO) << "I am here3";
   if (!VisitExpr(op->extent, rhs->extent)) return false;
+  LOG(INFO) << "I am here4";
   if (op->thread_binding.defined() != rhs->thread_binding.defined()) return false;
+  LOG(INFO) << "I am here5";
   if (op->thread_binding.defined() &&
       !VisitExpr(op->thread_binding.value(), rhs->thread_binding.value())) {
     return false;
   }
+  LOG(INFO) << "I am here6";
   if (op->kind != rhs->kind) return false;
+  LOG(INFO) << "I am here7";
   if (!CompareAnnotationMap(op->annotations, rhs->annotations)) return false;
   return VisitStmt(op->body, rhs->body);
 }
@@ -123,22 +130,32 @@ bool TensorizeComparator::VisitStmt_(const BlockNode* op, const Stmt& other) {
   // When checking iter vars, DefEqual is used to remap variables.
   if (!is_scope_block) {
     if (!CompareArray(op->iter_vars, rhs->iter_vars, &TensorizeComparator::CompareIterVar)) {
+      LOG(INFO) << "I am here1";
       return false;
     }
     if (!CompareAnnotationMap(op->annotations, rhs->annotations)) {
+      LOG(INFO) << "I am here1";
       return false;
     }
     if (!CompareArray(op->alloc_buffers, rhs->alloc_buffers, &TensorizeComparator::CompareBuffer)) {
+      LOG(INFO) << "I am here1";
       return false;
     }
   }
   if (!CompareArray(op->writes, rhs->writes, &TensorizeComparator::CompareBufferRegion)) {
+    LOG(INFO) << "I am here1";
     return false;
   }
   if (!CompareArray(op->reads, rhs->reads, &TensorizeComparator::CompareBufferRegion)) {
+    LOG(INFO) << "I am here1";
+    LOG(INFO) << op-> reads;
+    LOG(INFO) << rhs->reads;
+    LOG(INFO) << op-> writes;
+    LOG(INFO) << rhs->writes;
     return false;
   }
   is_scope_block = false;
+  LOG(INFO) << "I am here1";
   return VisitStmt(op->body, rhs->body);
 }
 
@@ -279,7 +296,9 @@ bool TensorizeComparator::CompareBufferRegion(const BufferRegion& lhs, const Buf
     indices_base.reserve(lhs->region.size());
     for (int i = 0; i < offset; i++) {
       // High-dim region must be element-wise
-      if (!is_one(lhs->region[i]->extent)) return false;
+      if (!is_one(lhs->region[i]->extent)) {
+        return false;
+      }
       indices_base.emplace_back(lhs->region[i]->min);
     }
     for (size_t i = 0; i < rhs->region.size(); i++) {
@@ -296,8 +315,12 @@ bool TensorizeComparator::CompareBufferRegion(const BufferRegion& lhs, const Buf
     const std::vector<PrimExpr>& indices_base = it->second;
     for (int i = 0; i < offset; i++) {
       // High-dim region must be element-wise
-      if (!is_one(lhs->region[i]->extent)) return false;
-      if (!analyzer_.CanProveEqual(indices_base[i], lhs->region[i]->min)) return false;
+      if (!is_one(lhs->region[i]->extent)) {
+        return false;
+      }
+      if (!analyzer_.CanProveEqual(indices_base[i], lhs->region[i]->min)) {
+        return false;
+      }
     }
     for (size_t i = 0; i < rhs->region.size(); i++) {
       // check extent match
@@ -342,7 +365,11 @@ bool TensorizeComparator::CompareArray(const Array<T>& lhs, const Array<T>& rhs,
   if (lhs.same_as(rhs)) return true;
   if (lhs.size() != rhs.size()) return false;
   for (size_t i = 0; i < lhs.size(); ++i) {
-    if (!(this->*cmp)(lhs[i], rhs[i])) return false;
+    if (!(this->*cmp)(lhs[i], rhs[i])) {
+      LOG(INFO) << i;
+      LOG(INFO) << (this->*cmp)(lhs[i], rhs[i]);
+      return false;
+    }
   }
   return true;
 }

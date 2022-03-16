@@ -863,7 +863,9 @@ std::pair<Array<StmtSRef>, std::vector<int>> CollectComputeLocation(const Schedu
 
 class AutoTensorizeComparator : public tir::TensorizeComparator {
  public:
-  AutoTensorizeComparator(IRModule lhs_mod) : tir::TensorizeComparator(lhs_mod, false) {}
+  AutoTensorizeComparator(IRModule lhs_mod) : tir::TensorizeComparator(lhs_mod, true) {
+    LOG(INFO) << AsTVMScript(lhs_mod);
+  }
 
   bool VisitStmt(const tir::Stmt& n, const tir::Stmt& rhs) override {
     if (n.same_as(rhs)) return true;

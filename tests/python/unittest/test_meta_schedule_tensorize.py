@@ -9,11 +9,16 @@ from tvm.meta_schedule.tune_context import TuneContext
 from tvm.te import create_prim_func
 from tvm.meta_schedule.testing import te_workload
 from tvm.target import Target
-from tvm.meta_schedule import schedule_rule, ReplayTraceConfig, postproc, tune_tir
-from tvm.meta_schedule.testing import tir_tensor_intrin
-from tvm import tir, te
+from tvm.meta_schedule import schedule_rule, ReplayTraceConfig, postproc, tune_tir, tune_relay
+from tvm.meta_schedule.testing import tir_tensor_intrin, DummyDatabase
+from tvm.meta_schedule.tune import extract_task_from_relay
+from tvm import tir, te, relay
+import tvm.relay.testing
+from tvm.relay import transform
 import tvm
 import numpy as np
+import onnx
+import tempfile
 
 
 def _create_context(mod, target, rules) -> TuneContext:
@@ -59,7 +64,7 @@ def test_manual_matmul():
         # j_factors = sch.sample_perfect_tile(j, n=5, decision=[1, 8, 4, 1, 2])
         i_factors = [8, 1, 2, 1, 2]
         j_factors = [8, 4, 2, 1, 4]  # swizzle: identity8
-        j_factors = [1, 4, 2, 1, 4] 
+        j_factors = [1, 4, 2, 1, 4]
         k_factors = [16, 2, 1]
         i0, i1, i2, i3, i4 = sch.split(i, factors=i_factors)
         j0, j1, j2, j3, j4 = sch.split(j, factors=j_factors)
@@ -141,7 +146,8 @@ def test_manual_matmul():
             j0, j1 = sch.split(j, factors=[None, 16])
             sch.reorder(i0, j0, i1, j1)
             return i1
-        print(sch.mod['main'].script())
+
+        print(sch.mod["main"].script())
         sch.tensorize(loop, "wmma_sync_int8")
         loop = tile_wmma_fragment(block_read_a)
         sch.tensorize(loop, "wmma_load_a_int8")
@@ -200,8 +206,8 @@ def test_manual_matmul():
     if sch is None:
         print("No valid schedule found")
     else:
-        print(sch.mod['main'].script())
-        print(tvm.lower(sch.mod['main'], None, simple_mode=True))
+        print(sch.mod["main"].script())
+        print(tvm.lower(sch.mod["main"], None, simple_mode=True))
 
     dev = tvm.device("cuda", 0)
     a_np = np.random.uniform(size=(N, K)).astype(np.int8)
@@ -211,19 +217,18 @@ def test_manual_matmul():
     b = tvm.nd.array(b_np, dev)
     c = tvm.nd.array(np.zeros((N, M), dtype=np.int32), dev)
     # sys.exit(0)
-    f = tvm.build(sch.mod['main'], target="cuda", name="dense")
+    f = tvm.build(sch.mod["main"], target="cuda", name="dense")
     print(f.imported_modules[0].get_source())
     f(a, b, c)
     tvm.testing.assert_allclose(c.numpy(), c_np, rtol=1e-3)
 
     evaluator = f.time_evaluator(f.entry_name, dev, number=1000)
-    gflops = (N*M*K) * 2 / 1e9
+    gflops = (N * M * K) * 2 / 1e9
     time_ms = evaluator(a, b, c).mean * 1e3
     print("matmul with tensor core: %f ms, %f GFLOPS" % (time_ms, gflops / (time_ms / 1e3)))
 
 
 def test_tune_matmul():
-
     def sch_rules():
         return [
             schedule_rule.AutoInline(
@@ -271,7 +276,7 @@ def test_tune_matmul():
 
     def postprocs():
         return [
-            #postproc.RewriteCooperativeFetch(),
+            postproc.RewriteCooperativeFetch(),
             postproc.RewriteParallelVectorizeUnroll(),
             postproc.RewriteReductionBlock(),
             postproc.RewriteTensorCore(),
@@ -279,65 +284,63 @@ def test_tune_matmul():
         ]
 
     rule_list = [
-            schedule_rule.AutoInline(
-                into_producer=False,
-                into_consumer=True,
-                inline_const_tensor=True,
-                disallow_if_then_else=False,
-                require_injective=False,
-                require_ordered=False,
-                disallow_op=None,
+        schedule_rule.AutoInline(
+            into_producer=False,
+            into_consumer=True,
+            inline_const_tensor=True,
+            disallow_if_then_else=False,
+            require_injective=False,
+            require_ordered=False,
+            disallow_op=None,
+        ),
+        schedule_rule.MultiLevelTiling(
+            structure="SSSRRSRS",
+            tile_binds=["blockIdx.x", "blockIdx.y", "threadIdx.y"],
+            use_tensor_core=True,
+            max_innermost_factor=64,
+            vector_load_lens=[1, 2, 3, 4],
+            reuse_read=schedule_rule.ReuseType(
+                req="must",
+                levels=[4],
+                scope="shared",
             ),
-            schedule_rule.MultiLevelTiling(
-                structure="SSSRRSRS",
-                tile_binds=["blockIdx.x", "blockIdx.y", "threadIdx.y"],
-                use_tensor_core=True,
-                max_innermost_factor=64,
-                vector_load_lens=[1, 2, 3, 4],
-                reuse_read=schedule_rule.ReuseType(
-                    req="must",
-                    levels=[4],
-                    scope="shared",
-                ),
-                reuse_write=schedule_rule.ReuseType(
-                    req="no",
-                    levels=[],
-                    scope="",
-                ),
+            reuse_write=schedule_rule.ReuseType(
+                req="no",
+                levels=[],
+                scope="",
             ),
-            schedule_rule.AutoInline(
-                into_producer=True,
-                into_consumer=True,
-                inline_const_tensor=True,
-                disallow_if_then_else=False,
-                require_injective=False,
-                require_ordered=False,
-                disallow_op=None,
-            ),
-            schedule_rule.ParallelizeVectorizeUnroll(
-                max_jobs_per_core=-1,  # disable parallelize
-                max_vectorize_extent=-1,  # disable vectorize
-                unroll_max_steps=[0, 16, 64, 512, 1024],
-                unroll_explicit=True,
-            ),
+        ),
+        schedule_rule.AutoInline(
+            into_producer=True,
+            into_consumer=True,
+            inline_const_tensor=True,
+            disallow_if_then_else=False,
+            require_injective=False,
+            require_ordered=False,
+            disallow_op=None,
+        ),
+        schedule_rule.ParallelizeVectorizeUnroll(
+            max_jobs_per_core=-1,  # disable parallelize
+            max_vectorize_extent=-1,  # disable vectorize
+            unroll_max_steps=[0, 16, 64, 512, 1024],
+            unroll_explicit=True,
+        ),
     ]
-    postproc_list = [            
-            postproc.RewriteCooperativeFetch(),
-            postproc.RewriteParallelVectorizeUnroll(),
-            postproc.RewriteReductionBlock(),
-            postproc.RewriteTensorCore(),
-            postproc.VerifyGPUCode(),
-            ]
+    postproc_list = [
+        # postproc.RewriteCooperativeFetch(),
+        postproc.RewriteParallelVectorizeUnroll(),
+        postproc.RewriteReductionBlock(),
+        postproc.RewriteTensorCore(),
+        postproc.VerifyGPUCode(),
+    ]
 
-    n = 32
+    n = 16
     mod = create_prim_func(te_workload.matmul_fp16(n, n, n))
     target = Target("nvidia/geforce-rtx-3070")
     config = ReplayTraceConfig(
         num_trials_per_iter=32,
         num_trials_total=320,
     )
-
-    import tempfile
 
     with tempfile.TemporaryDirectory() as work_dir:
         sch: tir.Schedule = tune_tir(
@@ -354,7 +357,7 @@ def test_tune_matmul():
     # func = tvm.build(sch.mod["main"], [], "cuda")
     # ctx = tvm.device("cuda", 0)
     # print(sch.trace)
-    # print(sch.mod.script())
+    print(sch.mod.script())
     # print(func.imported_modules[0].get_source())
     # a_np = np.random.uniform(size=(n, n)).astype("float16")
     # b_np = np.random.uniform(size=(n, n)).astype("float16")
@@ -385,11 +388,105 @@ def test_tune_matmul():
     # spaces = ctx.space_generator.generate_design_space(mod=ctx.mod)
     # for schedule in spaces:
     #     print(schedule.trace)
-    
+
     # run postproc on the trace
+
+def test_bert_int8():
+
+    name = "models/bert-base-qat.onnx"
+
+    onnx_model = onnx.load(name)
+    batch_size = 1
+    seq_len = 384
+
+    shape_dict = {
+        "input_ids": (batch_size, seq_len),
+        "segment_ids": (batch_size, seq_len),
+        "input_mask": (batch_size, seq_len),
+    }
+
+    mod, params = relay.frontend.from_onnx(onnx_model, shape_dict, freeze_params=True)
+
+    seq = tvm.transform.Sequential(
+        [
+            transform.InferType(),
+            transform.FoldConstant(),
+            transform.SimplifyInference(),
+            transform.FoldScaleAxis(),
+        ]
+    )
+
+    with tvm.transform.PassContext(opt_level=3):
+        mod = seq(mod)
+
+    mod = tvm.relay.transform.FakeQuantizationToInteger(use_qat=True)(mod)
+    json_path = "models/bert_base_int8.json"
+    params_path = "models/bert_base_int8.params"
+
+    with open(json_path, "w") as fo:
+        fo.write(tvm.ir.save_json(mod))
+
+    with open(params_path, "wb") as fo:
+        fo.write(relay.save_param_dict(params))
+
+    with open(json_path, "r") as fi:
+        mod = tvm.ir.load_json(fi.read())
+
+    with open(params_path, "rb") as fi:
+        params = relay.load_param_dict(fi.read())
+
+    target = Target("nvidia/geforce-rtx-3070")
+
+    extracted_tasks = extract_task_from_relay(mod, target, params)
+    tune_tasks = list(
+        filter(
+            lambda task: "dense" in task.task_name or "batch_matmul" in task.task_name,
+            extracted_tasks,
+        )
+    )
+    print(tune_tasks)
+
+
+    print(mod)
+
+def test_load_bert_int8():
+    json_path = "models/bert_base_int8.json"
+    params_path = "models/bert_base_int8.params"
+    target = Target("nvidia/geforce-rtx-3070")
+    
+    with open(json_path, "r") as fi:
+        mod = tvm.ir.load_json(fi.read())
+
+    with open(params_path, "rb") as fi:
+        params = relay.load_param_dict(fi.read())
+
+    # extracted_tasks = extract_task_from_relay(mod, target, params)
+    # tune_tasks = list(
+    #     filter(
+    #         lambda task: "dense" in task.task_name or "batch_matmul" in task.task_name,
+    #         extracted_tasks,
+    #     )
+    # )
+    #extracted_tasks = extract_task_from_relay(mod, target, params)
+    with tempfile.TemporaryDirectory() as work_dir:
+        target = Target(target)
+        database = DummyDatabase()
+        rt_mod: tvm.module = tune_relay(
+            mod=mod,
+            params=params,
+            target=target,
+            config=ReplayTraceConfig(
+                num_trials_per_iter=32,
+                num_trials_total=32,
+            ),
+            work_dir=work_dir,
+            database=database,
+        )
+    # print(mod)
 
 
 if __name__ == "__main__":
-    # test_matmul_schedule()
-    test_manual_matmul()
-    #test_tune_matmul()
+    # test_manual_matmul()
+    # test_tune_matmul()
+    # test_bert_int8()
+    test_load_bert_int8()
