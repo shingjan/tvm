@@ -16,7 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+#include "../../tir/schedule/analysis.h"
 #include "../utils.h"
+#include "tvm/tir/buffer.h"
 
 namespace tvm {
 namespace tir {
@@ -147,12 +149,32 @@ bool RewriteCooperativeFetchNode::Apply(const tir::Schedule& sch) {
           sch->Vectorize(split[3]);
           sch->Bind(split[2], "threadIdx.x");
           sch->Bind(split[1], "threadIdx.y");
+          tir::StmtSRef block_sref = sch->GetSRef(block);
+          const tir::BlockNode* block_ptr = TVM_SREF_TO_BLOCK(block_ptr, block_sref);
+          tir::Buffer buffer =
+              tir::GetNthAccessBuffer(sch->state(), GetRef<tir::Block>(block_ptr), 0,
+                                      /*is_write=*/true);
+          if (buffer->dtype == DataType::Int(8)) {
+            sch->StorageAlign(block, 0, -2, 32, 16);
+          } else {
+            sch->StorageAlign(block, 0, -2, 32, 8);
+          }
         } else {
           Array<tir::LoopRV> split = sch->Split(fused, {NullOpt,                   //
                                                         Integer(thread_extent_y),  //
                                                         Integer(thread_extent_x)});
           sch->Bind(split[2], "threadIdx.x");
           sch->Bind(split[1], "threadIdx.y");
+          tir::StmtSRef block_sref = sch->GetSRef(block);
+          const tir::BlockNode* block_ptr = TVM_SREF_TO_BLOCK(block_ptr, block_sref);
+          tir::Buffer buffer =
+              tir::GetNthAccessBuffer(sch->state(), GetRef<tir::Block>(block_ptr), 0,
+                                      /*is_write=*/true);
+          if (buffer->dtype == DataType::Int(8)) {
+            sch->StorageAlign(block, 0, -2, 32, 16);
+          } else {
+            sch->StorageAlign(block, 0, -2, 32, 8);
+          }
         }
       } else {
         if (vector_lane > 1) {
