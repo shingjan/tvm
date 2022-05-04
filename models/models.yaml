@@ -1,0 +1,1914 @@
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_resnet50_v1.onnx
+  md5: a638cf028b5870da29e09ccc2f7182e7
+  name: amd_resnet50v1
+  testset: full-onnx
+  url: https://zenodo.org/record/2592612/files/resnet50_v1.onnx
+  metadata_url: null
+  input_shapes:
+    - name: "input_tensor:0"
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_mobilenetv2.onnx
+  md5: 1b8a2fd91dc2b6c78f3cfe846cf16c88
+  name: mobilenetv2
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/mobilenet/model/mobilenetv2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/classification/mobilenet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_yolov4.onnx
+  md5: 2e0eeb4de8da2a0663ae3eb4a0dabbce
+  name: yolov4
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/main/vision/object_detection_segmentation/yolov4/model/yolov4.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/object_detection_segmentation/yolov4
+  input_shapes:
+    - name: "input_1:0"
+      dtype: float32
+      shape: [1, 416, 416, 3]
+
+- category: machine_comprehension
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_bert_large.onnx
+  md5: 819b25b19cd8e59080c10892689750ca
+  name: bert
+  testset: full-onnx
+  url: https://zenodo.org/record/3733910/files/model.onnx
+  metadata_url: null
+  input_shapes:
+    - name: input_ids
+      dtype: int64
+      shape: [1, 384]
+    - name: input_mask
+      dtype: int64
+      shape: [1, 384]
+    - name: segment_ids
+      dtype: int64
+      shape: [1, 384]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_squeezenet1.1.onnx
+  md5: 497ad0774f4e0b59e4f2c77ae88fcdfc
+  name: squeezenet1.1
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/squeezenet/model/squeezenet1.1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/squeezenet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_vgg19.onnx
+  md5: 3ddcbebbe6c937d504b09c48bf0ba371
+  name: vgg19
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg/model/vgg19-7.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/classification/vgg
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_rcnn-ilsvrc13.onnx
+  md5: 19df6d12a77038270377e12001d054e0
+  name: rcnn-ilsvrc13
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/rcnn_ilsvrc13/model/rcnn-ilsvrc13-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/rcnn_ilsvrc13
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_densenet.onnx
+  md5: 992b48fd5c5b1a981b387af92b4e2147
+  name: densenet
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/densenet-121/model/densenet-9.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/classification/densenet-121
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_inception-v2.onnx
+  md5: 2f6fbd54804383e99fca7da5a17cff45
+  name: inception-v2
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/inception_and_googlenet/inception_v2/model/inception-v2-9.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/classification/inception_and_googlenet/inception_v2
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_shufflenet-v2.onnx
+  md5: 7761c7e041872213778224ae709169d0
+  name: shufflenet-v2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/shufflenet/model/shufflenet-v2-10.tar.gz
+  metadata_url: https://github.com/onnx/models/tree/master/vision/classification/shufflenet
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: machine_comprehension
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/text_machine_comprehension_gpt2.onnx
+  md5: e70b6cf847b4267fecd35aeec4578178
+  name: gpt2
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/text/machine_comprehension/gpt-2/model/gpt2-10.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/text/machine_comprehension/gpt-2
+  input_shapes:
+    - name: input1
+      dtype: int64
+      shape: [1, 1, 8]
+
+- category: body_analysis
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_body_analysis_arcfaceresnet100.onnx
+  md5: ddbf28fd28e32d29e35f75da82aa9fa4
+  name: arcfaceresnet100
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/body_analysis/arcface/model/arcfaceresnet100-8.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/body_analysis/arcface
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 112, 112]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_tinyyolov2.onnx
+  md5: a74fa631a6f72b4eb82f7b40ea8de3fc
+  name: tinyyolov2
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/tiny-yolov2/model/tinyyolov2-8.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/tiny-yolov2
+  input_shapes:
+    - name: image
+      dtype: float32
+      shape: [1, 3, 416, 416]
+
+- category: body_analysis
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_body_analysis_emotion-ferplus.onnx
+  md5: 3fcf96ca7cd8330f69c04c2f577309fc
+  name: emotion-ferplus
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/body_analysis/emotion_ferplus/model/emotion-ferplus-8.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/body_analysis/emotion_ferplus
+  input_shapes:
+    - name: Input3
+      dtype: float32
+      shape: [1, 1, 64, 64]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_efficientnet-lite4-11.onnx
+  md5: cac064707e764667392b3a7913a29467
+  name: efficientnet-lite4
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/efficientnet-lite4/model/efficientnet-lite4-11.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/efficientnet-lite4
+  input_shapes:
+    - name: "images:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_fcn-resnet50-11.onnx
+  md5: 23b36ca3a4dd80f9dad6cb19325ce312
+  name: fcn-resnet50
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/fcn/model/fcn-resnet50-11.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/fcn
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 3, 416, 416]
+
+# AMD APU contract ONNX models
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_3d_unet.onnx
+  md5: b163649a0656539d609ef3a6a5ddd000
+  name: amd-3d-unet
+  testset: amd-onnx
+  url: https://zenodo.org/record/3928973/files/224_224_160.onnx
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 4, 224, 224, 160]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_resnet34_ssd1200.onnx
+  md5: b70fc6c72bc9349981f3b1258f31bc87
+  name: amd-resnet34-ssd
+  testset: amd-onnx
+  url: https://zenodo.org/record/3228411/files/resnet34-ssd1200.onnx
+  metadata_url: null
+  input_shapes:
+    - name: image
+      dtype: float32
+      shape: [1, 3, 1200, 1200]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_ssd_mobilenet_v1_coco_2018_01_28.onnx
+  md5: f78c11efb00ee6e698de5fc61724074f
+  name: amd-ssd-mobilenet-v1
+  testset: broken-onnx
+  url: https://zenodo.org/record/3163026/files/ssd_mobilenet_v1_coco_2018_01_28.onnx
+  metadata_url: null
+  input_shapes:
+    - name: "image_tensor:0"
+      dtype: uint8
+      shape: [1, 224, 224, 3]
+
+- format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_tiny-yolov3.onnx
+  md5: af6ede7ccab07676b97a487ffe43dcc7
+  name: tiny-yolov3
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/tiny-yolov3/model/tiny-yolov3-11.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/tiny-yolov3
+  input_shapes:
+    - name: input_1
+      dtype: float32
+      shape: [1, 3, 416, 416]
+    - name: image_shape
+      dtype: float32
+      shape: [1, 2]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_ssd.onnx
+  md5: 2c4c6435420975fabe94182ac6b57e1a
+  name: ssd
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/ssd/model/ssd-10.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/ssd
+  input_shapes:
+    - name: image
+      dtype: float32
+      shape: [1, 3, 1200, 1200]
+
+- format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_yolov3.onnx
+  md5: ab2add3cf1200ffb912e5d25c5bbdd29
+  name: yolov3
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/yolov3/model/yolov3-10.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/yolov3
+  input_shapes:
+    - name: input_1
+      dtype: float32
+      shape: [1, 3, 416, 416]
+    - name: image_shape
+      dtype: float32
+      shape: [1, 2]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_ResNet101-DUC.onnx
+  md5: 1895a214eefa010272347775dd36a7ba
+  name: ResNet101-DUC
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/duc/model/ResNet101-DUC-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/duc
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 800, 800]
+
+- category: style_transfer
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_style_transfer_mosaic.onnx
+  md5: 8a406bf6d02da6b8bbb5e7dd36a173cd
+  name: mosaic
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style/model/mosaic-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style
+  input_shapes:
+    - name: input1
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: style_transfer
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_style_transfer_candy.onnx
+  md5: dfe29f17e773bbc5a6dcd4f3ee30c391
+  name: candy
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style/model/candy-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style
+  input_shapes:
+    - name: input1
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: style_transfer
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_style_transfer_rain-princess.onnx
+  md5: 3aaf60ce8990b4b67c768f6f0ac0ffb9
+  name: rain-princess
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style/model/rain-princess-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style
+  input_shapes:
+    - name: input1
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: style_transfer
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_style_transfer_udnie.onnx
+  md5: 2a5627259cfffd2369a728b2ea30026a
+  name: udnie
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style/model/udnie-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style
+  input_shapes:
+    - name: input1
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: style_transfer
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_style_transfer_pointilism.onnx
+  md5: 9d183f4afb1aef1ff105dacfa28b79bd
+  name: pointilism
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style/model/pointilism-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/style_transfer/fast_neural_style
+  input_shapes:
+    - name: input1
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_squeezenet1.0.onnx
+  md5: 33fdd9ff2a1b61598170441acfc427a3
+  name: squeezenet1.0
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/squeezenet/model/squeezenet1.0-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/squeezenet
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_mnist.onnx
+  md5: d7cd24a0a76cd492f31065301d468c3d
+  name: mnist
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/mnist/model/mnist-8.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/mnist
+  input_shapes:
+    - name: Input3
+      dtype: float32
+      shape: [1, 1, 28, 28]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_zfnet512.onnx
+  md5: 755735ffd5413f8d1fa983442c86b040
+  name: zfnet512
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/zfnet-512/model/zfnet512-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/zfnet-512
+  input_shapes:
+    - name: "gpu_0/data_0"
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_shufflenet.onnx
+  md5: f29283e6613600e2f5d6c250858e1b19
+  name: shufflenet
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/shufflenet/model/shufflenet-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/shufflenet
+  input_shapes:
+    - name: "gpu_0/data_0"
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_bvlcalexnet.onnx
+  md5: e368fbef81e916a956c69891ae2dc8a2
+  name: bvlcalexnet
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/alexnet/model/bvlcalexnet-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/alexnet
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_inception-v1.onnx
+  md5: e7dbc596a71b2cde743993ea2a777091
+  name: inception-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/inception_and_googlenet/inception_v1/model/inception-v1-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/inception_and_googlenet
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_googlenet.onnx
+  md5: a42f81848c04389264fbf9dccaf3427e
+  name: googlenet
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/inception_and_googlenet/googlenet/model/googlenet-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/inception_and_googlenet
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_caffenet.onnx
+  md5: 3bbfa1d07cd945acf5f28406a8b5e15f
+  name: caffenet
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/caffenet/model/caffenet-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/caffenet
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet18-v1.onnx
+  md5: 582819090f9f6d73381c79ed7cdd49a0
+  name: resnet18-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet18-v1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet34-v1.onnx
+  md5: 699780d3728ff134c30a18de231fa093
+  name: resnet34-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet34-v1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet50-v1.onnx
+  md5: bb0f3a6bfa17c7d3e287308e6dce4918
+  name: resnet50-v1
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet50-v1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet101-v1.onnx
+  md5: 651d6024e179476dd8762ccb65d82fb8
+  name: resnet101-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet101-v1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet152-v1.onnx
+  md5: a6f735feb9fd39a12dd1fbf01e3a77c1
+  name: resnet152-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet152-v1-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet50-caffe2-v1.onnx
+  md5: 6753285a2ad03ef7100673ea6bb4312a
+  name: resnet50-caffe2-v1
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet50-caffe2-v1-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: "gpu_0/data_0"
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet18-v2.onnx
+  md5: c24d0668729003da5f576f62bf14a084
+  name: resnet18-v2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet18-v2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet34-v2.onnx
+  md5: 8603d75a0526489daa85343fa7f2152f
+  name: resnet34-v2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet34-v2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet50-v2.onnx
+  md5: 22ed6e6a8fb9192f0980acca0c941414
+  name: resnet50-v2
+  testset: release-essential-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet50-v2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet101-v2.onnx
+  md5: 408d6195d71959e9fcde08ea46a0b550
+  name: resnet101-v2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet101-v2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet152-v2.onnx
+  md5: ca03a79a2fd79cdd5ed8a5464fbaff9f
+  name: resnet152-v2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet/model/resnet152-v2-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/resnet
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_vgg16.onnx
+  md5: a5a3fd73d345152852568509ebff19fc
+  name: vgg16
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg/model/vgg16-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_vgg16-bn.onnx
+  md5: fe75b896f4eaf071ff8460953ab7f4c6
+  name: vgg16-bn
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg/model/vgg16-bn-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_vgg19-bn.onnx
+  md5: e00e03427016cf30e1c3b39b4e0ca0d1
+  name: vgg19-bn
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg/model/vgg19-bn-7.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg
+  input_shapes:
+    - name: data
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_vgg19-caffe2.onnx
+  md5: fcfd18308ec3deddb3adc4a067dcfc7a
+  name: vgg19-caffe2
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg/model/vgg19-caffe2-9.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/classification/vgg
+  input_shapes:
+    - name: data_0
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+- category: super_resolution
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_super_resolution_super-resolution.onnx
+  md5: 10fc171a6a54f2744ba08640832fa1dc
+  name: super-resolution
+  testset: full-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/super_resolution/sub_pixel_cnn_2016/model/super-resolution-10.tar.gz
+  metadata_url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/super_resolution/sub_pixel_cnn_2016
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 1, 224, 224]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/customer/illumina/illumina_k14.onnx
+  md5: dee18a45da9b5f06a263832e27684e73
+  name: illumina-k14
+  testset: full-onnx
+  url: .nan
+  metadata_url: null
+  input_shapes:
+    - name: input_1
+      dtype: float32
+      shape: [1, 5, 115, 115, 4]
+
+- category: classification
+  customer_name: null
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/mobilenet_v1_1.onnx
+  md5: 5173c0ccbae0d4fe2acd514e8b847f0d
+  name: mobilenet_v1_1
+  testset: release-essential-onnx
+  url: null
+  metadata_url: null
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 3, 224, 224]
+
+# TF graphdef models
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/densenet.pb
+  md5: 00e2e6950860bcb92de21ea614f481d5
+  name: densenet-tf
+  testset: release-essential-tf-graphdef
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/densenet_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "Placeholder:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/squeezenet.pb
+  md5: a63186ba2d68e45d9030f4c384152c94
+  name: squeezenet-tf
+  testset: release-essential-tf-graphdef
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/squeezenet_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "Placeholder:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/nasnet_mobile.pb
+  md5: aa9953f6560ad079d6cb2f684beb1a09
+  name: nasnet_mobile
+  testset: release-essential-tf-graphdef
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/nasnet_mobile_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/nasnet_large.pb
+  md5: be5c5b5ea367e39b1fac68026d740765
+  name: nasnet_large
+  testset: full-tf
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/nasnet_large_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 331, 331, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/resnet_v2_101_299_frozen.pb
+  md5: 0c0fb97420ed107206300986a8dfde4f
+  name: resnet_v2_101
+  testset: broken-heavy-tf
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite_11_05_08/resnet_v2_101.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes: null
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/inception_v3.pb
+  md5: c806cb2d31c8644e5d97c2b3470176bd
+  name: inception_v3
+  testset: release-essential-tf-graphdef
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/inception_v3_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 299, 299, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/inception_v4.pb
+  md5: 457ab835205c75b735d6c24db6a22b8a
+  name: inception_v4
+  testset: full-tf
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/inception_v4_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 299, 299, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/inception_resnet_v2.pb
+  md5: adc5b684e37c41e758d734fcec483714
+  name: inception_resnet_v2
+  testset: full-tf
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite/model_zoo/upload_20180427/inception_resnet_v2_2018_04_27.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 299, 299, 3]
+
+- category: classification
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/mobilenet_v1_0.25_128_frozen.pb
+  md5: 0fdca2e0ef5a760143da81bca3bb504f
+  name: mobilenet_v1_0.25_128
+  testset: release-essential-tf-graphdef
+  url: https://storage.googleapis.com/download.tensorflow.org/models/mobilenet_v1_2018_02_22/mobilenet_v1_0.25_128.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "input:0"
+      dtype: float32
+      shape: [1, 128, 128, 3]
+
+- category: object_detection_segmentation
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/mobilenetv2_coco_voc.pb
+  md5: b0a1d0340189d7003291010abbc2e475
+  name: mobilenetv2_coco_voc
+  testset: full-tf
+  url: http://download.tensorflow.org/models/deeplabv3_mnv2_pascal_train_aug_2018_01_29.tar.gz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "ImageTensor:0"
+      dtype: uint8
+      shape: [1, 8, 8, 3]
+
+- category: object_detection_segmentation
+  format: tf_graphdef
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/edgetpu-deeplab.pb
+  md5: 710ceb19c1af293f9353a01304b6bd78
+  name: edgetpu-deeplab
+  testset: release-essential-tf-graphdef
+  url: http://download.tensorflow.org/models/edgetpu-deeplab_2020_03_09.tar.gz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: "ImageTensor:0"
+      dtype: uint8
+      shape: [1, 8, 8, 3]
+
+# TF SavedModels
+- category: classification
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/resnet50_v1_tf_savedmodel.tgz
+  md5: 43111ee88bd737f1b055249ed266d292
+  name: resnet50_v1_tf_savedmodel
+  testset: small-tf-savedmodel
+  url: https://tfhub.dev/google/imagenet/resnet_v1_50/classification/5
+  customer_name: null
+  metadata_url: https://arxiv.org/abs/1512.03385
+  input_shapes:
+  - name: inputs:0
+    dtype: float32
+    shape: [1, 224, 224, 3]
+
+- category: object_detection_segmentation
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/mobilenet_v2_96_tf_savedmodel.tgz
+  md5: f258a49ac22d57958e3090210d6b65f5
+  name: mobilenet_v2_96_tf_savedmodel
+  testset: small-tf-savedmodel
+  url: https://tfhub.dev/google/imagenet/mobilenet_v2_035_96/classification/5
+  customer_name: null
+  metadata_url: https://arxiv.org/abs/1801.04381
+  input_shapes:
+  - name: inputs:0
+    dtype: float32
+    shape: [1, 96, 96, 3]
+
+- category: machine_comprehension
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/bert_en_uncased_tf_savedmodel.tgz
+  md5: 557eae582954791d44027c3563dad32c
+  name: bert_en_uncased_tf_savedmodel
+  testset: heavy-tf-savedmodel
+  url: https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/4
+  customer_name: null
+  metadata_url: https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3
+  input_shapes:
+  - name: input_mask:0
+    dtype: int32
+    shape: [1, 384]
+  - name: input_type_ids:0
+    dtype: int32
+    shape: [1, 384]
+  - name: input_word_ids:0
+    dtype: int32
+    shape: [1, 384]
+
+- category: classification
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/ssd_mobilenet_v2_tf_saved_model.tgz
+  md5: 230de9a8ba1ff1731de76b3fef3634a3
+  name: ssd_mobilenet_v2_tf_saved_model
+  testset: heavy-tf-savedmodel
+  url: https://tfhub.dev/tensorflow/ssd_mobilenet_v2/2
+  customer_name: null
+  metadata_url: https://github.com/tensorflow/models/tree/master/research/object_detection
+  input_shapes:
+  - name: input_tensor:0
+    dtype: uint8
+    shape: [1, 224, 224, 3]
+
+- category: machine_comprehension
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/bertsquad_tf_saved_model.tgz
+  md5: 4e9d668d09e106663841611282d2e620
+  name: bertsquad_tf_saved_model
+  testset: heavy-tf-savedmodel
+  url: https://tfhub.dev/google/experts/bert/wiki_books/squad2/2
+  customer_name: null
+  metadata_url: https://tfhub.dev/tensorflow/bert_en_uncased_preprocess/3
+  input_shapes:
+  - name: input_mask:0
+    dtype: int32
+    shape: [1, 256]
+  - name: input_type_ids:0
+    dtype: int32
+    shape: [1, 256]
+  - name: input_word_ids:0
+    dtype: int32
+    shape: [1, 256]
+
+- category: object_detection_segmentation
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/yolov3_416_tf_saved_model.tgz
+  md5: 1d9932117af191c750c0ef410777d1ba
+  name: yolov3_416_tf_saved_model
+  testset: heavy-tf-savedmodel
+  url: https://github.com/hunglc007/tensorflow-yolov4-tflite
+  customer_name: null
+  metadata_url: https://github.com/hunglc007/tensorflow-yolov4-tflite
+  input_shapes:
+  - name: input_1:0
+    dtype: float32
+    shape: [1, 416, 416, 3]
+
+- category: object_detection_segmentation
+  format: tf_saved_model
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/yolov4_416_tf_saved_model.tgz
+  md5: 6c98f66a2262888d96b4b1302cee3174
+  name: yolov4_416_tf_saved_model
+  testset: heavy-tf-savedmodel
+  url: https://github.com/hunglc007/tensorflow-yolov4-tflite
+  customer_name: null
+  metadata_url: https://github.com/hunglc007/tensorflow-yolov4-tflite
+  input_shapes:
+  - name: input_1:0
+    dtype: float32
+    shape: [1, 416, 416, 3]
+
+# TFLite models
+- category: super_resolution
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/esrgan-tflite.tflite
+  md5: 023aaf9c005dda701ab4ef770c2f27d0
+  name: esrgan-tflite
+  testset: full-tflite
+  url: null
+  metadata_url: https://www.tensorflow.org/lite/examples/super_resolution/overview
+  input_shapes:
+    - name: input_0
+      dtype: float32
+      shape: [1, 50, 50, 3]
+  quantized: true
+
+- category: object_detection_segmentation
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/deeplab-tflite.tflite
+  md5: dccdc747bbab657258a8e02e41607fd9
+  name: deeplab-tflite
+  testset: full-tflite
+  url: null
+  metadata_url: https://www.tensorflow.org/lite/examples/segmentation/overview
+  input_shapes:
+    - name: sub_7
+      dtype: float32
+      shape: [1, 257, 257, 3]
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/mobilenetv2-tflite.tflite
+  md5: e462e2337cf9a31aea99c69c42964c82
+  name: mobilenetv2-tflite
+  testset: full-tflite
+  url: null
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  input_shapes:
+    - name: sub_7
+      dtype: float32
+      shape: [1, 513, 513, 3]
+  quantized: true
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/mobilenet_v2_224.tflite
+  md5: d8065bc96469fdc4f3fdb05b878c6bbc
+  name: mobilenet_v2_224.tflite
+  testset: full-tflite
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite_11_05_08/mobilenet_v2_1.0_224.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  customer_name: null
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 224, 224, 3]
+
+- category: object_detection_segmentation
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/ssd-mobilenetv2-tflite.tflite
+  md5: 2b7ecc444781f7fc39c21941295077d5
+  name: ssd-mobilenetv2-tflite
+  testset: full-tflite
+  url: null
+  metadata_url: null
+  input_shapes:
+    - name: serving_default_input_tensor
+      dtype: uint8
+      shape: [1, 1, 1, 3]
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/resnet_v2_101_299.tflite
+  md5: 0d115c417d9dcaf228d92f95f366f44c
+  name: resnet_v2_101_299.tflite
+  testset: full-tflite
+  url: null
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 299, 299, 3]
+
+- category: object_detection_and_segmentation
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/yolov5-tflite.tflite
+  md5: 6dc53f66bcac04bb8ac64abf7c6d313c
+  name: yolov5-tflite
+  testset: full-tflite
+  url: null
+  metadata_url: https://github.com/ultralytics/yolov5 # maybe?
+  input_shapes:
+    - name: input_2
+      dtype: float32
+      shape: [1, 512, 512, 3]
+
+- category: machine_comprehension
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/gpt2-tflite.tflite
+  md5: 966850480bc3ff9902a1cd7df3b9d33e
+  name: gpt2-tflite
+  testset: full-tflite
+  url: null
+  customer_name: null
+  metadata_url: https://huggingface.co/gpt2
+  input_shapes:
+  - name: input
+    dtype: int32
+    shape: [3, 5]
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/resnet50-tflite.tflite
+  md5: 92492f46f855fa9495467c035bfb71f1
+  name: resnet50-tflite
+  testset: full-tflite
+  url: null
+  customer_name: null
+  metadata_url: https://www.tensorflow.org/api_docs/python/tf/keras/applications/resnet50/ResNet50
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 224, 224, 3]
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/yolov4-v1-416-tflite-tf2.3.tflite
+  md5: 3cd8134a03c4b4d713ada10caffdb732
+  name: yolov4-v1-416-tflite-tf2.3
+  testset: full-tflite
+  url: null
+  customer_name: null
+  metadata_url: https://github.com/hunglc007/tensorflow-yolov4-tflite
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 416, 416, 3]
+
+- category: classification
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/squeezenet-tflite.tflite
+  md5: 2bb5c960ff74229c0d5999a77027d4ab
+  name: squeezenet-tflite
+  testset: full-tflite
+  url: https://tfhub.dev/tensorflow/lite-model/squeezenet/1/metadata/1?lite-format=tflite
+  customer_name: null
+  metadata_url: https://tfhub.dev/tensorflow/lite-model/squeezenet/1/default/1
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 224, 224, 3]
+
+# TFLite int8 models
+- category: object_detection_segmentation
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/deeplabv3-tflite-int8.tflite
+  md5: 6b6ff9fbcd0ab4507f6400bf562aeded
+  name: deeplabv3-tflite-int8
+  testset: tflite-int8
+  url: null
+  metadata_url: null
+  quantized: true
+  input_shapes:
+    - name: "MobilenetV2/MobilenetV2/input"
+      dtype: uint8
+      shape: [1, 512, 512, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/mobilenet_v1_1-tflite-int8.tflite
+  md5: 5ca18f37b44c50c0e0f93efb2c8b7af2
+  name: mobilenet_v1_1-tflite-int8
+  testset: tflite-int8
+  url: https://storage.googleapis.com/download.tensorflow.org/models/mobilenet_v1_2018_08_02/mobilenet_v1_1.0_224_quant.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  quantized: true
+  input_shapes:
+    - name: input
+      dtype: uint8
+      shape: [1, 224, 224, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/mobilenet_v2_1-tflite-int8.tflite
+  md5: 72bd6012812f0c1ff3c8fbc4101e0981
+  name: mobilenet_v2_1-tflite-int8
+  testset: tflite-int8
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite_11_05_08/mobilenet_v2_1.0_224_quant.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  quantized: true
+  input_shapes:
+    - name: input
+      dtype: uint8
+      shape: [1, 224, 224, 3]
+
+- category: object_detection_segmentation
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/ssd_mobilenet_v2_int8_tflite.tflite
+  md5: b6b0a24ab2f6995db1c8128a129a2176
+  name: ssd_mobilenet_v2_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/006_mobilenetv2-ssdlite
+  customer_name: null
+  metadata_url: null
+  quantized: true
+  input_shapes:
+  - name: normalized_input_image_tensor
+    dtype: float32
+    shape: [1, 300, 300, 3]
+
+- category: object_detection_segmentation
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/ssd_mobilenet_v3_int8_tflite.tflite
+  md5: e64860d873d1f2a8ca91e81792e3fb97
+  name: ssd_mobilenet_v3_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/002_mobilenetv3-ssd
+  customer_name: null
+  metadata_url: null
+  quantized: true
+  input_shapes:
+  - name: normalized_input_image_tensor
+    dtype: float32
+    shape: [1, 320, 320, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/inception_v3_quant-tflite-int8.tflite
+  md5: eee364b713cef15f8fe7f66eacfdf1af
+  name: inception_v3_quant-tflite-int8
+  testset: tflite-int8
+  url: https://storage.googleapis.com/download.tensorflow.org/models/tflite_11_05_08/inception_v3_quant.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  quantized: true
+  input_shapes:
+    - name: input
+      dtype: uint8
+      shape: [1, 299, 299, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/inception_v4_299_quant.tflite
+  md5: b6118707ddb115d3d0604de3c6577866
+  name: inception_v4_quant-tflite-int8
+  testset: tflite-int8
+  url: https://storage.googleapis.com/download.tensorflow.org/models/inception_v4_299_quant_20181026.tgz
+  metadata_url: https://www.tensorflow.org/lite/guide/hosted_models
+  quantized: true
+  input_shapes:
+    - name: input
+      dtype: uint8
+      shape: [1, 299, 299, 3]
+
+- category: object_detection_segmentation
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/movenet_thunder-tflite-int8.tflite
+  md5: af9d5db8046580b5b664be47c6357f1f
+  name: movenet_thunder-tflite-int8
+  testset: tflite-int8
+  url: null
+  metadata_url: https://www.tensorflow.org/hub/tutorials/movenet
+  quantized: true
+  input_shapes:
+    - name: "serving_default_input:0"
+      dtype: uint8
+      shape: [1, 256, 256, 3]
+
+- category: object_detection_segmentation
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/movenet_lightning-tflite-int8.tflite
+  md5: 361a28992b649751d6d66cd8cfb1e2a6
+  name: movenet_lightning-tflite-int8
+  testset: tflite-int8
+  url: null
+  metadata_url: https://www.tensorflow.org/hub/tutorials/movenet
+  quantized: true
+  input_shapes:
+    - name: "serving_default_input:0"
+      dtype: uint8
+      shape: [1, 192, 192, 3]
+
+- category: machine_comprehension
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/mobilebert.tflite
+  md5: 22f71d42dff1c0c427a0952c8955a93c
+  name: mobilebert-tflite-int8
+  testset: tflite-int8
+  url: null
+  metadata_url: https://zenodo.org/record/3878955#.YeHjyhPMIUE # maybe?
+  quantized: true
+  input_shapes:
+    - name: "input_ids"
+      dtype: int32
+      shape: [1, 384]
+    - name: "input_mask"
+      dtype: int32
+      shape: [1, 384]
+    - name: "segment_ids"
+      dtype: int32
+      shape: [1, 384]
+
+- category: super_resolution
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/esrgan_100x100_int8_tflite.tflite
+  md5: 6ec96896e5a2b104c77f1ba91ff11a8e
+  name: esrgan_100x100_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/077_ESRGAN
+  metadata_url: https://github.com/PINTO0309/PINTO_model_zoo
+  quantized: true
+  input_shapes:
+    - name: "serving_default_input_0:0_int8"
+      dtype: int8
+      shape: [1, 100, 100, 3]
+
+- category: super_resolution
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/esrgan_50x50_int8_tflite.tflite
+  md5: 9270edcb1a805b235402dc1ebfb6cb34
+  name: esrgan_50x50_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/077_ESRGAN
+  metadata_url: https://github.com/PINTO0309/PINTO_model_zoo
+  quantized: true
+  input_shapes:
+    - name: "serving_default_input_0:0_int8"
+      dtype: int8
+      shape: [1, 50, 50, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/face_recognition_resnet100_int8_tflite.tflite
+  md5: 5ec7afa2f867ace638b8e259f4a33e87
+  name: face_recognition_resnet100_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/175_face-recognition-resnet100-arcface-onnx
+  metadata_url: https://github.com/PINTO0309/PINTO_model_zoo
+  quantized: true
+  input_shapes:
+    - name: "serving_default_data:0"
+      dtype: float32
+      shape: [1, 112, 112, 3]
+
+- category: object_detection_and_segmentation
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/yolov4_416_int8_tflite.tflite
+  md5: 621f9f54b137fe7b71e9178b7bbf4734
+  name: yolov4_416_int8_tflite
+  testset: tflite-int8
+  url: https://github.com/PINTO0309/PINTO_model_zoo/tree/main/031_yolov4/04_full_integer_quantization
+  metadata_url: https://github.com/PINTO0309/PINTO_model_zoo
+  quantized: true
+  input_shapes:
+    - name: input_1
+      dtype: float32
+      shape: [1, 416, 416, 3]
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/resnet50_v1_int8_tflite.tflite
+  metadata_url: https://tfhub.dev/tensorflow/resnet_50/classification/1
+  input_shapes:
+    - name: "serving_default_inputs:0"
+      dtype: int8
+      shape: [1, 224, 224, 3]
+  md5: 876f7d566dd5911d468531612fa33587
+  name: resnet50_v1_int8_tflite
+  testset: tflite-int8
+  url: https://tfhub.dev/tensorflow/resnet_50/classification/1
+  quantized: true
+
+- category: classification
+  customer_name: null
+  format: tflite
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tflite_model_zoo/resnet101_v1_int8_tflite.tflite
+  metadata_url: https://tfhub.dev/google/imagenet/resnet_v1_101/classification/5
+  input_shapes:
+    - name: "serving_default_inputs:0"
+      dtype: int8
+      shape: [1, 224, 224, 3]
+  md5: 831a146a911c27cbb48b69cccceed6fb
+  name: resnet101_v1_int8_tflite
+  testset: tflite-int8
+  url: https://tfhub.dev/google/imagenet/resnet_v1_101/classification/5
+  quantized: true
+
+# TF Keras models
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/resnet50-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_1:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+  md5: 0ac0260a288378c8f4c36071ccb25ecf
+  name: resnet50-tf-keras
+  testset: release-essential-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/inception-resnet-v2-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_3:0"
+      dtype: float32
+      shape: [1, 299, 299, 3]
+  md5: 377eb89f5e55e48e7ff26e8201150f05
+  name: inception-resnet-v2-tf-keras
+  testset: full-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/inception-v3-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_2:0"
+      dtype: float32
+      shape: [1, 299, 299, 3]
+  md5: 2a9d5bf9c837bd66c7308ecfa9dd0678
+  name: inception-v3-tf-keras
+  testset: release-essential-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/densenet169-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_5:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+  md5: 9e8eb41b7ab4b2b08d5b2a4b6fa74041
+  name: densenet169-tf-keras
+  testset: release-essential-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/mobilenetv2-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_4:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+  md5: f57b0cb58688fb8c4efff7f133c91525
+  name: mobilenetv2-tf-keras
+  testset: release-essential-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/nasnet-large-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_7:0"
+      dtype: float32
+      shape: [1, 331, 331, 3]
+  md5: c4d230022ee3d8f98694b2979b49d285
+  name: nasnet-large-tf-keras
+  testset: full-tf-keras
+  url: null
+
+- category: classification
+  customer_name: null
+  format: tf_keras
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/tensorflow_model_zoo/nasnet-mobile-tf-keras.tgz
+  metadata_url: null
+  input_shapes:
+    - name: "input_6:0"
+      dtype: float32
+      shape: [1, 224, 224, 3]
+  md5: db306cef174f0e6e9f095b2a221b737a
+  name: nasnet-mobile-tf-keras
+  testset: release-essential-tf-keras
+  url: null
+
+## Toy models
+# 1Dconvs. Test a standard full conv, a grouped convolution, and convolution with strides
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv1d/full_conv1d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1.onnx
+  md5: fee66689b4730a12f1194008abde4658
+  name: full_conv1d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 1024]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv1d/full_conv1d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16.onnx
+  md5: be11b28f6a6dc5ad6b7faf03ba6abb1a
+  name: full_conv1d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 1024]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv1d/full_conv1d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1.onnx
+  md5: 7ef8a47242d056f0232fa9f27c9b5856
+  name: full_conv1d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 1024]
+
+# 2Dconvs. Test a standard full conv, a grouped convolution, and convolution with strides
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv2d/full_conv2d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1.onnx
+  md5: afe07029e6bf2060bc7be99a6dc3bab6
+  name: full_conv2d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128, 128]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv2d/full_conv2d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16.onnx
+  md5: 92d44365c5019383bee27fd0e114d3de
+  name: full_conv2d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128, 128]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv2d/full_conv2d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1.onnx
+  md5: 799d94b2ba48864d65cc078c43b2a587
+  name: full_conv2d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128, 128]
+
+# 3Dconvs. Test a standard full conv, a grouped convolution, and convolution with strides
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv3d/full_conv3d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1.onnx
+  md5: 1572c35e65e7684d892da0ba434382a1
+  name: full_conv3d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 20, 20, 20]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv3d/full_conv3d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16.onnx
+  md5: c08671b5b31ef4fe93dba2dfc1250f38
+  name: full_conv3d_inc=64_outc=128_ksize=3_stride=1_dilation=1_groups=16
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 20, 20, 20]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/conv3d/full_conv3d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1.onnx
+  md5: f48a23e0c23a58c89722e20d2fb18e48
+  name: full_conv3d_inc=64_outc=128_ksize=3_stride=2_dilation=1_groups=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 20, 20, 20]
+
+# Linear. Test 512->512 feature mapping and 512->64 feature mapping
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/linear/linear_inf=512_outf=512.onnx
+  md5: cc478c0f1e993a638d3e3a169f0d7b57
+  name: linear_inf=512_outf=512
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 512, 512]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/linear/linear_inf=512_outf=64.onnx
+  md5: 04bc391616afaa337aee62d19b6955a9
+  name: linear_inf=512_outf=64
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 512, 512]
+
+# LSTM, see effects of # layers
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/lstm/lstm_features=128_hid=128_layers=1_seqlength=64.onnx
+  md5: 8242a007f46a9f84bc25d6b62c57523d
+  name: lstm_features=128_hid=128_layers=1_seqlength=64
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/lstm/lstm_features=128_hid=128_layers=2_seqlength=64.onnx
+  md5: 4c9db2e76cda702cae49a5be8163dde1
+  name: lstm_features=128_hid=128_layers=2_seqlength=64
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/lstm/lstm_features=128_hid=128_layers=3_seqlength=64.onnx
+  md5: 459551725e3c493ec58f776897ce05e7
+  name: lstm_features=128_hid=128_layers=3_seqlength=64
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 128]
+
+# Multihead attention, see effect of # of heads
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/multihead_attention/multihead_attention_ins=256_heads=2.onnx
+  md5: 59de0ed18c05ce7a1bd71239c655ceed
+  name: multihead_attention_ins=256_heads=2
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 256]
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/multihead_attention/multihead_attention_ins=256_heads=8.onnx
+  md5: c94471c9cd323577cc3bb84462195bc5
+  name: multihead_attention_ins=256_heads=8
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 64, 256]
+
+# Some standards CV blocks
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/mobilenetv1_block/mobilenetv1_block_inc=128_outc=128_stride=1.onnx
+  md5: d92732cfe32d3ad4a1a56e6dddf9917a
+  name: mobilenetv1_block_inc=128_outc=128_stride=1
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/mobilenetv2_block/mobilenetv2_block_inc=128_outc=128.onnx
+  md5: 953ec359a7cb199178b19af85420ac57
+  name: mobilenetv2_block_inc=128_outc=128
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/mobilenetv3_block/mobilenetv3_block_inc=128_outc=128.onnx
+  md5: 80ca17055c0fb953b1b0e7902c3c638c
+  name: mobilenetv3_block_inc=128_outc=128
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/resnetv1_block/resnetv1_block_inc=128_outc=128.onnx
+  md5: 831694ce479df8de2edf56b9f45d6c75
+  name: resnetv1_block_inc=128_outc=128
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/resnetv2_block/resnetv2_block_inc=128_outc=128.onnx
+  md5: ba67f97e0d89b906344274b84116f529
+  name: resnetv2_block_inc=128_outc=128
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+- category: toy-onnx
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-toy-models/onnx_models_opset12/resnext_block/resnext_block_inc=128_outc=128.onnx
+  md5: 392774dc0b97df1450f744be3cc01171
+  name: resnext_block_inc=128_outc=128
+  testset: toy-onnx
+  url: https://github.com/AndrewZhaoLuo/OnnxSnippets
+  metadata_url: null
+  input_shapes:
+    - name: input
+      dtype: float32
+      shape: [1, 128, 128, 128]
+
+# The following ONNX models are known to fail model ingestion
+- category: machine_comprehension
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/text_machine_comprehension_bertsquad.onnx
+  md5: 5138c2e24f45d391be3e9e53f5732e02
+  name: bertsquad
+  testset: broken-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/text/machine_comprehension/bert-squad/model/bertsquad-8.tar.gz
+  metadata_url: null
+  input_shapes:
+    - name: unique_ids_raw_output___9:0
+      dtype: int64
+      shape: [1]
+    - name: segment_ids:0
+      dtype: int64
+      shape: [1, 256]
+    - name: input_mask:0
+      dtype: int64
+      shape: [1, 256]
+    - name: input_ids:0
+      dtype: int64
+      shape: [1, 256]
+
+# The following ONNX models are known to fail model ingestion.
+- category: machine_comprehension
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/text_machine_comprehension_bidaf.onnx
+  md5: cf11f1eceb4731f8dd39345467fe94a1
+  name: bidaf
+  testset: broken-onnx-ingestion
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/text/machine_comprehension/bidirectional_attention_flow/model/bidaf-9.tar.gz
+  metadata_url: null
+  input_shapes:
+    # bidaf actually expects string input
+    - name: context_word
+      dtype: float32
+      shape: [10, 1]
+    - name: context_char
+      dtype: float32
+      shape: [10, 1, 1, 16]
+    - name: query_word
+      dtype: float32
+      shape: [6, 1]
+    - name: query_char
+      dtype: float32
+      shape: [6, 1, 1, 16]
+
+- category: dga_detection
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/customer/extrahop/extrahop_v0.onnx
+  md5: 15ecb66dd0e2a02e0442cd263c1b7021
+  name: extrahop_v0
+  testset: broken-onnx-ingestion
+  url: .nan
+  metadata_url: null
+  input_shapes: null
+
+# The following ONNX models are known to be broken on TVM and ONNX-RT.
+- format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_FasterRCNN.onnx
+  md5: e0314eb246a4718c58c4b8f8bf12e850
+  name: FasterRCNN
+  testset: broken-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/faster-rcnn/model/FasterRCNN-10.tar.gz
+  metadata_url: null
+  input_shapes:
+    - name: image
+      dtype: float32
+      shape: [3, 800, 1088]
+
+- format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_MaskRCNN.onnx
+  md5: ba1088fe5c4a9182075f3ce136037968
+  name: MaskRCNN
+  testset: broken-onnx
+  url: https://github.com/onnx/models/raw/bd206494e8b6a27b25e5cf7199dbcdbfe9d05d1c/vision/object_detection_segmentation/mask-rcnn/model/MaskRCNN-10.tar.gz
+  metadata_url: null
+  input_shapes:
+    - name: image
+      dtype: float32
+      shape: [3, 800, 1088]
+
+- category: object_detection_segmentation
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/unet.onnx
+  md5: f14ad9108278ac8a81f3e2be759daf03
+  name: unet
+  testset: new-test
+  url: null
+  metadata_url: null
+  input_shapes:
+  - name: input_1
+    dtype: float32
+    shape: [1, 224, 224, 3]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/fbnet-a.onnx
+  md5: a5632888c928f156d196239313fa3e39
+  name: fbnet-a
+  testset: new-test
+  url: null
+  customer_name: null
+  metadata_url: null
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-customer-models/onnx_model_zoo/squeezenet1.onnx
+  md5: b17b09fc7150e3b8d994605f9190ce97
+  name: squeezenet1
+  testset: new-test
+  url: https://github.com/onnx/models/blob/main/vision/classification/squeezenet/model/squeezenet1.0-12-int8.onnx
+  customer_name: null
+  metadata_url: null
+  input_shapes:
+  - name: input
+    dtype: uint8
+    shape: [1, 224, 224, 3]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-customer-models/onnx_model_zoo/shufflenet-v2-12-int8.onnx
+  md5: 00b448adc436cc8ff7da66c4dbc868a7
+  name: shufflenet-v2-12-int8
+  testset: new-test
+  url: https://github.com/onnx/models/blob/main/vision/classification/shufflenet/model/shufflenet-v2-12-int8.onnx
+  customer_name: null
+  metadata_url: null
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 3, 224, 224]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-customer-models/onnx_model_zoo/ssd-12-int8.onnx
+  md5: 10793117e81ad7348612c9deed38e797
+  name: ssd-12-int8
+  testset: new-test
+  url: https://github.com/onnx/models/blob/main/vision/object_detection_segmentation/ssd/model/ssd-12-int8.onnx
+  customer_name: null
+  metadata_url: null
+  input_shapes:
+  - name: image
+    dtype: float32
+    shape: [1, 3, 1200, 1200]
+
+- category: classification
+  format: onnx
+  gs_url: https://storage.cloud.google.com/octoml-aquarium-customer-models/onnx_model_zoo/fcn-resnet50-12-int8.onnx
+  md5: 322bb0ad9dcd59f72af9dac986d3aaf6
+  name: fcn-resnet50-12-int8
+  testset: new-test
+  url: https://github.com/onnx/models/blob/91849267da7c576503f0f87a941b3139b64b7781/vision/object_detection_segmentation/fcn/model/fcn-resnet50-12-int8.onnx
+  customer_name: null
+  metadata_url: null
+  input_shapes:
+  - name: input
+    dtype: float32
+    shape: [1, 3, 512, 1024]
+

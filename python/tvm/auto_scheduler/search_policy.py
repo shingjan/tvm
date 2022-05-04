@@ -235,7 +235,7 @@ class SketchPolicy(SearchPolicy):
             The generated sketches of this search task.
         """
         sketches = _ffi_api.SketchPolicyGenerateSketches(self)
-        if print_for_debug:
+        if True:
             for i, s in enumerate(sketches):
                 print("=" * 20 + " %d " % i + "=" * 20)
                 print(s)
