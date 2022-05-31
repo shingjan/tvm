@@ -1,0 +1,8 @@
+nohup: ignoring input
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_ssd_mobilenet_v1_coco_2018_01_28.onnx
+file existed. Skipping downloading.
+/home/yj/models/amd-ssd-mobilenet-v1.onnx
+Traceback (most recent call last):
+  File "python/tvm/testing/test_meta_schedule.py", line 146, in <module>
+    assert model_name == "gpt2"  # check embedding size 50257 here
+AssertionError

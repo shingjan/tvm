@@ -190,6 +190,7 @@ def get_network(
     name: str,
     input_shape: List[int],
     *,
+    model_type: str = "pytorch",
     cache_dir: Optional[str] = None,
 ) -> Tuple[IRModule, Dict[str, NDArray], Tuple[str, List[int], str]]:
     """Get the symbol definition and random weight of a network
@@ -213,7 +214,13 @@ def get_network(
     inputs : Tuple[str, List[int], str]
         The name, shape and dtype of the input tensor.
     """
-
+    if model_type == "onnx":
+        return get_onnx_model(name, cache_dir=cache_dir) 
+    elif model_type != "pytorch":
+        raise Exception("model type: {} not supported.",format(model_type))
+    else:
+        pass
+        
     mod: IRModule
     params: Dict[str, NDArray]
     inputs: Tuple[str, List[int], str]
@@ -229,7 +236,60 @@ def get_network(
         _save_cache(cache_dir, filename, cached)
     mod, params_bytearray, inputs = cached
     params = load_param_dict(params_bytearray)
-    return mod, params, inputs
+    input_name, input_shape, input_dtype = inputs
+    input_info = {input_name : input_shape}
+    return mod, params, (input_info, input_dtype)
+
+
+def get_onnx_model(model_name, *, cache_dir=""):
+    import yaml
+    import onnx
+    from google.cloud import storage
+    from urllib.parse import urlparse
+    from pathlib import Path
+    models_yaml_dir = cache_dir + "/models.yaml"
+    docs = yaml.safe_load(open(models_yaml_dir, "r"))
+
+    def download_gcp(gs_url, model_name):
+        o = urlparse(gs_url)
+        path = o.path[1:].split("/", 1)
+        destination = cache_dir + model_name + ".onnx"
+        des_path = Path(destination).resolve()
+        if des_path.exists() and des_path.is_file():
+            print("file existed. Skipping downloading.")
+            return destination
+        bucket_name = path[0]
+        file_path = path[1]
+        print(
+            "Downloading object from gcp. Bucket name: {}, file path: {}".format(
+                bucket_name, file_path
+            )
+        )
+        storage_client = storage.Client()
+        bucket = storage_client.bucket(bucket_name)
+        blob = bucket.blob(file_path)
+        blob.download_to_filename(destination)
+        return destination
+
+    def load_model(model_name):
+        # return onnx.load(f"/home/yj/models/{model_name}.onnx")
+        for entry in docs:
+            if entry["name"] == model_name:
+                gs_url = entry["gs_url"]
+                print(gs_url)
+                onnx_path = download_gcp(gs_url, model_name)
+                print(onnx_path)
+                onnx_model = onnx.load(onnx_path)
+                return onnx_model, entry["input_shapes"]
+        raise Exception("Model not found!")
+
+    onnx_model, inputs = load_model(model_name)
+    input_info = {}
+    for input in inputs:
+        input_dtype = input["dtype"]
+        input_info[input["name"]] = input["shape"]
+    mod, params = relay.frontend.from_onnx(onnx_model, input_info, freeze_params=True)
+    return mod, params, (input_info, input_dtype)
 
 
 def extract_from_relay(

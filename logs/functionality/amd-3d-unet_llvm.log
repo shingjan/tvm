@@ -1,0 +1,1453 @@
+nohup: ignoring input
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_3d_unet.onnx
+file existed. Skipping downloading.
+/home/yj/models/amd-3d-unet.onnx
+2022-05-09 14:37:04.118 INFO Logging directory: /tmp/tmpmvz5myib/logs
+2022-05-09 14:37:04.118 INFO Working directory: /tmp/tmpmvz5myib
+2022-05-09 14:37:04.118 INFO LocalBuilder: max_workers = 24
+2022-05-09 14:37:04.565 INFO LocalRunner: max_workers = 1
+2022-05-09 14:38:01.583 INFO 
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                                              fused_variance |       235520 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 0
+Total latency (us): 0
+
+2022-05-09 14:38:01.583 INFO Scheduler picks Task #0: "fused_nn_conv3d"
+2022-05-09 14:39:01.161 INFO Sending 32 sample(s) to builder
+2022-05-09 14:39:33.508 INFO Sending 32 sample(s) to runner
+2022-05-09 14:39:58.772 INFO Scheduler picks Task #1: "fused_nn_conv3d_1"
+2022-05-09 14:41:00.811 INFO Sending 32 sample(s) to builder
+2022-05-09 14:41:32.222 INFO Sending 32 sample(s) to runner
+2022-05-09 14:41:49.938 INFO Scheduler picks Task #2: "fused_nn_conv3d_2"
+2022-05-09 14:42:27.942 INFO Sending 32 sample(s) to builder
+2022-05-09 14:42:40.732 INFO Sending 32 sample(s) to runner
+2022-05-09 14:43:26.502 INFO Scheduler picks Task #3: "fused_nn_conv3d_3"
+2022-05-09 14:44:35.096 INFO Sending 32 sample(s) to builder
+2022-05-09 14:45:06.606 INFO Sending 32 sample(s) to runner
+2022-05-09 14:46:37.319 INFO Scheduler picks Task #4: "fused_variance"
+2022-05-09 14:47:11.913 INFO Sending 32 sample(s) to builder
+2022-05-09 14:47:21.538 INFO Sending 32 sample(s) to runner
+2022-05-09 14:47:28.752 INFO Scheduler picks Task #5: "fused_mean"
+2022-05-09 14:47:58.251 INFO Sending 32 sample(s) to builder
+2022-05-09 14:48:00.516 INFO Sending 32 sample(s) to runner
+2022-05-09 14:48:14.986 INFO Scheduler picks Task #6: "fused_variance_1"
+2022-05-09 14:48:51.428 INFO Sending 32 sample(s) to builder
+2022-05-09 14:48:53.171 INFO Sending 32 sample(s) to runner
+2022-05-09 14:49:07.491 INFO Scheduler picks Task #7: "fused_mean_1"
+2022-05-09 14:49:38.924 INFO Sending 32 sample(s) to builder
+2022-05-09 14:49:41.072 INFO Sending 32 sample(s) to runner
+2022-05-09 14:49:54.944 INFO [Updated] Task #0: "fused_nn_conv3d"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |            
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                                              fused_variance |       235520 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 32
+Total latency (us): 53.1639
+
+2022-05-09 14:49:54.944 INFO Task #0 has finished. Remaining task(s): 55
+2022-05-09 14:49:55.666 INFO [Updated] Task #1: "fused_nn_conv3d_1"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |            
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                                              fused_variance |       235520 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 64
+Total latency (us): 693.015
+
+2022-05-09 14:49:55.666 INFO Task #1 has finished. Remaining task(s): 54
+2022-05-09 14:49:56.436 INFO [Updated] Task #2: "fused_nn_conv3d_2"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |            
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                                              fused_variance |       235520 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 96
+Total latency (us): 6022.94
+
+2022-05-09 14:49:56.436 INFO Task #2 has finished. Remaining task(s): 53
+2022-05-09 14:49:57.122 INFO [Updated] Task #3: "fused_nn_conv3d_3"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |          Y 
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |        38.3469 |   13398.7819 |            13398.7819 |     32 |            
+  4 |                                              fused_variance |       235520 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 128
+Total latency (us): 19421.7
+
+2022-05-09 14:49:57.122 INFO Task #3 has finished. Remaining task(s): 52
+2022-05-09 14:49:57.868 INFO [Updated] Task #4: "fused_variance"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |          Y 
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |        38.3469 |   13398.7819 |            13398.7819 |     32 |          Y 
+  4 |                                              fused_variance |       235520 |      2 |        28.0813 |       8.3871 |               16.7741 |     32 |            
+  5 |                                                  fused_mean |        78720 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 160
+Total latency (us): 19438.5
+
+2022-05-09 14:49:57.868 INFO Task #4 has finished. Remaining task(s): 51
+2022-05-09 14:49:58.696 INFO [Updated] Task #5: "fused_mean"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |          Y 
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |        38.3469 |   13398.7819 |            13398.7819 |     32 |          Y 
+  4 |                                              fused_variance |       235520 |      2 |        28.0813 |       8.3871 |               16.7741 |     32 |          Y 
+  5 |                                                  fused_mean |        78720 |      2 |        10.3878 |       7.5781 |               15.1563 |     32 |            
+  6 |                                            fused_variance_1 |      1881920 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 192
+Total latency (us): 19453.6
+
+2022-05-09 14:49:58.696 INFO Task #5 has finished. Remaining task(s): 50
+2022-05-09 14:49:59.567 INFO [Updated] Task #6: "fused_variance_1"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |          Y 
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |        38.3469 |   13398.7819 |            13398.7819 |     32 |          Y 
+  4 |                                              fused_variance |       235520 |      2 |        28.0813 |       8.3871 |               16.7741 |     32 |          Y 
+  5 |                                                  fused_mean |        78720 |      2 |        10.3878 |       7.5781 |               15.1563 |     32 |          Y 
+  6 |                                            fused_variance_1 |      1881920 |      4 |        89.4962 |      21.0279 |               84.1117 |     32 |            
+  7 |                                                fused_mean_1 |       627520 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 224
+Total latency (us): 19537.8
+
+2022-05-09 14:49:59.567 INFO Task #6 has finished. Remaining task(s): 49
+2022-05-09 14:50:00.552 INFO [Updated] Task #7: "fused_mean_1"
+ ID |                                                        Name |         FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                                             fused_nn_conv3d |      5017600 |      1 |        94.3799 |      53.1639 |               53.1639 |     32 |          Y 
+  1 |                                           fused_nn_conv3d_1 |     32112640 |      1 |        50.1877 |     639.8508 |              639.8508 |     32 |          Y 
+  2 |                                           fused_nn_conv3d_2 |    128450560 |      1 |        24.0999 |    5329.9209 |             5329.9209 |     32 |          Y 
+  3 |                                           fused_nn_conv3d_3 |    513802240 |      1 |        38.3469 |   13398.7819 |            13398.7819 |     32 |          Y 
+  4 |                                              fused_variance |       235520 |      2 |        28.0813 |       8.3871 |               16.7741 |     32 |          Y 
+  5 |                                                  fused_mean |        78720 |      2 |        10.3878 |       7.5781 |               15.1563 |     32 |          Y 
+  6 |                                            fused_variance_1 |      1881920 |      4 |        89.4962 |      21.0279 |               84.1117 |     32 |          Y 
+  7 |                                                fused_mean_1 |       627520 |      4 |        35.7468 |      17.5546 |               70.2184 |     32 |            
+  8 |                                            fused_variance_2 |     12042496 |      4 |            N/A |          N/A |                   N/A |      0 |            
+  9 |                                                fused_mean_2 |      4014336 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |                                            fused_variance_3 |     48169088 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |                                                fused_mean_3 |     16056448 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |                                            fused_variance_4 |    192675904 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |                                                fused_mean_4 |     64225344 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 |                                            fused_variance_5 |    770703392 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |                                                fused_mean_5 |    256901152 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |                                         fused_nn_conv3d_add |  55747543040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |   fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu |   1284505632 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 18 |                                       fused_nn_conv3d_add_1 | 111045509120 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |                                       fused_nn_conv3d_add_2 |  55506698240 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |                                       fused_nn_conv3d_add_3 |  27749335040 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |            fused_subtract_add_sqrt_divide_add_nn_leaky_relu |     16056576 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 22 |                                       fused_nn_conv3d_add_4 |   8671040000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                                       fused_nn_conv3d_add_5 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1 |       313920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                       fused_nn_conv3d_add_6 |   1354830400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 26 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1 |       392320 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 27 |                                   fused_nn_conv3d_transpose |   3211264000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 28 |                                           fused_concatenate |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 29 |                                       fused_nn_conv3d_add_7 |  21676659200 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 30 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2 |      2509120 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 31 |                                       fused_nn_conv3d_add_8 |  10838643200 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 32 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2 |      3136320 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 33 |                                 fused_nn_conv3d_transpose_1 |  20552089600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 34 |                                         fused_concatenate_1 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 35 |                                       fused_nn_conv3d_add_9 | 110985297920 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 36 |                                      fused_nn_conv3d_add_10 |  55494656000 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 37 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3 |     20070656 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 38 |                                 fused_nn_conv3d_transpose_2 |  65766686720 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 39 |                                         fused_concatenate_2 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 40 |                                      fused_nn_conv3d_add_11 | 221978624000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 41 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3 |     64225408 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 42 |                                      fused_nn_conv3d_add_12 | 110997340160 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 43 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4 |     80281728 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 44 |                                 fused_nn_conv3d_transpose_3 | 131533373440 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 45 |                                         fused_concatenate_3 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 46 |                                      fused_nn_conv3d_add_13 | 443989360640 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 47 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4 |    256901184 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 48 |                                      fused_nn_conv3d_add_14 | 222026792960 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 49 | fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5 |    321126464 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 50 |                                 fused_nn_conv3d_transpose_4 | 263066746880 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 51 |                                         fused_concatenate_4 |            1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 52 |                                      fused_nn_conv3d_add_15 | 888107171840 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 53 |                                      fused_nn_conv3d_add_16 | 444182036480 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 54 |          fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5 |   1027604512 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 55 |                                           fused_nn_conv3d_4 |   2055208960 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 256
+Total latency (us): 19608
+
+2022-05-09 14:50:00.552 INFO Task #7 has finished. Remaining task(s): 48
+2022-05-09 14:50:00.552 INFO Task #8 has finished. Remaining task(s): 47
+2022-05-09 14:50:00.552 INFO Task #9 has finished. Remaining task(s): 46
+2022-05-09 14:50:00.552 INFO Task #10 has finished. Remaining task(s): 45
+2022-05-09 14:50:00.552 INFO Task #11 has finished. Remaining task(s): 44
+2022-05-09 14:50:00.553 INFO Task #12 has finished. Remaining task(s): 43
+2022-05-09 14:50:00.553 INFO Task #13 has finished. Remaining task(s): 42
+2022-05-09 14:50:00.553 INFO Task #14 has finished. Remaining task(s): 41
+2022-05-09 14:50:00.553 INFO Task #15 has finished. Remaining task(s): 40
+2022-05-09 14:50:00.553 INFO Task #16 has finished. Remaining task(s): 39
+2022-05-09 14:50:00.553 INFO Task #17 has finished. Remaining task(s): 38
+2022-05-09 14:50:00.553 INFO Task #18 has finished. Remaining task(s): 37
+2022-05-09 14:50:00.553 INFO Task #19 has finished. Remaining task(s): 36
+2022-05-09 14:50:00.553 INFO Task #20 has finished. Remaining task(s): 35
+2022-05-09 14:50:00.553 INFO Task #21 has finished. Remaining task(s): 34
+2022-05-09 14:50:00.554 INFO Task #22 has finished. Remaining task(s): 33
+2022-05-09 14:50:00.554 INFO Task #23 has finished. Remaining task(s): 32
+2022-05-09 14:50:00.554 INFO Task #24 has finished. Remaining task(s): 31
+2022-05-09 14:50:00.554 INFO Task #25 has finished. Remaining task(s): 30
+2022-05-09 14:50:00.554 INFO Task #26 has finished. Remaining task(s): 29
+2022-05-09 14:50:00.554 INFO Task #27 has finished. Remaining task(s): 28
+2022-05-09 14:50:00.554 INFO Task #28 has finished. Remaining task(s): 27
+2022-05-09 14:50:00.554 INFO Task #29 has finished. Remaining task(s): 26
+2022-05-09 14:50:00.567 INFO Task #30 has finished. Remaining task(s): 25
+2022-05-09 14:50:00.567 INFO Task #31 has finished. Remaining task(s): 24
+2022-05-09 14:50:00.567 INFO Task #32 has finished. Remaining task(s): 23
+2022-05-09 14:50:00.567 INFO Task #33 has finished. Remaining task(s): 22
+2022-05-09 14:50:00.568 INFO Task #34 has finished. Remaining task(s): 21
+2022-05-09 14:50:00.568 INFO Task #35 has finished. Remaining task(s): 20
+2022-05-09 14:50:00.568 INFO Task #36 has finished. Remaining task(s): 19
+2022-05-09 14:50:00.568 INFO Task #37 has finished. Remaining task(s): 18
+2022-05-09 14:50:00.568 INFO Task #38 has finished. Remaining task(s): 17
+2022-05-09 14:50:00.568 INFO Task #39 has finished. Remaining task(s): 16
+2022-05-09 14:50:00.568 INFO Task #40 has finished. Remaining task(s): 15
+2022-05-09 14:50:00.568 INFO Task #41 has finished. Remaining task(s): 14
+2022-05-09 14:50:00.568 INFO Task #42 has finished. Remaining task(s): 13
+2022-05-09 14:50:00.568 INFO Task #43 has finished. Remaining task(s): 12
+2022-05-09 14:50:00.569 INFO Task #44 has finished. Remaining task(s): 11
+2022-05-09 14:50:00.569 INFO Task #45 has finished. Remaining task(s): 10
+2022-05-09 14:50:00.569 INFO Task #46 has finished. Remaining task(s): 9
+2022-05-09 14:50:00.569 INFO Task #47 has finished. Remaining task(s): 8
+2022-05-09 14:50:00.569 INFO Task #48 has finished. Remaining task(s): 7
+2022-05-09 14:50:00.569 INFO Task #49 has finished. Remaining task(s): 6
+2022-05-09 14:50:00.569 INFO Task #50 has finished. Remaining task(s): 5
+2022-05-09 14:50:00.569 INFO Task #51 has finished. Remaining task(s): 4
+2022-05-09 14:50:00.569 INFO Task #52 has finished. Remaining task(s): 3
+2022-05-09 14:50:00.569 INFO Task #53 has finished. Remaining task(s): 2
+2022-05-09 14:50:00.570 INFO Task #54 has finished. Remaining task(s): 1
+2022-05-09 14:50:00.570 INFO Task #55 has finished. Remaining task(s): 0
+2022-05-09 14:50:00.629 INFO Saved XGBModel to /tmp/tmpmvz5myib/cost_model.xgb
+2022-05-09 14:50:19.073 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add
+2022-05-09 14:50:19.137 WARNING Cannot find workload: tvmgen_default_fused_mean
+2022-05-09 14:50:19.161 WARNING Cannot find workload: tvmgen_default_fused_variance
+2022-05-09 14:50:19.235 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu
+2022-05-09 14:50:19.318 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_1
+2022-05-09 14:50:19.444 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu
+2022-05-09 14:50:19.528 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_2
+2022-05-09 14:50:19.576 WARNING Cannot find workload: tvmgen_default_fused_mean_1
+2022-05-09 14:50:19.600 WARNING Cannot find workload: tvmgen_default_fused_variance_1
+2022-05-09 14:50:19.674 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu_1
+2022-05-09 14:50:19.756 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_3
+2022-05-09 14:50:19.881 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_1
+2022-05-09 14:50:19.965 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_4
+2022-05-09 14:50:20.013 WARNING Cannot find workload: tvmgen_default_fused_mean_2
+2022-05-09 14:50:20.037 WARNING Cannot find workload: tvmgen_default_fused_variance_2
+2022-05-09 14:50:20.110 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu_2
+2022-05-09 14:50:20.194 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_5
+2022-05-09 14:50:20.318 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_2
+2022-05-09 14:50:20.404 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_6
+2022-05-09 14:50:20.452 WARNING Cannot find workload: tvmgen_default_fused_mean_3
+2022-05-09 14:50:20.475 WARNING Cannot find workload: tvmgen_default_fused_variance_3
+2022-05-09 14:50:20.549 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu_3
+2022-05-09 14:50:20.633 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_7
+2022-05-09 14:50:20.757 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_3
+2022-05-09 14:50:20.842 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_8
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        placeholder_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        for i0, i1, i2, i3, i4, i5, i6, i7 in T.grid(1, 320, 1, 1, 1, 14, 14, 10):
+            with T.block("placeholder_red"):
+                ax0, ax1, ax2, ax3, ax4, k2, k3, k4 = T.axis.remap("SSSSSRRR", [i0, i1, i2, i3, i4, i5, i6, i7])
+                T.reads(placeholder[0, ax1, k2, k3, k4])
+                T.writes(placeholder_red[ax0, ax1, ax2, ax3, ax4])
+                with T.init():
+                    placeholder_red[ax0, ax1, ax2, ax3, ax4] = T.float32(0)
+                placeholder_red[ax0, ax1, ax2, ax3, ax4] = placeholder_red[ax0, ax1, ax2, ax3, ax4] + placeholder[0, ax1, k2, k3, k4]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 1, 1, 1):
+            with T.block("T_divide"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder_red[0, ax1, 0, 0, 0])
+                T.writes(T_divide[ax0, ax1, ax2, ax3, ax4])
+                T_divide[ax0, ax1, ax2, ax3, ax4] = placeholder_red[0, ax1, 0, 0, 0] * T.float32(0.00051020408163265311)
+    
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_mean_4(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        placeholder_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        placeholder_red_rf = T.alloc_buffer([1, 320, 1, 1, 1, 28], dtype="float32")
+        for i0_i1_fused in T.parallel(320, annotations={"pragma_auto_unroll_max_step":512, "pragma_unroll_explicit":1}):
+            for ax0, ax1, ax2, ax3, ax4, ax5 in T.grid(28, 1, 1, 1, 1, 1):
+                with T.block("placeholder_red_rf_init"):
+                    vi5_i6_i7_fused_1 = T.axis.spatial(28, ax0)
+                    ax0_1 = T.axis.spatial(1, 0)
+                    ax1_1 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_1 = T.axis.spatial(1, 0)
+                    ax3_1 = T.axis.spatial(1, 0)
+                    ax4_1 = T.axis.spatial(1, 0)
+                    T.reads()
+                    T.writes(placeholder_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1])
+                    placeholder_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1] = T.float32(0)
+                for ax6 in T.serial(70):
+                    with T.block("placeholder_red_rf_update"):
+                        vi5_i6_i7_fused_1 = T.axis.spatial(28, ax0)
+                        ax0_2 = T.axis.spatial(1, 0)
+                        ax1_2 = T.axis.spatial(320, i0_i1_fused)
+                        ax2_2 = T.axis.spatial(1, 0)
+                        ax3_2 = T.axis.spatial(1, 0)
+                        ax4_2 = T.axis.spatial(1, 0)
+                        vi5_i6_i7_fused_0 = T.axis.reduce(70, ax6)
+                        T.reads(placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1], placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) // 140, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) % 140 // 10, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) % 10])
+                        T.writes(placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1])
+                        placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] = placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] + placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) // 140, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) % 140 // 10, (vi5_i6_i7_fused_0 * 28 + vi5_i6_i7_fused_1) % 10]
+            with T.block("placeholder_red_init"):
+                ax0_3 = T.axis.spatial(1, 0)
+                ax1_3 = T.axis.spatial(320, i0_i1_fused)
+                ax2_3 = T.axis.spatial(1, 0)
+                ax3_3 = T.axis.spatial(1, 0)
+                ax4_3 = T.axis.spatial(1, 0)
+                T.reads()
+                T.writes(placeholder_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3])
+                placeholder_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3] = T.float32(0)
+            for ax0_4, ax1_4, ax2_4, ax3_4, ax4_4, ax5 in T.grid(28, 1, 1, 1, 1, 1):
+                with T.block("placeholder_red_update"):
+                    vi5_i6_i7_fused_1 = T.axis.reduce(28, ax0_4)
+                    ax0_5 = T.axis.spatial(1, 0)
+                    ax1_5 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_5 = T.axis.spatial(1, 0)
+                    ax3_5 = T.axis.spatial(1, 0)
+                    ax4_5 = T.axis.spatial(1, 0)
+                    T.reads(placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5], placeholder_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1])
+                    T.writes(placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5])
+                    placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] = placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] + placeholder_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1]
+            for i2, i3, i4 in T.grid(1, 1, 1):
+                with T.block("T_divide"):
+                    ax0_6 = T.axis.spatial(1, 0)
+                    ax1_6 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_6 = T.axis.spatial(1, 0)
+                    ax3_6 = T.axis.spatial(1, 0)
+                    ax4_6 = T.axis.spatial(1, 0)
+                    T.reads(placeholder_red[0, ax1_6, 0, 0, 0])
+                    T.writes(T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6])
+                    T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6] = placeholder_red[0, ax1_6, 0, 0, 0] * T.float32(0.00051020408163265311)
+    
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"placeholder_red\", func_name=\"main\")", "b1 = sch.get_block(name=\"root\", func_name=\"main\")", "l2, l3, l4, l5, l6, l7, l8, l9 = sch.get_loops(block=b0)", "l10 = sch.fuse(l7, l8, l9)", "v11, v12 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[70, 28])", "l13, l14 = sch.split(loop=l10, factors=[v11, v12])", "b15 = sch.rfactor(loop=l14, factor_axis=5)", "sch.annotate(block_or_loop=b0, ann_key=\"meta_schedule.random_compute_producer\", ann_val=1)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v16 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=3)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v16)", "b17, = sch.get_producers(block=b0)", "sch.unannotate(block_or_loop=b0, ann_key=\"meta_schedule.random_compute_producer\")", "l18 = sch.sample_compute_location(block=b0, decision=1)", "sch.compute_at(block=b0, loop=l18, preserve_unit_loops=True)", "l19 = sch.sample_compute_location(block=b17, decision=1)", "sch.compute_at(block=b17, loop=l19, preserve_unit_loops=True)", "sch.enter_postproc()", "b20 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.unroll_explicit\")", "b21, b22, b23 = sch.get_child_blocks(b20)", "l24, l25, l26, l27, l28, l29, l30, l31, l32 = sch.get_loops(block=b21)", "l33 = sch.fuse(l24, l25)", "sch.parallel(loop=l33)", "sch.annotate(block_or_loop=l33, ann_key=\"pragma_auto_unroll_max_step\", ann_val=512)", "sch.annotate(block_or_loop=l33, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l34, l35, l36, l37, l38, l39, l40 = sch.get_loops(block=b22)", "sch.annotate(block_or_loop=l34, ann_key=\"pragma_auto_unroll_max_step\", ann_val=512)", "sch.annotate(block_or_loop=l34, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l41, l42, l43, l44 = sch.get_loops(block=b23)", "sch.annotate(block_or_loop=l41, ann_key=\"pragma_auto_unroll_max_step\", ann_val=512)", "sch.annotate(block_or_loop=l41, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b45 = sch.get_block(name=\"placeholder_red_rf\", func_name=\"main\")", "l46, l47, l48, l49, l50, l51, l52, l53 = sch.get_loops(block=b45)", "b54 = sch.decompose_reduction(block=b45, loop=l53)", "b55 = sch.get_block(name=\"placeholder_red\", func_name=\"main\")", "l56, l57, l58, l59, l60, l61, l62 = sch.get_loops(block=b55)", "b63 = sch.decompose_reduction(block=b55, loop=l57)"]
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], placeholder_1: T.Buffer[(1, 320, 1, 1, 1), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        T_subtract = T.alloc_buffer([1, 320, 14, 14, 10], dtype="float32")
+        T_multiply = T.alloc_buffer([1, 320, 14, 14, 10], dtype="float32")
+        T_multiply_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 14, 14, 10):
+            with T.block("T_subtract"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, ax1, ax2, ax3, ax4], placeholder_1[0, ax1, 0, 0, 0])
+                T.writes(T_subtract[ax0, ax1, ax2, ax3, ax4])
+                T_subtract[ax0, ax1, ax2, ax3, ax4] = placeholder[0, ax1, ax2, ax3, ax4] - placeholder_1[0, ax1, 0, 0, 0]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 14, 14, 10):
+            with T.block("T_multiply"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(T_subtract[0, ax1, ax2, ax3, ax4])
+                T.writes(T_multiply[ax0, ax1, ax2, ax3, ax4])
+                T_multiply[ax0, ax1, ax2, ax3, ax4] = T_subtract[0, ax1, ax2, ax3, ax4] * T_subtract[0, ax1, ax2, ax3, ax4]
+        for i0, i1, i2, i3, i4, i5, i6, i7 in T.grid(1, 320, 1, 1, 1, 14, 14, 10):
+            with T.block("T_multiply_red"):
+                ax0, ax1, ax2, ax3, ax4, k2, k3, k4 = T.axis.remap("SSSSSRRR", [i0, i1, i2, i3, i4, i5, i6, i7])
+                T.reads(T_multiply[0, ax1, k2, k3, k4])
+                T.writes(T_multiply_red[ax0, ax1, ax2, ax3, ax4])
+                with T.init():
+                    T_multiply_red[ax0, ax1, ax2, ax3, ax4] = T.float32(0)
+                T_multiply_red[ax0, ax1, ax2, ax3, ax4] = T_multiply_red[ax0, ax1, ax2, ax3, ax4] + T_multiply[0, ax1, k2, k3, k4]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 1, 1, 1):
+            with T.block("T_divide"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(T_multiply_red[0, ax1, 0, 0, 0])
+                T.writes(T_divide[ax0, ax1, ax2, ax3, ax4])
+                T_divide[ax0, ax1, ax2, ax3, ax4] = T_multiply_red[0, ax1, 0, 0, 0] * T.float32(0.00051020408163265311)
+    
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_variance_4(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], placeholder_1: T.Buffer[(1, 320, 1, 1, 1), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        T_multiply_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        T_multiply_red_rf = T.alloc_buffer([1, 320, 1, 1, 1, 49], dtype="float32")
+        for i0_i1_fused in T.parallel(320, annotations={"pragma_auto_unroll_max_step":64, "pragma_unroll_explicit":1}):
+            for ax0, ax1, ax2, ax3, ax4, ax5 in T.grid(49, 1, 1, 1, 1, 1):
+                with T.block("T_multiply_red_rf_init"):
+                    vi5_i6_i7_fused_1 = T.axis.spatial(49, ax0)
+                    ax0_1 = T.axis.spatial(1, 0)
+                    ax1_1 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_1 = T.axis.spatial(1, 0)
+                    ax3_1 = T.axis.spatial(1, 0)
+                    ax4_1 = T.axis.spatial(1, 0)
+                    T.reads()
+                    T.writes(T_multiply_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1])
+                    T_multiply_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1] = T.float32(0)
+                for ax6 in T.serial(40):
+                    with T.block("T_multiply_red_rf_update"):
+                        vi5_i6_i7_fused_1 = T.axis.spatial(49, ax0)
+                        ax0_2 = T.axis.spatial(1, 0)
+                        ax1_2 = T.axis.spatial(320, i0_i1_fused)
+                        ax2_2 = T.axis.spatial(1, 0)
+                        ax3_2 = T.axis.spatial(1, 0)
+                        ax4_2 = T.axis.spatial(1, 0)
+                        vi5_i6_i7_fused_0 = T.axis.reduce(40, ax6)
+                        T.reads(T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1], placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 140, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 140 // 10, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 10], placeholder_1[0, ax1_2, 0, 0, 0])
+                        T.writes(T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1])
+                        T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] = T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] + (placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 140, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 140 // 10, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 10] - placeholder_1[0, ax1_2, 0, 0, 0]) * (placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 140, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 140 // 10, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 10] - placeholder_1[0, ax1_2, 0, 0, 0])
+            with T.block("T_multiply_red_init"):
+                ax0_3 = T.axis.spatial(1, 0)
+                ax1_3 = T.axis.spatial(320, i0_i1_fused)
+                ax2_3 = T.axis.spatial(1, 0)
+                ax3_3 = T.axis.spatial(1, 0)
+                ax4_3 = T.axis.spatial(1, 0)
+                T.reads()
+                T.writes(T_multiply_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3])
+                T_multiply_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3] = T.float32(0)
+            for ax0_4, ax1_4, ax2_4, ax3_4, ax4_4, ax5 in T.grid(49, 1, 1, 1, 1, 1):
+                with T.block("T_multiply_red_update"):
+                    vi5_i6_i7_fused_1 = T.axis.reduce(49, ax0_4)
+                    ax0_5 = T.axis.spatial(1, 0)
+                    ax1_5 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_5 = T.axis.spatial(1, 0)
+                    ax3_5 = T.axis.spatial(1, 0)
+                    ax4_5 = T.axis.spatial(1, 0)
+                    T.reads(T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5], T_multiply_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1])
+                    T.writes(T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5])
+                    T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] = T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] + T_multiply_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1]
+            for i2, i3, i4 in T.grid(1, 1, 1):
+                with T.block("T_divide"):
+                    ax0_6 = T.axis.spatial(1, 0)
+                    ax1_6 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_6 = T.axis.spatial(1, 0)
+                    ax3_6 = T.axis.spatial(1, 0)
+                    ax4_6 = T.axis.spatial(1, 0)
+                    T.reads(T_multiply_red[0, ax1_6, 0, 0, 0])
+                    T.writes(T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6])
+                    T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6] = T_multiply_red[0, ax1_6, 0, 0, 0] * T.float32(0.00051020408163265311)
+    
+
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:20] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"T_subtract\", func_name=\"main\")", "b1 = sch.get_block(name=\"T_multiply\", func_name=\"main\")", "b2 = sch.get_block(name=\"T_multiply_red\", func_name=\"main\")", "b3 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b1)", "sch.compute_inline(block=b0)", "l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b2)", "l12 = sch.fuse(l9, l10, l11)", "v13, v14 = sch.sample_perfect_tile(loop=l12, n=2, max_innermost_factor=64, decision=[40, 49])", "l15, l16 = sch.split(loop=l12, factors=[v13, v14])", "b17 = sch.rfactor(loop=l16, factor_axis=5)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.random_compute_producer\", ann_val=1)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v18 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=2)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v18)", "b19, = sch.get_producers(block=b2)", "sch.unannotate(block_or_loop=b2, ann_key=\"meta_schedule.random_compute_producer\")", "l20 = sch.sample_compute_location(block=b2, decision=1)", "sch.compute_at(block=b2, loop=l20, preserve_unit_loops=True)", "l21 = sch.sample_compute_location(block=b19, decision=1)", "sch.compute_at(block=b19, loop=l21, preserve_unit_loops=True)", "sch.enter_postproc()", "b22 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.unroll_explicit\")", "b23, b24, b25 = sch.get_child_blocks(b22)", "l26, l27, l28, l29, l30, l31, l32, l33, l34 = sch.get_loops(block=b23)", "l35 = sch.fuse(l26, l27)", "sch.parallel(loop=l35)", "sch.annotate(block_or_loop=l35, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l35, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l36, l37, l38, l39, l40, l41, l42 = sch.get_loops(block=b24)", "sch.annotate(block_or_loop=l36, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l36, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l43, l44, l45, l46 = sch.get_loops(block=b25)", "sch.annotate(block_or_loop=l43, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l43, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b47 = sch.get_block(name=\"T_multiply_red_rf\", func_name=\"main\")", "l48, l49, l50, l51, l52, l53, l54, l55 = sch.get_loops(block=b47)", "b56 = sch.decompose_reduction(block=b47, loop=l55)", "b57 = sch.get_block(name=\"T_multiply_red\", func_name=\"main\")", "l58, l59, l60, l61, l62, l63, l64 = sch.get_loops(block=b57)", "b65 = sch.decompose_reduction(block=b57, loop=l59)"]
+2022-05-09 14:50:21.147 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu_4
+2022-05-09 14:50:21.244 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_9
+2022-05-09 14:50:21.389 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_4
+2022-05-09 14:50:21.499 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_10
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 320, 7, 7, 5), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        placeholder_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        for i0, i1, i2, i3, i4, i5, i6, i7 in T.grid(1, 320, 1, 1, 1, 7, 7, 5):
+            with T.block("placeholder_red"):
+                ax0, ax1, ax2, ax3, ax4, k2, k3, k4 = T.axis.remap("SSSSSRRR", [i0, i1, i2, i3, i4, i5, i6, i7])
+                T.reads(placeholder[0, ax1, k2, k3, k4])
+                T.writes(placeholder_red[ax0, ax1, ax2, ax3, ax4])
+                with T.init():
+                    placeholder_red[ax0, ax1, ax2, ax3, ax4] = T.float32(0)
+                placeholder_red[ax0, ax1, ax2, ax3, ax4] = placeholder_red[ax0, ax1, ax2, ax3, ax4] + placeholder[0, ax1, k2, k3, k4]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 1, 1, 1):
+            with T.block("T_divide"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder_red[0, ax1, 0, 0, 0])
+                T.writes(T_divide[ax0, ax1, ax2, ax3, ax4])
+                T_divide[ax0, ax1, ax2, ax3, ax4] = placeholder_red[0, ax1, 0, 0, 0] * T.float32(0.0040816326530612249)
+    
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_mean_5(placeholder: T.Buffer[(1, 320, 7, 7, 5), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        placeholder_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        placeholder_red_rf = T.alloc_buffer([1, 320, 1, 1, 1, 35], dtype="float32")
+        for i0_i1_fused in T.parallel(320, annotations={"pragma_auto_unroll_max_step":64, "pragma_unroll_explicit":1}):
+            for ax0, ax1, ax2, ax3, ax4, ax5 in T.grid(35, 1, 1, 1, 1, 1):
+                with T.block("placeholder_red_rf_init"):
+                    vi5_i6_i7_fused_1 = T.axis.spatial(35, ax0)
+                    ax0_1 = T.axis.spatial(1, 0)
+                    ax1_1 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_1 = T.axis.spatial(1, 0)
+                    ax3_1 = T.axis.spatial(1, 0)
+                    ax4_1 = T.axis.spatial(1, 0)
+                    T.reads()
+                    T.writes(placeholder_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1])
+                    placeholder_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1] = T.float32(0)
+                for ax6 in T.serial(7):
+                    with T.block("placeholder_red_rf_update"):
+                        vi5_i6_i7_fused_1 = T.axis.spatial(35, ax0)
+                        ax0_2 = T.axis.spatial(1, 0)
+                        ax1_2 = T.axis.spatial(320, i0_i1_fused)
+                        ax2_2 = T.axis.spatial(1, 0)
+                        ax3_2 = T.axis.spatial(1, 0)
+                        ax4_2 = T.axis.spatial(1, 0)
+                        vi5_i6_i7_fused_0 = T.axis.reduce(7, ax6)
+                        T.reads(placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1], placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) // 35, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) % 35 // 5, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) % 5])
+                        T.writes(placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1])
+                        placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] = placeholder_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] + placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) // 35, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) % 35 // 5, (vi5_i6_i7_fused_0 * 35 + vi5_i6_i7_fused_1) % 5]
+            with T.block("placeholder_red_init"):
+                ax0_3 = T.axis.spatial(1, 0)
+                ax1_3 = T.axis.spatial(320, i0_i1_fused)
+                ax2_3 = T.axis.spatial(1, 0)
+                ax3_3 = T.axis.spatial(1, 0)
+                ax4_3 = T.axis.spatial(1, 0)
+                T.reads()
+                T.writes(placeholder_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3])
+                placeholder_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3] = T.float32(0)
+            for ax0_4, ax1_4, ax2_4, ax3_4, ax4_4, ax5 in T.grid(35, 1, 1, 1, 1, 1):
+                with T.block("placeholder_red_update"):
+                    vi5_i6_i7_fused_1 = T.axis.reduce(35, ax0_4)
+                    ax0_5 = T.axis.spatial(1, 0)
+                    ax1_5 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_5 = T.axis.spatial(1, 0)
+                    ax3_5 = T.axis.spatial(1, 0)
+                    ax4_5 = T.axis.spatial(1, 0)
+                    T.reads(placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5], placeholder_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1])
+                    T.writes(placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5])
+                    placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] = placeholder_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] + placeholder_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1]
+            for i2, i3, i4 in T.grid(1, 1, 1):
+                with T.block("T_divide"):
+                    ax0_6 = T.axis.spatial(1, 0)
+                    ax1_6 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_6 = T.axis.spatial(1, 0)
+                    ax3_6 = T.axis.spatial(1, 0)
+                    ax4_6 = T.axis.spatial(1, 0)
+                    T.reads(placeholder_red[0, ax1_6, 0, 0, 0])
+                    T.writes(T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6])
+                    T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6] = placeholder_red[0, ax1_6, 0, 0, 0] * T.float32(0.0040816326530612249)
+    
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"placeholder_red\", func_name=\"main\")", "b1 = sch.get_block(name=\"root\", func_name=\"main\")", "l2, l3, l4, l5, l6, l7, l8, l9 = sch.get_loops(block=b0)", "l10 = sch.fuse(l7, l8, l9)", "v11, v12 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[7, 35])", "l13, l14 = sch.split(loop=l10, factors=[v11, v12])", "b15 = sch.rfactor(loop=l14, factor_axis=5)", "sch.annotate(block_or_loop=b0, ann_key=\"meta_schedule.random_compute_producer\", ann_val=1)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v16 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=2)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v16)", "b17, = sch.get_producers(block=b0)", "sch.unannotate(block_or_loop=b0, ann_key=\"meta_schedule.random_compute_producer\")", "l18 = sch.sample_compute_location(block=b0, decision=1)", "sch.compute_at(block=b0, loop=l18, preserve_unit_loops=True)", "l19 = sch.sample_compute_location(block=b17, decision=1)", "sch.compute_at(block=b17, loop=l19, preserve_unit_loops=True)", "sch.enter_postproc()", "b20 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b20, ann_key=\"meta_schedule.unroll_explicit\")", "b21, b22, b23 = sch.get_child_blocks(b20)", "l24, l25, l26, l27, l28, l29, l30, l31, l32 = sch.get_loops(block=b21)", "l33 = sch.fuse(l24, l25)", "sch.parallel(loop=l33)", "sch.annotate(block_or_loop=l33, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l33, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l34, l35, l36, l37, l38, l39, l40 = sch.get_loops(block=b22)", "sch.annotate(block_or_loop=l34, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l34, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l41, l42, l43, l44 = sch.get_loops(block=b23)", "sch.annotate(block_or_loop=l41, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l41, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b45 = sch.get_block(name=\"placeholder_red_rf\", func_name=\"main\")", "l46, l47, l48, l49, l50, l51, l52, l53 = sch.get_loops(block=b45)", "b54 = sch.decompose_reduction(block=b45, loop=l53)", "b55 = sch.get_block(name=\"placeholder_red\", func_name=\"main\")", "l56, l57, l58, l59, l60, l61, l62 = sch.get_loops(block=b55)", "b63 = sch.decompose_reduction(block=b55, loop=l57)"]
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 320, 7, 7, 5), "float32"], placeholder_1: T.Buffer[(1, 320, 1, 1, 1), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        T_subtract = T.alloc_buffer([1, 320, 7, 7, 5], dtype="float32")
+        T_multiply = T.alloc_buffer([1, 320, 7, 7, 5], dtype="float32")
+        T_multiply_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 7, 7, 5):
+            with T.block("T_subtract"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, ax1, ax2, ax3, ax4], placeholder_1[0, ax1, 0, 0, 0])
+                T.writes(T_subtract[ax0, ax1, ax2, ax3, ax4])
+                T_subtract[ax0, ax1, ax2, ax3, ax4] = placeholder[0, ax1, ax2, ax3, ax4] - placeholder_1[0, ax1, 0, 0, 0]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 7, 7, 5):
+            with T.block("T_multiply"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(T_subtract[0, ax1, ax2, ax3, ax4])
+                T.writes(T_multiply[ax0, ax1, ax2, ax3, ax4])
+                T_multiply[ax0, ax1, ax2, ax3, ax4] = T_subtract[0, ax1, ax2, ax3, ax4] * T_subtract[0, ax1, ax2, ax3, ax4]
+        for i0, i1, i2, i3, i4, i5, i6, i7 in T.grid(1, 320, 1, 1, 1, 7, 7, 5):
+            with T.block("T_multiply_red"):
+                ax0, ax1, ax2, ax3, ax4, k2, k3, k4 = T.axis.remap("SSSSSRRR", [i0, i1, i2, i3, i4, i5, i6, i7])
+                T.reads(T_multiply[0, ax1, k2, k3, k4])
+                T.writes(T_multiply_red[ax0, ax1, ax2, ax3, ax4])
+                with T.init():
+                    T_multiply_red[ax0, ax1, ax2, ax3, ax4] = T.float32(0)
+                T_multiply_red[ax0, ax1, ax2, ax3, ax4] = T_multiply_red[ax0, ax1, ax2, ax3, ax4] + T_multiply[0, ax1, k2, k3, k4]
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 1, 1, 1):
+            with T.block("T_divide"):
+                ax0, ax1, ax2, ax3, ax4 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(T_multiply_red[0, ax1, 0, 0, 0])
+                T.writes(T_divide[ax0, ax1, ax2, ax3, ax4])
+                T_divide[ax0, ax1, ax2, ax3, ax4] = T_multiply_red[0, ax1, 0, 0, 0] * T.float32(0.0040816326530612249)
+    
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_variance_5(placeholder: T.Buffer[(1, 320, 7, 7, 5), "float32"], placeholder_1: T.Buffer[(1, 320, 1, 1, 1), "float32"], T_divide: T.Buffer[(1, 320, 1, 1, 1), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        T_multiply_red = T.alloc_buffer([1, 320, 1, 1, 1], dtype="float32")
+        T_multiply_red_rf = T.alloc_buffer([1, 320, 1, 1, 1, 49], dtype="float32")
+        for i0_i1_fused in T.parallel(320, annotations={"pragma_auto_unroll_max_step":16, "pragma_unroll_explicit":1}):
+            for ax0, ax1, ax2, ax3, ax4, ax5 in T.grid(49, 1, 1, 1, 1, 1):
+                with T.block("T_multiply_red_rf_init"):
+                    vi5_i6_i7_fused_1 = T.axis.spatial(49, ax0)
+                    ax0_1 = T.axis.spatial(1, 0)
+                    ax1_1 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_1 = T.axis.spatial(1, 0)
+                    ax3_1 = T.axis.spatial(1, 0)
+                    ax4_1 = T.axis.spatial(1, 0)
+                    T.reads()
+                    T.writes(T_multiply_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1])
+                    T_multiply_red_rf[ax0_1, ax1_1, ax2_1, ax3_1, ax4_1, vi5_i6_i7_fused_1] = T.float32(0)
+                for ax6 in T.serial(5):
+                    with T.block("T_multiply_red_rf_update"):
+                        vi5_i6_i7_fused_1 = T.axis.spatial(49, ax0)
+                        ax0_2 = T.axis.spatial(1, 0)
+                        ax1_2 = T.axis.spatial(320, i0_i1_fused)
+                        ax2_2 = T.axis.spatial(1, 0)
+                        ax3_2 = T.axis.spatial(1, 0)
+                        ax4_2 = T.axis.spatial(1, 0)
+                        vi5_i6_i7_fused_0 = T.axis.reduce(5, ax6)
+                        T.reads(T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1], placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 35, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 35 // 5, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 5], placeholder_1[0, ax1_2, 0, 0, 0])
+                        T.writes(T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1])
+                        T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] = T_multiply_red_rf[ax0_2, ax1_2, ax2_2, ax3_2, ax4_2, vi5_i6_i7_fused_1] + (placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 35, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 35 // 5, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 5] - placeholder_1[0, ax1_2, 0, 0, 0]) * (placeholder[0, ax1_2, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) // 35, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 35 // 5, (vi5_i6_i7_fused_0 * 49 + vi5_i6_i7_fused_1) % 5] - placeholder_1[0, ax1_2, 0, 0, 0])
+            with T.block("T_multiply_red_init"):
+                ax0_3 = T.axis.spatial(1, 0)
+                ax1_3 = T.axis.spatial(320, i0_i1_fused)
+                ax2_3 = T.axis.spatial(1, 0)
+                ax3_3 = T.axis.spatial(1, 0)
+                ax4_3 = T.axis.spatial(1, 0)
+                T.reads()
+                T.writes(T_multiply_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3])
+                T_multiply_red[ax0_3, ax1_3, ax2_3, ax3_3, ax4_3] = T.float32(0)
+            for ax0_4, ax1_4, ax2_4, ax3_4, ax4_4, ax5 in T.grid(49, 1, 1, 1, 1, 1):
+                with T.block("T_multiply_red_update"):
+                    vi5_i6_i7_fused_1 = T.axis.reduce(49, ax0_4)
+                    ax0_5 = T.axis.spatial(1, 0)
+                    ax1_5 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_5 = T.axis.spatial(1, 0)
+                    ax3_5 = T.axis.spatial(1, 0)
+                    ax4_5 = T.axis.spatial(1, 0)
+                    T.reads(T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5], T_multiply_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1])
+                    T.writes(T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5])
+                    T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] = T_multiply_red[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5] + T_multiply_red_rf[ax0_5, ax1_5, ax2_5, ax3_5, ax4_5, vi5_i6_i7_fused_1]
+            for i2, i3, i4 in T.grid(1, 1, 1):
+                with T.block("T_divide"):
+                    ax0_6 = T.axis.spatial(1, 0)
+                    ax1_6 = T.axis.spatial(320, i0_i1_fused)
+                    ax2_6 = T.axis.spatial(1, 0)
+                    ax3_6 = T.axis.spatial(1, 0)
+                    ax4_6 = T.axis.spatial(1, 0)
+                    T.reads(T_multiply_red[0, ax1_6, 0, 0, 0])
+                    T.writes(T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6])
+                    T_divide[ax0_6, ax1_6, ax2_6, ax3_6, ax4_6] = T_multiply_red[0, ax1_6, 0, 0, 0] * T.float32(0.0040816326530612249)
+    
+
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:21] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"T_subtract\", func_name=\"main\")", "b1 = sch.get_block(name=\"T_multiply\", func_name=\"main\")", "b2 = sch.get_block(name=\"T_multiply_red\", func_name=\"main\")", "b3 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b1)", "sch.compute_inline(block=b0)", "l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b2)", "l12 = sch.fuse(l9, l10, l11)", "v13, v14 = sch.sample_perfect_tile(loop=l12, n=2, max_innermost_factor=64, decision=[5, 49])", "l15, l16 = sch.split(loop=l12, factors=[v13, v14])", "b17 = sch.rfactor(loop=l16, factor_axis=5)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.random_compute_producer\", ann_val=1)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v18 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=1)", "sch.annotate(block_or_loop=b3, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v18)", "b19, = sch.get_producers(block=b2)", "sch.unannotate(block_or_loop=b2, ann_key=\"meta_schedule.random_compute_producer\")", "l20 = sch.sample_compute_location(block=b2, decision=1)", "sch.compute_at(block=b2, loop=l20, preserve_unit_loops=True)", "l21 = sch.sample_compute_location(block=b19, decision=1)", "sch.compute_at(block=b19, loop=l21, preserve_unit_loops=True)", "sch.enter_postproc()", "b22 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b22, ann_key=\"meta_schedule.unroll_explicit\")", "b23, b24, b25 = sch.get_child_blocks(b22)", "l26, l27, l28, l29, l30, l31, l32, l33, l34 = sch.get_loops(block=b23)", "l35 = sch.fuse(l26, l27)", "sch.parallel(loop=l35)", "sch.annotate(block_or_loop=l35, ann_key=\"pragma_auto_unroll_max_step\", ann_val=16)", "sch.annotate(block_or_loop=l35, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l36, l37, l38, l39, l40, l41, l42 = sch.get_loops(block=b24)", "sch.annotate(block_or_loop=l36, ann_key=\"pragma_auto_unroll_max_step\", ann_val=16)", "sch.annotate(block_or_loop=l36, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l43, l44, l45, l46 = sch.get_loops(block=b25)", "sch.annotate(block_or_loop=l43, ann_key=\"pragma_auto_unroll_max_step\", ann_val=16)", "sch.annotate(block_or_loop=l43, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b47 = sch.get_block(name=\"T_multiply_red_rf\", func_name=\"main\")", "l48, l49, l50, l51, l52, l53, l54, l55 = sch.get_loops(block=b47)", "b56 = sch.decompose_reduction(block=b47, loop=l55)", "b57 = sch.get_block(name=\"T_multiply_red\", func_name=\"main\")", "l58, l59, l60, l61, l62, l63, l64 = sch.get_loops(block=b57)", "b65 = sch.decompose_reduction(block=b57, loop=l59)"]
+2022-05-09 14:50:21.776 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_add_nn_leaky_relu_5
+2022-05-09 14:50:21.913 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_11
+2022-05-09 14:50:22.120 WARNING Cannot find workload: tvmgen_default_fused_subtract_add_sqrt_divide_multiply_add_nn_leaky_relu_5
+2022-05-09 14:50:22.271 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_transpose
+2022-05-09 14:50:22.511 WARNING Cannot find workload: tvmgen_default_fused_concatenate
+2022-05-09 14:50:22.654 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_12
+2022-05-09 14:50:22.854 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_transpose_1
+2022-05-09 14:50:23.103 WARNING Cannot find workload: tvmgen_default_fused_concatenate_1
+2022-05-09 14:50:23.244 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_13
+2022-05-09 14:50:23.469 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_transpose_2
+2022-05-09 14:50:23.696 WARNING Cannot find workload: tvmgen_default_fused_concatenate_2
+2022-05-09 14:50:23.835 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_14
+2022-05-09 14:50:24.036 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_transpose_3
+2022-05-09 14:50:24.276 WARNING Cannot find workload: tvmgen_default_fused_concatenate_3
+2022-05-09 14:50:24.390 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_15
+2022-05-09 14:50:24.514 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_transpose_4
+2022-05-09 14:50:24.653 WARNING Cannot find workload: tvmgen_default_fused_concatenate_4
+2022-05-09 14:50:24.735 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d_add_16
+2022-05-09 14:50:24.809 WARNING Cannot find workload: tvmgen_default_fused_nn_conv3d
+[14:50:24] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 64, 112, 112, 80), "float32"], placeholder_1: T.Buffer[(4, 64, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 112, 112, 80), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        pad_temp = T.alloc_buffer([1, 64, 112, 112, 80], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 64, 112, 112, 80):
+            with T.block("pad_temp"):
+                i0_1, i1_1, i2_1, i3_1, i4_1 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, i1_1, i2_1, i3_1, i4_1])
+                T.writes(pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1])
+                pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1] = placeholder[0, i1_1, i2_1, i3_1, i4_1]
+        for i0, i1, i2, i3, i4, i5, i6, i7, i8 in T.grid(1, 4, 112, 112, 80, 64, 1, 1, 1):
+            with T.block("conv3d_ncdhw"):
+                nn, ff, yy, xx, zz, rc, ry, rx, rz = T.axis.remap("SSSSSRRRR", [i0, i1, i2, i3, i4, i5, i6, i7, i8])
+                T.reads(pad_temp[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                T.writes(conv3d_ncdhw[nn, ff, yy, xx, zz])
+                with T.init():
+                    conv3d_ncdhw[nn, ff, yy, xx, zz] = T.float32(0)
+                conv3d_ncdhw[nn, ff, yy, xx, zz] = conv3d_ncdhw[nn, ff, yy, xx, zz] + pad_temp[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+    
+
+[14:50:24] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:24] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_nn_conv3d_1(placeholder: T.Buffer[(1, 64, 112, 112, 80), "float32"], placeholder_1: T.Buffer[(4, 64, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 112, 112, 80), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        conv3d_ncdhw_global = T.alloc_buffer([1, 4, 112, 112, 80], dtype="float32")
+        for i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused in T.parallel(14, annotations={"pragma_auto_unroll_max_step":64, "pragma_unroll_explicit":1}):
+            for i2_2_init, i3_2_init, i4_2_init, i1_3_init, i2_3_init, i3_3_init in T.grid(2, 2, 10, 2, 8, 56):
+                for i4_3_fused_init in T.vectorized(8):
+                    with T.block("conv3d_ncdhw_init"):
+                        nn = T.axis.spatial(1, 0)
+                        ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused // 7 * 2 + i1_3_init)
+                        yy = T.axis.spatial(112, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused % 7 * 16 + i2_2_init * 8 + i2_3_init)
+                        xx = T.axis.spatial(112, i3_2_init * 56 + i3_3_init)
+                        zz = T.axis.spatial(80, i4_2_init * 8 + i4_3_fused_init)
+                        T.reads()
+                        T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                        T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                        conv3d_ncdhw_global[nn, ff, yy, xx, zz] = T.float32(0)
+            for i5_0, i6_0, i7_0, i8_0, i0_2, i1_2, i2_2, i3_2, i4_2, i5_1, i6_1, i7_1, i8_1, i0_3, i1_3, i2_3, i3_3 in T.grid(8, 1, 1, 1, 1, 1, 2, 2, 10, 8, 1, 1, 1, 1, 2, 8, 56):
+                for i4_3_fused in T.vectorized(8):
+                    with T.block("conv3d_ncdhw_update"):
+                        nn = T.axis.spatial(1, 0)
+                        ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused // 7 * 2 + i1_3)
+                        yy = T.axis.spatial(112, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused % 7 * 16 + i2_2 * 8 + i2_3)
+                        xx = T.axis.spatial(112, i3_2 * 56 + i3_3)
+                        zz = T.axis.spatial(80, i4_2 * 8 + i4_3_fused)
+                        rc = T.axis.reduce(64, i5_0 * 8 + i5_1)
+                        ry = T.axis.reduce(1, 0)
+                        rx = T.axis.reduce(1, 0)
+                        rz = T.axis.reduce(1, 0)
+                        T.reads(conv3d_ncdhw_global[nn, ff, yy, xx, zz], placeholder[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                        T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                        T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                        conv3d_ncdhw_global[nn, ff, yy, xx, zz] = conv3d_ncdhw_global[nn, ff, yy, xx, zz] + placeholder[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+            for ax0, ax1, ax2, ax3, ax4 in T.grid(1, 2, 16, 112, 80):
+                with T.block("conv3d_ncdhw_global"):
+                    v0 = T.axis.spatial(1, 0)
+                    v1 = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused // 7 * 2 + ax1)
+                    v2 = T.axis.spatial(112, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_i3_1_i4_1_fused % 7 * 16 + ax2)
+                    v3, v4 = T.axis.remap("SS", [ax3, ax4])
+                    T.reads(conv3d_ncdhw_global[v0, v1, v2, v3, v4])
+                    T.writes(conv3d_ncdhw[v0, v1, v2, v3, v4])
+                    conv3d_ncdhw[v0, v1, v2, v3, v4] = conv3d_ncdhw_global[v0, v1, v2, v3, v4]
+    
+
+[14:50:24] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:24] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"pad_temp\", func_name=\"main\")", "b1 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "b2 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b0)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.tiling_structure\", ann_val=\"SSRSRS\")", "l3, l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b1)", "v12, v13, v14, v15 = sch.sample_perfect_tile(loop=l3, n=4, max_innermost_factor=64, decision=[1, 1, 1, 1])", "l16, l17, l18, l19 = sch.split(loop=l3, factors=[v12, v13, v14, v15])", "v20, v21, v22, v23 = sch.sample_perfect_tile(loop=l4, n=4, max_innermost_factor=64, decision=[1, 2, 1, 2])", "l24, l25, l26, l27 = sch.split(loop=l4, factors=[v20, v21, v22, v23])", "v28, v29, v30, v31 = sch.sample_perfect_tile(loop=l5, n=4, max_innermost_factor=64, decision=[1, 7, 2, 8])", "l32, l33, l34, l35 = sch.split(loop=l5, factors=[v28, v29, v30, v31])", "v36, v37, v38, v39 = sch.sample_perfect_tile(loop=l6, n=4, max_innermost_factor=64, decision=[1, 1, 2, 56])", "l40, l41, l42, l43 = sch.split(loop=l6, factors=[v36, v37, v38, v39])", "v44, v45, v46, v47 = sch.sample_perfect_tile(loop=l7, n=4, max_innermost_factor=64, decision=[1, 1, 10, 8])", "l48, l49, l50, l51 = sch.split(loop=l7, factors=[v44, v45, v46, v47])", "v52, v53 = sch.sample_perfect_tile(loop=l8, n=2, max_innermost_factor=64, decision=[8, 8])", "l54, l55 = sch.split(loop=l8, factors=[v52, v53])", "v56, v57 = sch.sample_perfect_tile(loop=l9, n=2, max_innermost_factor=64, decision=[1, 1])", "l58, l59 = sch.split(loop=l9, factors=[v56, v57])", "v60, v61 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[1, 1])", "l62, l63 = sch.split(loop=l10, factors=[v60, v61])", "v64, v65 = sch.sample_perfect_tile(loop=l11, n=2, max_innermost_factor=64, decision=[1, 1])", "l66, l67 = sch.split(loop=l11, factors=[v64, v65])", "sch.reorder(l16, l24, l32, l40, l48, l17, l25, l33, l41, l49, l54, l58, l62, l66, l18, l26, l34, l42, l50, l55, l59, l63, l67, l19, l27, l35, l43, l51)", "b68 = sch.cache_write(block=b1, write_buffer_index=0, storage_scope=\"global\")", "sch.reverse_compute_at(block=b68, loop=l49, preserve_unit_loops=True)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v69 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=2)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v69)", "sch.enter_postproc()", "b70 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.unroll_explicit\")", "b71, b72 = sch.get_child_blocks(b70)", "l73, l74, l75, l76, l77, l78, l79, l80, l81, l82, l83, l84, l85, l86, l87, l88, l89, l90, l91, l92, l93, l94, l95, l96, l97, l98, l99, l100 = sch.get_loops(block=b71)", "l101 = sch.fuse(l73, l74, l75, l76, l77, l78, l79, l80, l81, l82)", "sch.parallel(loop=l101)", "l102 = sch.fuse(l100)", "sch.vectorize(loop=l102)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l103, l104, l105, l106, l107, l108 = sch.get_loops(block=b72)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b109 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "l110, l111, l112, l113, l114, l115, l116, l117, l118, l119, l120, l121, l122, l123, l124, l125, l126, l127, l128 = sch.get_loops(block=b109)", "b129 = sch.decompose_reduction(block=b109, loop=l111)"]
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 128, 56, 56, 40), "float32"], placeholder_1: T.Buffer[(4, 128, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 56, 56, 40), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        pad_temp = T.alloc_buffer([1, 128, 56, 56, 40], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 128, 56, 56, 40):
+            with T.block("pad_temp"):
+                i0_1, i1_1, i2_1, i3_1, i4_1 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, i1_1, i2_1, i3_1, i4_1])
+                T.writes(pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1])
+                pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1] = placeholder[0, i1_1, i2_1, i3_1, i4_1]
+        for i0, i1, i2, i3, i4, i5, i6, i7, i8 in T.grid(1, 4, 56, 56, 40, 128, 1, 1, 1):
+            with T.block("conv3d_ncdhw"):
+                nn, ff, yy, xx, zz, rc, ry, rx, rz = T.axis.remap("SSSSSRRRR", [i0, i1, i2, i3, i4, i5, i6, i7, i8])
+                T.reads(pad_temp[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                T.writes(conv3d_ncdhw[nn, ff, yy, xx, zz])
+                with T.init():
+                    conv3d_ncdhw[nn, ff, yy, xx, zz] = T.float32(0)
+                conv3d_ncdhw[nn, ff, yy, xx, zz] = conv3d_ncdhw[nn, ff, yy, xx, zz] + pad_temp[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+    
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_nn_conv3d_2(placeholder: T.Buffer[(1, 128, 56, 56, 40), "float32"], placeholder_1: T.Buffer[(4, 128, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 56, 56, 40), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        conv3d_ncdhw_global = T.alloc_buffer([1, 4, 56, 56, 40], dtype="float32")
+        for i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused in T.parallel(448, annotations={"pragma_auto_unroll_max_step":64, "pragma_unroll_explicit":1}):
+            for i3_1, i4_1 in T.grid(1, 1):
+                for i1_2_init, i3_2_init, i4_2_init in T.grid(2, 14, 2):
+                    for i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused_init in T.vectorized(20):
+                        with T.block("conv3d_ncdhw_init"):
+                            nn = T.axis.spatial(1, 0)
+                            ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused // 224 * 2 + i1_2_init)
+                            yy = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 56)
+                            xx = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 224 // 56 * 14 + i3_2_init)
+                            zz = T.axis.spatial(40, i4_2_init * 20 + i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused_init)
+                            T.reads()
+                            T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                            T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                            conv3d_ncdhw_global[nn, ff, yy, xx, zz] = T.float32(0)
+                for i5_0, i6_0, i7_0, i8_0, i0_2, i1_2, i2_2, i3_2, i4_2, i5_1 in T.grid(64, 1, 1, 1, 1, 2, 1, 14, 2, 2):
+                    for i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused in T.vectorized(20):
+                        with T.block("conv3d_ncdhw_update"):
+                            nn = T.axis.spatial(1, 0)
+                            ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused // 224 * 2 + i1_2)
+                            yy = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 56)
+                            xx = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 224 // 56 * 14 + i3_2)
+                            zz = T.axis.spatial(40, i4_2 * 20 + i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused)
+                            rc = T.axis.reduce(128, i5_0 * 2 + i5_1)
+                            ry = T.axis.reduce(1, 0)
+                            rx = T.axis.reduce(1, 0)
+                            rz = T.axis.reduce(1, 0)
+                            T.reads(conv3d_ncdhw_global[nn, ff, yy, xx, zz], placeholder[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                            T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                            T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                            conv3d_ncdhw_global[nn, ff, yy, xx, zz] = conv3d_ncdhw_global[nn, ff, yy, xx, zz] + placeholder[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+                for ax0, ax1, ax2, ax3 in T.grid(1, 2, 1, 14):
+                    for ax4_fused in T.vectorized(40):
+                        with T.block("conv3d_ncdhw_global"):
+                            v0 = T.axis.spatial(1, 0)
+                            v1 = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused // 224 * 2 + ax1)
+                            v2 = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 56)
+                            v3 = T.axis.spatial(56, i0_0_i1_0_i2_0_i3_0_i4_0_i0_1_i1_1_i2_1_fused % 224 // 56 * 14 + ax3)
+                            v4 = T.axis.spatial(40, ax4_fused)
+                            T.reads(conv3d_ncdhw_global[v0, v1, v2, v3, v4])
+                            T.writes(conv3d_ncdhw[v0, v1, v2, v3, v4])
+                            conv3d_ncdhw[v0, v1, v2, v3, v4] = conv3d_ncdhw_global[v0, v1, v2, v3, v4]
+    
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"pad_temp\", func_name=\"main\")", "b1 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "b2 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b0)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.tiling_structure\", ann_val=\"SSRSRS\")", "l3, l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b1)", "v12, v13, v14, v15 = sch.sample_perfect_tile(loop=l3, n=4, max_innermost_factor=64, decision=[1, 1, 1, 1])", "l16, l17, l18, l19 = sch.split(loop=l3, factors=[v12, v13, v14, v15])", "v20, v21, v22, v23 = sch.sample_perfect_tile(loop=l4, n=4, max_innermost_factor=64, decision=[2, 1, 2, 1])", "l24, l25, l26, l27 = sch.split(loop=l4, factors=[v20, v21, v22, v23])", "v28, v29, v30, v31 = sch.sample_perfect_tile(loop=l5, n=4, max_innermost_factor=64, decision=[1, 56, 1, 1])", "l32, l33, l34, l35 = sch.split(loop=l5, factors=[v28, v29, v30, v31])", "v36, v37, v38, v39 = sch.sample_perfect_tile(loop=l6, n=4, max_innermost_factor=64, decision=[4, 1, 14, 1])", "l40, l41, l42, l43 = sch.split(loop=l6, factors=[v36, v37, v38, v39])", "v44, v45, v46, v47 = sch.sample_perfect_tile(loop=l7, n=4, max_innermost_factor=64, decision=[1, 1, 2, 20])", "l48, l49, l50, l51 = sch.split(loop=l7, factors=[v44, v45, v46, v47])", "v52, v53 = sch.sample_perfect_tile(loop=l8, n=2, max_innermost_factor=64, decision=[64, 2])", "l54, l55 = sch.split(loop=l8, factors=[v52, v53])", "v56, v57 = sch.sample_perfect_tile(loop=l9, n=2, max_innermost_factor=64, decision=[1, 1])", "l58, l59 = sch.split(loop=l9, factors=[v56, v57])", "v60, v61 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[1, 1])", "l62, l63 = sch.split(loop=l10, factors=[v60, v61])", "v64, v65 = sch.sample_perfect_tile(loop=l11, n=2, max_innermost_factor=64, decision=[1, 1])", "l66, l67 = sch.split(loop=l11, factors=[v64, v65])", "sch.reorder(l16, l24, l32, l40, l48, l17, l25, l33, l41, l49, l54, l58, l62, l66, l18, l26, l34, l42, l50, l55, l59, l63, l67, l19, l27, l35, l43, l51)", "b68 = sch.cache_write(block=b1, write_buffer_index=0, storage_scope=\"global\")", "sch.reverse_compute_at(block=b68, loop=l49, preserve_unit_loops=True)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v69 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=2)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v69)", "sch.enter_postproc()", "b70 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.unroll_explicit\")", "b71, b72 = sch.get_child_blocks(b70)", "l73, l74, l75, l76, l77, l78, l79, l80, l81, l82, l83, l84, l85, l86, l87, l88, l89, l90, l91, l92, l93, l94, l95, l96, l97, l98, l99, l100 = sch.get_loops(block=b71)", "l101 = sch.fuse(l73, l74, l75, l76, l77, l78, l79, l80)", "sch.parallel(loop=l101)", "l102 = sch.fuse(l93, l94, l95, l96, l97, l98, l99, l100)", "sch.vectorize(loop=l102)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l103, l104, l105, l106, l107, l108, l109, l110 = sch.get_loops(block=b72)", "l111 = sch.fuse(l110)", "sch.vectorize(loop=l111)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b112 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "l113, l114, l115, l116, l117, l118, l119, l120, l121, l122, l123, l124, l125, l126 = sch.get_loops(block=b112)", "b127 = sch.decompose_reduction(block=b112, loop=l116)"]
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 256, 28, 28, 20), "float32"], placeholder_1: T.Buffer[(4, 256, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 28, 28, 20), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        pad_temp = T.alloc_buffer([1, 256, 28, 28, 20], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 256, 28, 28, 20):
+            with T.block("pad_temp"):
+                i0_1, i1_1, i2_1, i3_1, i4_1 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, i1_1, i2_1, i3_1, i4_1])
+                T.writes(pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1])
+                pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1] = placeholder[0, i1_1, i2_1, i3_1, i4_1]
+        for i0, i1, i2, i3, i4, i5, i6, i7, i8 in T.grid(1, 4, 28, 28, 20, 256, 1, 1, 1):
+            with T.block("conv3d_ncdhw"):
+                nn, ff, yy, xx, zz, rc, ry, rx, rz = T.axis.remap("SSSSSRRRR", [i0, i1, i2, i3, i4, i5, i6, i7, i8])
+                T.reads(pad_temp[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                T.writes(conv3d_ncdhw[nn, ff, yy, xx, zz])
+                with T.init():
+                    conv3d_ncdhw[nn, ff, yy, xx, zz] = T.float32(0)
+                conv3d_ncdhw[nn, ff, yy, xx, zz] = conv3d_ncdhw[nn, ff, yy, xx, zz] + pad_temp[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+    
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_nn_conv3d_3(placeholder: T.Buffer[(1, 256, 28, 28, 20), "float32"], placeholder_1: T.Buffer[(4, 256, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 28, 28, 20), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        conv3d_ncdhw_global = T.alloc_buffer([1, 4, 28, 28, 20], dtype="float32")
+        for i0_0_i1_0_i2_0_i3_0_fused in T.parallel(224, annotations={"pragma_auto_unroll_max_step":64, "pragma_unroll_explicit":1}):
+            for i4_0 in T.serial(1):
+                for i0_1, i1_1, i2_1, i3_1, i4_1 in T.grid(1, 1, 1, 7, 4):
+                    for i2_2_init in T.serial(2):
+                        for i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused_init in T.vectorized(5):
+                            with T.block("conv3d_ncdhw_init"):
+                                nn = T.axis.spatial(1, 0)
+                                ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_fused // 56)
+                                yy = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 56 // 4 * 2 + i2_2_init)
+                                xx = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 4 * 7 + i3_1)
+                                zz = T.axis.spatial(20, i4_1 * 5 + i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused_init)
+                                T.reads()
+                                T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                                T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                                conv3d_ncdhw_global[nn, ff, yy, xx, zz] = T.float32(0)
+                    for i5_0, i6_0, i7_0, i8_0, i0_2, i1_2, i2_2, i3_2, i4_2, i5_1 in T.grid(8, 1, 1, 1, 1, 1, 2, 1, 1, 32):
+                        for i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused in T.vectorized(5):
+                            with T.block("conv3d_ncdhw_update"):
+                                nn = T.axis.spatial(1, 0)
+                                ff = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_fused // 56)
+                                yy = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 56 // 4 * 2 + i2_2)
+                                xx = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 4 * 7 + i3_1)
+                                zz = T.axis.spatial(20, i4_1 * 5 + i6_1_i7_1_i8_1_i0_3_i1_3_i2_3_i3_3_i4_3_fused)
+                                rc = T.axis.reduce(256, i5_0 * 32 + i5_1)
+                                ry = T.axis.reduce(1, 0)
+                                rx = T.axis.reduce(1, 0)
+                                rz = T.axis.reduce(1, 0)
+                                T.reads(conv3d_ncdhw_global[nn, ff, yy, xx, zz], placeholder[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                                T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                                T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                                conv3d_ncdhw_global[nn, ff, yy, xx, zz] = conv3d_ncdhw_global[nn, ff, yy, xx, zz] + placeholder[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+                for ax0, ax1, ax2, ax3 in T.grid(1, 1, 2, 7):
+                    for ax4_fused in T.vectorized(20):
+                        with T.block("conv3d_ncdhw_global"):
+                            v0 = T.axis.spatial(1, 0)
+                            v1 = T.axis.spatial(4, i0_0_i1_0_i2_0_i3_0_fused // 56)
+                            v2 = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 56 // 4 * 2 + ax2)
+                            v3 = T.axis.spatial(28, i0_0_i1_0_i2_0_i3_0_fused % 4 * 7 + ax3)
+                            v4 = T.axis.spatial(20, ax4_fused)
+                            T.reads(conv3d_ncdhw_global[v0, v1, v2, v3, v4])
+                            T.writes(conv3d_ncdhw[v0, v1, v2, v3, v4])
+                            conv3d_ncdhw[v0, v1, v2, v3, v4] = conv3d_ncdhw_global[v0, v1, v2, v3, v4]
+    
+
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:25] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"pad_temp\", func_name=\"main\")", "b1 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "b2 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b0)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.tiling_structure\", ann_val=\"SSRSRS\")", "l3, l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b1)", "v12, v13, v14, v15 = sch.sample_perfect_tile(loop=l3, n=4, max_innermost_factor=64, decision=[1, 1, 1, 1])", "l16, l17, l18, l19 = sch.split(loop=l3, factors=[v12, v13, v14, v15])", "v20, v21, v22, v23 = sch.sample_perfect_tile(loop=l4, n=4, max_innermost_factor=64, decision=[4, 1, 1, 1])", "l24, l25, l26, l27 = sch.split(loop=l4, factors=[v20, v21, v22, v23])", "v28, v29, v30, v31 = sch.sample_perfect_tile(loop=l5, n=4, max_innermost_factor=64, decision=[14, 1, 2, 1])", "l32, l33, l34, l35 = sch.split(loop=l5, factors=[v28, v29, v30, v31])", "v36, v37, v38, v39 = sch.sample_perfect_tile(loop=l6, n=4, max_innermost_factor=64, decision=[4, 7, 1, 1])", "l40, l41, l42, l43 = sch.split(loop=l6, factors=[v36, v37, v38, v39])", "v44, v45, v46, v47 = sch.sample_perfect_tile(loop=l7, n=4, max_innermost_factor=64, decision=[1, 4, 1, 5])", "l48, l49, l50, l51 = sch.split(loop=l7, factors=[v44, v45, v46, v47])", "v52, v53 = sch.sample_perfect_tile(loop=l8, n=2, max_innermost_factor=64, decision=[8, 32])", "l54, l55 = sch.split(loop=l8, factors=[v52, v53])", "v56, v57 = sch.sample_perfect_tile(loop=l9, n=2, max_innermost_factor=64, decision=[1, 1])", "l58, l59 = sch.split(loop=l9, factors=[v56, v57])", "v60, v61 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[1, 1])", "l62, l63 = sch.split(loop=l10, factors=[v60, v61])", "v64, v65 = sch.sample_perfect_tile(loop=l11, n=2, max_innermost_factor=64, decision=[1, 1])", "l66, l67 = sch.split(loop=l11, factors=[v64, v65])", "sch.reorder(l16, l24, l32, l40, l48, l17, l25, l33, l41, l49, l54, l58, l62, l66, l18, l26, l34, l42, l50, l55, l59, l63, l67, l19, l27, l35, l43, l51)", "b68 = sch.cache_write(block=b1, write_buffer_index=0, storage_scope=\"global\")", "sch.reverse_compute_at(block=b68, loop=l48, preserve_unit_loops=True)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v69 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=2)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v69)", "sch.enter_postproc()", "b70 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.unroll_explicit\")", "b71, b72 = sch.get_child_blocks(b70)", "l73, l74, l75, l76, l77, l78, l79, l80, l81, l82, l83, l84, l85, l86, l87, l88, l89, l90, l91, l92, l93, l94, l95, l96, l97, l98, l99, l100 = sch.get_loops(block=b71)", "l101 = sch.fuse(l73, l74, l75, l76)", "sch.parallel(loop=l101)", "l102 = sch.fuse(l93, l94, l95, l96, l97, l98, l99, l100)", "sch.vectorize(loop=l102)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l103, l104, l105, l106, l107, l108, l109 = sch.get_loops(block=b72)", "l110 = sch.fuse(l109)", "sch.vectorize(loop=l110)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_auto_unroll_max_step\", ann_val=64)", "sch.annotate(block_or_loop=l103, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b111 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "l112, l113, l114, l115, l116, l117, l118, l119, l120, l121, l122, l123, l124, l125, l126, l127, l128, l129 = sch.get_loops(block=b111)", "b130 = sch.decompose_reduction(block=b111, loop=l119)"]
+[14:50:26] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:123: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def main(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], placeholder_1: T.Buffer[(4, 320, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 14, 14, 10), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        pad_temp = T.alloc_buffer([1, 320, 14, 14, 10], dtype="float32")
+        for i0, i1, i2, i3, i4 in T.grid(1, 320, 14, 14, 10):
+            with T.block("pad_temp"):
+                i0_1, i1_1, i2_1, i3_1, i4_1 = T.axis.remap("SSSSS", [i0, i1, i2, i3, i4])
+                T.reads(placeholder[0, i1_1, i2_1, i3_1, i4_1])
+                T.writes(pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1])
+                pad_temp[i0_1, i1_1, i2_1, i3_1, i4_1] = placeholder[0, i1_1, i2_1, i3_1, i4_1]
+        for i0, i1, i2, i3, i4, i5, i6, i7, i8 in T.grid(1, 4, 14, 14, 10, 320, 1, 1, 1):
+            with T.block("conv3d_ncdhw"):
+                nn, ff, yy, xx, zz, rc, ry, rx, rz = T.axis.remap("SSSSSRRRR", [i0, i1, i2, i3, i4, i5, i6, i7, i8])
+                T.reads(pad_temp[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                T.writes(conv3d_ncdhw[nn, ff, yy, xx, zz])
+                with T.init():
+                    conv3d_ncdhw[nn, ff, yy, xx, zz] = T.float32(0)
+                conv3d_ncdhw[nn, ff, yy, xx, zz] = conv3d_ncdhw[nn, ff, yy, xx, zz] + pad_temp[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+    
+
+[14:50:26] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:124: best replacement TIR found for the above:
+
+[14:50:26] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:125: # from tvm.script import tir as T
+@tvm.script.ir_module
+class Module:
+    @T.prim_func
+    def tvmgen_default_fused_nn_conv3d_4(placeholder: T.Buffer[(1, 320, 14, 14, 10), "float32"], placeholder_1: T.Buffer[(4, 320, 1, 1, 1), "float32"], conv3d_ncdhw: T.Buffer[(1, 4, 14, 14, 10), "float32"]) -> None:
+        # function attr dict
+        T.func_attr({"global_symbol": "main", "tir.noalias": True})
+        # body
+        # with T.block("root")
+        conv3d_ncdhw_global = T.alloc_buffer([1, 4, 14, 14, 10], dtype="float32")
+        for i0_0_i1_0_i2_0_i3_0_i4_0_fused in T.parallel(49, annotations={"pragma_auto_unroll_max_step":512, "pragma_unroll_explicit":1}):
+            for i0_1, i1_1, i2_1, i3_1, i4_1 in T.grid(1, 2, 2, 1, 1):
+                for i1_2_init, i3_2_init, i4_2_init in T.grid(2, 2, 10):
+                    with T.block("conv3d_ncdhw_init"):
+                        nn = T.axis.spatial(1, 0)
+                        ff = T.axis.spatial(4, i1_1 * 2 + i1_2_init)
+                        yy = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused // 7 * 2 + i2_1)
+                        xx = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused % 7 * 2 + i3_2_init)
+                        zz = T.axis.spatial(10, i4_2_init)
+                        T.reads()
+                        T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                        T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                        conv3d_ncdhw_global[nn, ff, yy, xx, zz] = T.float32(0)
+                for i5_0, i6_0, i7_0, i8_0, i0_2, i1_2, i2_2, i3_2, i4_2, i5_1, i6_1, i7_1, i8_1, i0_3, i1_3, i2_3, i3_3, i4_3 in T.grid(32, 1, 1, 1, 1, 2, 1, 2, 10, 10, 1, 1, 1, 1, 1, 1, 1, 1):
+                    with T.block("conv3d_ncdhw_update"):
+                        nn = T.axis.spatial(1, 0)
+                        ff = T.axis.spatial(4, i1_1 * 2 + i1_2)
+                        yy = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused // 7 * 2 + i2_1)
+                        xx = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused % 7 * 2 + i3_2)
+                        zz = T.axis.spatial(10, i4_2)
+                        rc = T.axis.reduce(320, i5_0 * 10 + i5_1)
+                        ry = T.axis.reduce(1, 0)
+                        rx = T.axis.reduce(1, 0)
+                        rz = T.axis.reduce(1, 0)
+                        T.reads(conv3d_ncdhw_global[nn, ff, yy, xx, zz], placeholder[0, rc, yy, xx, zz], placeholder_1[ff, rc, 0, 0, 0])
+                        T.writes(conv3d_ncdhw_global[nn, ff, yy, xx, zz])
+                        T.block_attr({"meta_schedule.tiling_structure":"SSRSRS"})
+                        conv3d_ncdhw_global[nn, ff, yy, xx, zz] = conv3d_ncdhw_global[nn, ff, yy, xx, zz] + placeholder[0, rc, yy, xx, zz] * placeholder_1[ff, rc, 0, 0, 0]
+            for ax0, ax1, ax2 in T.grid(1, 4, 2):
+                for ax3_ax4_fused in T.vectorized(20):
+                    with T.block("conv3d_ncdhw_global"):
+                        v0 = T.axis.spatial(1, 0)
+                        v1 = T.axis.spatial(4, ax1)
+                        v2 = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused // 7 * 2 + ax2)
+                        v3 = T.axis.spatial(14, i0_0_i1_0_i2_0_i3_0_i4_0_fused % 7 * 2 + ax3_ax4_fused // 10)
+                        v4 = T.axis.spatial(10, ax3_ax4_fused % 10)
+                        T.reads(conv3d_ncdhw_global[v0, v1, v2, v3, v4])
+                        T.writes(conv3d_ncdhw[v0, v1, v2, v3, v4])
+                        conv3d_ncdhw[v0, v1, v2, v3, v4] = conv3d_ncdhw_global[v0, v1, v2, v3, v4]
+    
+
+[14:50:26] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:126: Printing out trace for AHB:
+[14:50:26] /home/yj/tvm/src/meta_schedule/apply_history_best.cc:127: ["b0 = sch.get_block(name=\"pad_temp\", func_name=\"main\")", "b1 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "b2 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.compute_inline(block=b0)", "sch.annotate(block_or_loop=b1, ann_key=\"meta_schedule.tiling_structure\", ann_val=\"SSRSRS\")", "l3, l4, l5, l6, l7, l8, l9, l10, l11 = sch.get_loops(block=b1)", "v12, v13, v14, v15 = sch.sample_perfect_tile(loop=l3, n=4, max_innermost_factor=64, decision=[1, 1, 1, 1])", "l16, l17, l18, l19 = sch.split(loop=l3, factors=[v12, v13, v14, v15])", "v20, v21, v22, v23 = sch.sample_perfect_tile(loop=l4, n=4, max_innermost_factor=64, decision=[1, 2, 2, 1])", "l24, l25, l26, l27 = sch.split(loop=l4, factors=[v20, v21, v22, v23])", "v28, v29, v30, v31 = sch.sample_perfect_tile(loop=l5, n=4, max_innermost_factor=64, decision=[7, 2, 1, 1])", "l32, l33, l34, l35 = sch.split(loop=l5, factors=[v28, v29, v30, v31])", "v36, v37, v38, v39 = sch.sample_perfect_tile(loop=l6, n=4, max_innermost_factor=64, decision=[7, 1, 2, 1])", "l40, l41, l42, l43 = sch.split(loop=l6, factors=[v36, v37, v38, v39])", "v44, v45, v46, v47 = sch.sample_perfect_tile(loop=l7, n=4, max_innermost_factor=64, decision=[1, 1, 10, 1])", "l48, l49, l50, l51 = sch.split(loop=l7, factors=[v44, v45, v46, v47])", "v52, v53 = sch.sample_perfect_tile(loop=l8, n=2, max_innermost_factor=64, decision=[32, 10])", "l54, l55 = sch.split(loop=l8, factors=[v52, v53])", "v56, v57 = sch.sample_perfect_tile(loop=l9, n=2, max_innermost_factor=64, decision=[1, 1])", "l58, l59 = sch.split(loop=l9, factors=[v56, v57])", "v60, v61 = sch.sample_perfect_tile(loop=l10, n=2, max_innermost_factor=64, decision=[1, 1])", "l62, l63 = sch.split(loop=l10, factors=[v60, v61])", "v64, v65 = sch.sample_perfect_tile(loop=l11, n=2, max_innermost_factor=64, decision=[1, 1])", "l66, l67 = sch.split(loop=l11, factors=[v64, v65])", "sch.reorder(l16, l24, l32, l40, l48, l17, l25, l33, l41, l49, l54, l58, l62, l66, l18, l26, l34, l42, l50, l55, l59, l63, l67, l19, l27, l35, l43, l51)", "b68 = sch.cache_write(block=b1, write_buffer_index=0, storage_scope=\"global\")", "sch.reverse_compute_at(block=b68, loop=l48, preserve_unit_loops=True)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.parallel\", ann_val=128)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.vectorize\", ann_val=64)", "v69 = sch.sample_categorical(candidates=[0, 16, 64, 512], probs=[0.25, 0.25, 0.25, 0.25], decision=3)", "sch.annotate(block_or_loop=b2, ann_key=\"meta_schedule.unroll_explicit\", ann_val=v69)", "sch.enter_postproc()", "b70 = sch.get_block(name=\"root\", func_name=\"main\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.parallel\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.vectorize\")", "sch.unannotate(block_or_loop=b70, ann_key=\"meta_schedule.unroll_explicit\")", "b71, b72 = sch.get_child_blocks(b70)", "l73, l74, l75, l76, l77, l78, l79, l80, l81, l82, l83, l84, l85, l86, l87, l88, l89, l90, l91, l92, l93, l94, l95, l96, l97, l98, l99, l100 = sch.get_loops(block=b71)", "l101 = sch.fuse(l73, l74, l75, l76, l77)", "sch.parallel(loop=l101)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_auto_unroll_max_step\", ann_val=512)", "sch.annotate(block_or_loop=l101, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "l102, l103, l104, l105, l106, l107 = sch.get_loops(block=b72)", "l108 = sch.fuse(l106, l107)", "sch.vectorize(loop=l108)", "sch.annotate(block_or_loop=l102, ann_key=\"pragma_auto_unroll_max_step\", ann_val=512)", "sch.annotate(block_or_loop=l102, ann_key=\"pragma_unroll_explicit\", ann_val=1)", "b109 = sch.get_block(name=\"conv3d_ncdhw\", func_name=\"main\")", "l110, l111, l112, l113, l114, l115, l116, l117, l118, l119, l120, l121, l122, l123, l124, l125, l126, l127, l128, l129, l130, l131, l132, l133 = sch.get_loops(block=b109)", "b134 = sch.decompose_reduction(block=b109, loop=l116)"]
+Starting to build with relay.
+/home/yj/anaconda3/lib/python3.8/site-packages/xgboost/training.py:17: UserWarning: Old style callback is deprecated.  See: https://xgboost.readthedocs.io/en/latest/python/callbacks.html
+  warnings.warn(f'Old style callback is deprecated.  See: {link}', UserWarning)
+One or more operators have not been tuned. Please tune your model for better performance. Use DEBUG logging level to see more details.
+The result is correct!

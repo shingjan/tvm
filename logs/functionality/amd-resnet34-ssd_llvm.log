@@ -1,0 +1,150 @@
+nohup: ignoring input
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/amd_resnet34_ssd1200.onnx
+file existed. Skipping downloading.
+/home/yj/models/amd-resnet34-ssd.onnx
+Traceback (most recent call last):
+  File "python/tvm/testing/test_meta_schedule.py", line 151, in <module>
+    actual_output = get_relay_meta_schedule_output(mod, params)
+  File "python/tvm/testing/test_meta_schedule.py", line 108, in get_relay_meta_schedule_output
+    rt_mod1: tvm.runtime.Module = tune_relay(
+  File "/home/yj/tvm/python/tvm/meta_schedule/tune.py", line 845, in tune_relay
+    extracted_tasks = extract_task_from_relay(mod, target, params)
+  File "/home/yj/tvm/python/tvm/meta_schedule/relay_integration.py", line 93, in extract_task_from_relay
+    return list(extract_task_func(mod, target, relay_params))
+  File "/home/yj/tvm/python/tvm/_ffi/_ctypes/packed_func.py", line 237, in __call__
+    raise get_last_ffi_error()
+TypeError: Traceback (most recent call last):
+  65: TVMFuncCall
+        at /home/yj/tvm/src/runtime/c_runtime_api.cc:477
+  64: tvm::runtime::PackedFuncObj::CallPacked(tvm::runtime::TVMArgs, tvm::runtime::TVMRetValue*) const
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1217
+  63: Call
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1213
+  62: operator()
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1731
+  61: unpack_call<tvm::runtime::Array<tvm::meta_schedule::ExtractedTask>, 3, tvm::relay::backend::<lambda(tvm::IRModule, tvm::Target, tvm::runtime::Map<tvm::runtime::String, tvm::runtime::NDArray>)> >
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1671
+  60: run<>
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1631
+  59: run<tvm::runtime::TVMMovableArgValueWithContext_>
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1631
+  58: run<tvm::runtime::TVMMovableArgValueWithContext_, tvm::runtime::TVMMovableArgValueWithContext_>
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1631
+  57: run<tvm::runtime::TVMMovableArgValueWithContext_, tvm::runtime::TVMMovableArgValueWithContext_, tvm::runtime::TVMMovableArgValueWithContext_>
+        at /home/yj/tvm/include/tvm/runtime/packed_func.h:1646
+  56: operator()
+        at /home/yj/tvm/src/relay/backend/task_extraction.cc:90
+  55: tvm::relay::backend::metaschedule::ExtractTask(tvm::IRModule, tvm::Target, tvm::runtime::Map<tvm::runtime::String, tvm::runtime::NDArray, void, void>)
+        at /home/yj/tvm/src/relay/backend/task_extraction.cc:52
+  54: tvm::relay::PostOrderVisit(tvm::RelayExpr const&, std::function<void (tvm::RelayExpr const&)>)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:423
+  53: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  52: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  51: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  50: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  49: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#5}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:127
+  48: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#5}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:127
+  47: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::FunctionNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:324
+  46: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  45: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  44: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  43: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  42: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#2}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:124
+  41: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#2}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:124
+  40: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::TupleNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:314
+  39: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  38: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  37: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  36: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  35: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  34: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  33: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::CallNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:336
+  32: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  31: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  30: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  29: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  28: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  27: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  26: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::CallNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:336
+  25: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  24: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  23: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  22: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  21: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  20: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  19: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::CallNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:336
+  18: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  17: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  16: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  15: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  14: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  13: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  12: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::CallNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:336
+  11: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:413
+  10: tvm::relay::ExprVisitor::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:295
+  9: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:95
+  8: tvm::NodeFunctor<void (tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)>::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/node/functor.h:97
+  7: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::_FUN(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  6: tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>::InitVTable()::{lambda(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*)#6}::operator()(tvm::runtime::ObjectRef const&, tvm::relay::ExprFunctor<void (tvm::RelayExpr const&)>*) const
+        at /home/yj/tvm/include/tvm/relay/expr_functor.h:128
+  5: tvm::relay::ExprVisitor::VisitExpr_(tvm::relay::CallNode const*)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:329
+  4: tvm::relay::ExprApplyVisit::VisitExpr(tvm::RelayExpr const&)
+        at /home/yj/tvm/src/relay/ir/expr_functor.cc:414
+  3: std::function<void (tvm::RelayExpr const&)>::operator()(tvm::RelayExpr const&) const
+        at /usr/include/c++/9/bits/std_function.h:688
+  2: _M_invoke
+        at /usr/include/c++/9/bits/std_function.h:300
+  1: operator()
+        at /home/yj/tvm/src/relay/backend/task_extraction.cc:68
+  0: tvm::tir::CreatePrimFunc(tvm::runtime::Array<tvm::te::Tensor, void> const&)
+        at /home/yj/tvm/src/te/operation/create_primfunc.cc:407
+  File "/home/yj/tvm/src/te/operation/create_primfunc.cc", line 407
+TypeError: Unsupported Operation: HybridOp. Only te.placeholder and te.compute are allowed for now.

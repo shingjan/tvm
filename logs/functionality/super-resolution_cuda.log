@@ -1,0 +1,168 @@
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_super_resolution_super-resolution.onnx
+file existed. Skipping downloading.
+/home/yj/models/super-resolution.onnx
+Starting to build with relay.
+2022-05-20 11:27:07.642 INFO Logging directory: /tmp/tmpyi5n5uer/logs
+2022-05-20 11:27:07.642 INFO Working directory: /tmp/tmpyi5n5uer
+2022-05-20 11:27:07.642 INFO LocalBuilder: max_workers = 24
+2022-05-20 11:27:08.144 INFO LocalRunner: max_workers = 1
+2022-05-20 11:27:10.215 INFO 
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 0
+Total latency (us): 0
+
+2022-05-20 11:27:10.215 INFO Scheduler picks Task #0: "fused_nn_conv2d_add_nn_relu"
+2022-05-20 11:29:09.196 INFO Sending 32 sample(s) to builder
+2022-05-20 11:29:44.221 INFO Sending 32 sample(s) to runner
+2022-05-20 11:29:52.847 INFO Scheduler picks Task #1: "fused_nn_conv2d_add_nn_relu_1"
+2022-05-20 11:32:07.063 INFO Sending 32 sample(s) to builder
+2022-05-20 11:32:24.584 INFO Sending 32 sample(s) to runner
+2022-05-20 11:32:38.435 INFO Scheduler picks Task #2: "fused_nn_conv2d_add_nn_relu_2"
+2022-05-20 11:34:53.000 INFO Sending 32 sample(s) to builder
+2022-05-20 11:35:28.615 INFO Sending 32 sample(s) to runner
+2022-05-20 11:35:38.480 INFO Scheduler picks Task #3: "fused_nn_conv2d_add"
+2022-05-20 11:37:44.718 INFO Sending 32 sample(s) to builder
+2022-05-20 11:38:19.291 INFO Sending 32 sample(s) to runner
+2022-05-20 11:38:29.970 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:38:42.282 INFO Sending 5 sample(s) to builder
+2022-05-20 11:38:43.580 INFO Sending 5 sample(s) to runner
+2022-05-20 11:38:45.741 INFO [Updated] Task #0: "fused_nn_conv2d_add_nn_relu"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 32
+Total latency (us): 55.0683
+
+2022-05-20 11:38:46.690 INFO [Updated] Task #1: "fused_nn_conv2d_add_nn_relu_1"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 64
+Total latency (us): 502.976
+
+2022-05-20 11:38:47.678 INFO [Updated] Task #2: "fused_nn_conv2d_add_nn_relu_2"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 96
+Total latency (us): 728.452
+
+2022-05-20 11:38:48.758 INFO [Updated] Task #3: "fused_nn_conv2d_add"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 128
+Total latency (us): 797.987
+
+2022-05-20 11:38:49.181 INFO [Updated] Task #4: "fused_reshape_transpose_reshape"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |            
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |            
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |            
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |            
+  4 | fused_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.3567 |                5.3567 |      5 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 133
+Total latency (us): 803.344
+
+2022-05-20 11:38:49.184 INFO Scheduler picks Task #1: "fused_nn_conv2d_add_nn_relu_1"
+2022-05-20 11:38:49.184 INFO Task #1 has finished. Remaining task(s): 4
+2022-05-20 11:38:49.184 INFO Scheduler picks Task #2: "fused_nn_conv2d_add_nn_relu_2"
+2022-05-20 11:38:49.184 INFO Task #2 has finished. Remaining task(s): 3
+2022-05-20 11:38:49.184 INFO Scheduler picks Task #3: "fused_nn_conv2d_add"
+2022-05-20 11:38:49.184 INFO Task #3 has finished. Remaining task(s): 2
+2022-05-20 11:38:49.184 INFO Scheduler picks Task #0: "fused_nn_conv2d_add_nn_relu"
+2022-05-20 11:38:49.184 INFO Task #0 has finished. Remaining task(s): 1
+2022-05-20 11:38:49.184 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:39:11.754 INFO Sending 0 sample(s) to builder
+2022-05-20 11:39:11.755 INFO Sending 0 sample(s) to runner
+2022-05-20 11:39:11.756 INFO [Updated] Task #4: "fused_reshape_transpose_reshape"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |          Y 
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |          Y 
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |          Y 
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |          Y 
+  4 | fused_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.3567 |                5.3567 |      5 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 133
+Total latency (us): 803.344
+
+2022-05-20 11:39:11.756 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:39:33.913 INFO Sending 0 sample(s) to builder
+2022-05-20 11:39:33.914 INFO Sending 0 sample(s) to runner
+2022-05-20 11:39:33.916 INFO [Updated] Task #4: "fused_reshape_transpose_reshape"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |          Y 
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |          Y 
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |          Y 
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |          Y 
+  4 | fused_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.3567 |                5.3567 |      5 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 133
+Total latency (us): 803.344
+
+2022-05-20 11:39:33.916 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:39:55.922 INFO Sending 0 sample(s) to builder
+2022-05-20 11:39:55.923 INFO Sending 0 sample(s) to runner
+2022-05-20 11:39:55.924 INFO [Updated] Task #4: "fused_reshape_transpose_reshape"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |          Y 
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |          Y 
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |          Y 
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |          Y 
+  4 | fused_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.3567 |                5.3567 |      5 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 133
+Total latency (us): 803.344
+
+2022-05-20 11:39:55.924 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:40:18.208 INFO Sending 0 sample(s) to builder
+2022-05-20 11:40:18.209 INFO Sending 0 sample(s) to runner
+2022-05-20 11:40:18.211 INFO [Updated] Task #4: "fused_reshape_transpose_reshape"
+ ID |                            Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+------------------------------------------------------------------------------------------------------------------------------------------
+  0 |     fused_nn_conv2d_add_nn_relu |  166985728 |      1 |      3032.3375 |      55.0683 |               55.0683 |     32 |          Y 
+  1 |   fused_nn_conv2d_add_nn_relu_1 | 3705798656 |      1 |      8273.5817 |     447.9074 |              447.9074 |     32 |          Y 
+  2 |   fused_nn_conv2d_add_nn_relu_2 | 1852899328 |      1 |      8217.7111 |     225.4763 |              225.4763 |     32 |          Y 
+  3 |             fused_nn_conv2d_add |  260563968 |      1 |      3747.2322 |      69.5350 |               69.5350 |     32 |          Y 
+  4 | fused_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.3567 |                5.3567 |      5 |            
+------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 133
+Total latency (us): 803.344
+
+2022-05-20 11:40:18.211 INFO Scheduler picks Task #4: "fused_reshape_transpose_reshape"
+2022-05-20 11:40:40.366 INFO Task #4 has finished. Remaining task(s): 0
+2022-05-20 11:40:40.633 INFO Saved XGBModel to /tmp/tmpyi5n5uer/cost_model.xgb
+2022-05-20 11:40:44.044 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_winograd_without_weight_transform_add_nn_relu
+The result is correct!

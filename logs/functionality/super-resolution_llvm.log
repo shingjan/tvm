@@ -1,0 +1,296 @@
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_super_resolution_super-resolution.onnx
+file existed. Skipping downloading.
+/home/yj/models/super-resolution.onnx
+Starting to build with relay.
+2022-05-20 11:14:58.411 INFO Logging directory: /tmp/tmpjivy8w2j/logs
+2022-05-20 11:14:58.411 INFO Working directory: /tmp/tmpjivy8w2j
+2022-05-20 11:14:58.412 INFO LocalBuilder: max_workers = 24
+2022-05-20 11:14:58.931 INFO LocalRunner: max_workers = 1
+2022-05-20 11:15:02.056 INFO 
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 0
+Total latency (us): 0
+
+2022-05-20 11:15:02.056 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:15:07.568 INFO Sending 4 sample(s) to builder
+2022-05-20 11:15:11.079 INFO Sending 4 sample(s) to runner
+2022-05-20 11:15:12.129 INFO Scheduler picks Task #1: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+2022-05-20 11:16:39.415 INFO Sending 32 sample(s) to builder
+2022-05-20 11:16:50.897 INFO Sending 32 sample(s) to runner
+2022-05-20 11:17:03.058 INFO Scheduler picks Task #2: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+2022-05-20 11:18:38.416 INFO Sending 32 sample(s) to builder
+2022-05-20 11:19:01.154 INFO Sending 32 sample(s) to runner
+2022-05-20 11:19:24.173 INFO Scheduler picks Task #3: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+2022-05-20 11:20:57.777 INFO Sending 32 sample(s) to builder
+2022-05-20 11:21:20.872 INFO Sending 32 sample(s) to runner
+2022-05-20 11:21:34.950 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:21:41.781 INFO Sending 8 sample(s) to builder
+2022-05-20 11:21:43.860 INFO Sending 8 sample(s) to runner
+2022-05-20 11:21:47.370 INFO Scheduler picks Task #5: "fused_nn_contrib_conv2d_NCHWc_add"
+2022-05-20 11:23:13.088 INFO Sending 32 sample(s) to builder
+2022-05-20 11:23:27.047 INFO Sending 32 sample(s) to runner
+2022-05-20 11:23:38.829 INFO Scheduler picks Task #6: "fused_layout_transform_reshape_transpose_reshape"
+2022-05-20 11:24:26.131 INFO Sending 32 sample(s) to builder
+2022-05-20 11:24:32.015 INFO Sending 32 sample(s) to runner
+2022-05-20 11:24:40.870 INFO [Updated] Task #0: "fused_layout_transform"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 4
+Total latency (us): 3.6736
+
+2022-05-20 11:24:41.592 INFO [Updated] Task #1: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 36
+Total latency (us): 625.965
+
+2022-05-20 11:24:42.448 INFO [Updated] Task #2: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 68
+Total latency (us): 12041.1
+
+2022-05-20 11:24:43.171 INFO [Updated] Task #3: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 100
+Total latency (us): 17254
+
+2022-05-20 11:24:43.493 INFO [Updated] Task #4: "fused_layout_transform_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 108
+Total latency (us): 17279.7
+
+2022-05-20 11:24:44.390 INFO [Updated] Task #5: "fused_nn_contrib_conv2d_NCHWc_add"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 140
+Total latency (us): 18691.1
+
+2022-05-20 11:24:45.117 INFO [Updated] Task #6: "fused_layout_transform_reshape_transpose_reshape"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |            
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |            
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |            
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |            
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:24:45.126 INFO Scheduler picks Task #2: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+2022-05-20 11:24:45.126 INFO Task #2 has finished. Remaining task(s): 6
+2022-05-20 11:24:45.126 INFO Scheduler picks Task #3: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+2022-05-20 11:24:45.126 INFO Task #3 has finished. Remaining task(s): 5
+2022-05-20 11:24:45.126 INFO Scheduler picks Task #5: "fused_nn_contrib_conv2d_NCHWc_add"
+2022-05-20 11:24:45.126 INFO Task #5 has finished. Remaining task(s): 4
+2022-05-20 11:24:45.126 INFO Scheduler picks Task #1: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+2022-05-20 11:24:45.126 INFO Task #1 has finished. Remaining task(s): 3
+2022-05-20 11:24:45.126 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:24:59.705 INFO Sending 0 sample(s) to builder
+2022-05-20 11:24:59.706 INFO Sending 0 sample(s) to runner
+2022-05-20 11:24:59.707 INFO [Updated] Task #4: "fused_layout_transform_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:24:59.707 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:25:14.068 INFO Sending 0 sample(s) to builder
+2022-05-20 11:25:14.069 INFO Sending 0 sample(s) to runner
+2022-05-20 11:25:14.070 INFO [Updated] Task #4: "fused_layout_transform_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:25:14.070 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:25:28.550 INFO Sending 0 sample(s) to builder
+2022-05-20 11:25:28.551 INFO Sending 0 sample(s) to runner
+2022-05-20 11:25:28.552 INFO [Updated] Task #4: "fused_layout_transform_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:25:28.552 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:25:43.028 INFO Sending 0 sample(s) to builder
+2022-05-20 11:25:43.029 INFO Sending 0 sample(s) to runner
+2022-05-20 11:25:43.030 INFO [Updated] Task #4: "fused_layout_transform_1"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |            
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |            
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:25:43.030 INFO Scheduler picks Task #6: "fused_layout_transform_reshape_transpose_reshape"
+2022-05-20 11:25:43.030 INFO Task #6 has finished. Remaining task(s): 2
+2022-05-20 11:25:43.030 INFO Scheduler picks Task #4: "fused_layout_transform_1"
+2022-05-20 11:25:57.513 INFO Task #4 has finished. Remaining task(s): 1
+2022-05-20 11:25:57.513 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:26:08.874 INFO Sending 0 sample(s) to builder
+2022-05-20 11:26:08.875 INFO Sending 0 sample(s) to runner
+2022-05-20 11:26:08.876 INFO [Updated] Task #0: "fused_layout_transform"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |          Y 
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |          Y 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:26:08.876 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:26:20.174 INFO Sending 0 sample(s) to builder
+2022-05-20 11:26:20.175 INFO Sending 0 sample(s) to runner
+2022-05-20 11:26:20.176 INFO [Updated] Task #0: "fused_layout_transform"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |          Y 
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |          Y 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:26:20.176 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:26:31.509 INFO Sending 0 sample(s) to builder
+2022-05-20 11:26:31.510 INFO Sending 0 sample(s) to runner
+2022-05-20 11:26:31.510 INFO [Updated] Task #0: "fused_layout_transform"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |          Y 
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |          Y 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:26:31.510 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:26:42.740 INFO Sending 0 sample(s) to builder
+2022-05-20 11:26:42.741 INFO Sending 0 sample(s) to runner
+2022-05-20 11:26:42.742 INFO [Updated] Task #0: "fused_layout_transform"
+ ID |                                             Name |       FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                           fused_layout_transform |          1 |      1 |         0.0003 |       3.6736 |                3.6736 |      4 |            
+  1 |        fused_nn_contrib_conv2d_NCHWc_add_nn_relu |  166985728 |      1 |       268.3401 |     622.2913 |              622.2913 |     32 |          Y 
+  2 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 3705798656 |      1 |       324.6381 |   11415.1694 |            11415.1694 |     32 |          Y 
+  3 |      fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 1852899328 |      1 |       355.4454 |    5212.8936 |             5212.8936 |     32 |          Y 
+  4 |                         fused_layout_transform_1 |          1 |      1 |         0.0000 |      25.6760 |               25.6760 |      8 |          Y 
+  5 |                fused_nn_contrib_conv2d_NCHWc_add |  260563968 |      1 |       184.6203 |    1411.3502 |             1411.3502 |     32 |          Y 
+  6 | fused_layout_transform_reshape_transpose_reshape |          1 |      1 |         0.0002 |       5.7034 |                5.7034 |     32 |          Y 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 172
+Total latency (us): 18696.8
+
+2022-05-20 11:26:42.742 INFO Scheduler picks Task #0: "fused_layout_transform"
+2022-05-20 11:26:54.026 INFO Task #0 has finished. Remaining task(s): 0
+2022-05-20 11:26:54.290 INFO Saved XGBModel to /tmp/tmpjivy8w2j/cost_model.xgb
+2022-05-20 11:26:56.212 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_1
+2022-05-20 11:26:56.271 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1
+2022-05-20 11:26:56.384 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_2
+The result is correct!

@@ -1,0 +1,1397 @@
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_classification_resnet101-v1.onnx
+file existed. Skipping downloading.
+/home/yj/models/resnet101-v1.onnx
+Starting to build with relay.
+2022-05-19 16:06:36.916 INFO Logging directory: /tmp/tmpmhh093t4/logs
+2022-05-19 16:06:36.916 INFO Working directory: /tmp/tmpmhh093t4
+2022-05-19 16:06:36.916 INFO LocalBuilder: max_workers = 24
+2022-05-19 16:06:37.312 INFO LocalRunner: max_workers = 1
+2022-05-19 16:06:46.997 INFO 
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                              fused_layout_transform |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 0
+Total latency (us): 0
+
+2022-05-19 16:06:46.998 INFO Scheduler picks Task #0: "fused_nn_contrib_conv2d_NCHWc_add"
+2022-05-19 16:07:22.443 INFO Sending 32 sample(s) to builder
+2022-05-19 16:07:47.609 INFO Sending 32 sample(s) to runner
+2022-05-19 16:07:59.358 INFO Scheduler picks Task #1: "fused_nn_contrib_conv2d_NCHWc_add_1"
+2022-05-19 16:08:39.220 INFO Sending 32 sample(s) to builder
+2022-05-19 16:09:10.989 INFO Sending 32 sample(s) to runner
+2022-05-19 16:09:19.769 INFO Scheduler picks Task #2: "fused_nn_contrib_conv2d_NCHWc_add_2"
+2022-05-19 16:10:01.361 INFO Sending 31 sample(s) to builder
+2022-05-19 16:10:32.758 INFO Sending 31 sample(s) to runner
+2022-05-19 16:10:43.110 INFO Scheduler picks Task #3: "fused_nn_contrib_conv2d_NCHWc_add_3"
+2022-05-19 16:11:23.941 INFO Sending 32 sample(s) to builder
+2022-05-19 16:11:39.264 INFO Sending 32 sample(s) to runner
+2022-05-19 16:11:47.036 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:11:52.841 INFO Sending 4 sample(s) to builder
+2022-05-19 16:11:53.520 INFO Sending 4 sample(s) to runner
+2022-05-19 16:11:54.707 INFO Scheduler picks Task #5: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+2022-05-19 16:13:29.419 INFO Sending 32 sample(s) to builder
+2022-05-19 16:13:59.903 INFO Sending 32 sample(s) to runner
+2022-05-19 16:14:10.050 INFO Scheduler picks Task #6: "fused_nn_max_pool2d"
+2022-05-19 16:15:15.133 INFO Sending 32 sample(s) to builder
+2022-05-19 16:15:20.715 INFO Sending 32 sample(s) to runner
+2022-05-19 16:15:31.025 INFO Scheduler picks Task #7: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu"
+2022-05-19 16:16:15.560 INFO Sending 32 sample(s) to builder
+2022-05-19 16:16:47.120 INFO Sending 32 sample(s) to runner
+2022-05-19 16:16:54.958 INFO Scheduler picks Task #8: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1"
+2022-05-19 16:17:40.274 INFO Sending 32 sample(s) to builder
+2022-05-19 16:17:57.478 INFO Sending 32 sample(s) to runner
+2022-05-19 16:18:05.828 INFO Scheduler picks Task #9: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+2022-05-19 16:19:36.379 INFO Sending 32 sample(s) to builder
+2022-05-19 16:19:53.005 INFO Sending 32 sample(s) to runner
+2022-05-19 16:20:00.439 INFO Scheduler picks Task #10: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu"
+2022-05-19 16:20:49.295 INFO Sending 32 sample(s) to builder
+2022-05-19 16:21:21.511 INFO Sending 32 sample(s) to runner
+2022-05-19 16:21:30.715 INFO Scheduler picks Task #11: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2"
+2022-05-19 16:22:15.545 INFO Sending 32 sample(s) to builder
+2022-05-19 16:22:47.949 INFO Sending 32 sample(s) to runner
+2022-05-19 16:22:57.064 INFO Scheduler picks Task #12: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3"
+2022-05-19 16:23:41.058 INFO Sending 32 sample(s) to builder
+2022-05-19 16:23:56.831 INFO Sending 32 sample(s) to runner
+2022-05-19 16:24:05.745 INFO Scheduler picks Task #13: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+2022-05-19 16:25:35.985 INFO Sending 32 sample(s) to builder
+2022-05-19 16:25:46.989 INFO Sending 32 sample(s) to runner
+2022-05-19 16:25:56.402 INFO Scheduler picks Task #14: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1"
+2022-05-19 16:26:44.970 INFO Sending 32 sample(s) to builder
+2022-05-19 16:27:16.802 INFO Sending 32 sample(s) to runner
+2022-05-19 16:27:24.723 INFO Scheduler picks Task #15: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4"
+2022-05-19 16:28:08.499 INFO Sending 32 sample(s) to builder
+2022-05-19 16:28:18.313 INFO Sending 32 sample(s) to runner
+2022-05-19 16:28:27.126 INFO Scheduler picks Task #16: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5"
+2022-05-19 16:29:10.665 INFO Sending 32 sample(s) to builder
+2022-05-19 16:29:17.514 INFO Sending 32 sample(s) to runner
+2022-05-19 16:29:26.010 INFO Scheduler picks Task #17: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3"
+2022-05-19 16:30:52.355 INFO Sending 32 sample(s) to builder
+2022-05-19 16:31:12.706 INFO Sending 32 sample(s) to runner
+2022-05-19 16:31:21.028 INFO Scheduler picks Task #18: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2"
+2022-05-19 16:32:07.589 INFO Sending 32 sample(s) to builder
+2022-05-19 16:32:15.576 INFO Sending 32 sample(s) to runner
+2022-05-19 16:32:24.391 INFO Scheduler picks Task #19: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6"
+2022-05-19 16:33:03.526 INFO Sending 32 sample(s) to builder
+2022-05-19 16:33:34.248 INFO Sending 32 sample(s) to runner
+2022-05-19 16:33:43.309 INFO Scheduler picks Task #20: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7"
+2022-05-19 16:34:22.378 INFO Sending 32 sample(s) to builder
+2022-05-19 16:34:53.348 INFO Sending 32 sample(s) to runner
+2022-05-19 16:35:03.326 INFO Scheduler picks Task #21: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4"
+2022-05-19 16:36:23.502 INFO Sending 32 sample(s) to builder
+2022-05-19 16:36:42.213 INFO Sending 32 sample(s) to runner
+2022-05-19 16:36:53.563 INFO Scheduler picks Task #22: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3"
+2022-05-19 16:37:35.819 INFO Sending 32 sample(s) to builder
+2022-05-19 16:38:07.574 INFO Sending 32 sample(s) to runner
+2022-05-19 16:38:17.036 INFO Scheduler picks Task #23: "fused_nn_global_avg_pool2d"
+2022-05-19 16:38:43.669 INFO Sending 32 sample(s) to builder
+2022-05-19 16:38:46.148 INFO Sending 32 sample(s) to runner
+2022-05-19 16:38:54.853 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:39:05.803 INFO Sending 12 sample(s) to builder
+2022-05-19 16:39:07.014 INFO Sending 12 sample(s) to runner
+2022-05-19 16:39:09.978 INFO Scheduler picks Task #25: "fused_nn_dense_add"
+2022-05-19 16:39:23.652 INFO Sending 32 sample(s) to builder
+2022-05-19 16:39:30.238 INFO Sending 32 sample(s) to runner
+2022-05-19 16:39:41.399 INFO [Updated] Task #0: "fused_nn_contrib_conv2d_NCHWc_add"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                              fused_layout_transform |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 32
+Total latency (us): 874.074
+
+2022-05-19 16:39:42.077 INFO [Updated] Task #1: "fused_nn_contrib_conv2d_NCHWc_add_1"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                              fused_layout_transform |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 64
+Total latency (us): 1534.03
+
+2022-05-19 16:39:42.680 INFO [Updated] Task #2: "fused_nn_contrib_conv2d_NCHWc_add_2"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  4 |                              fused_layout_transform |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 95
+Total latency (us): 2082.84
+
+2022-05-19 16:39:43.341 INFO [Updated] Task #3: "fused_nn_contrib_conv2d_NCHWc_add_3"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 127
+Total latency (us): 2469.78
+
+2022-05-19 16:39:43.611 INFO [Updated] Task #4: "fused_layout_transform"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 131
+Total latency (us): 2475.32
+
+2022-05-19 16:39:44.423 INFO [Updated] Task #5: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 163
+Total latency (us): 3189.25
+
+2022-05-19 16:39:45.062 INFO [Updated] Task #6: "fused_nn_max_pool2d"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |            N/A |          N/A |                   N/A |      0 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 195
+Total latency (us): 3216.19
+
+2022-05-19 16:39:45.786 INFO [Updated] Task #7: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |            N/A |          N/A |                   N/A |      0 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 227
+Total latency (us): 3303.12
+
+2022-05-19 16:39:46.589 INFO [Updated] Task #8: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 259
+Total latency (us): 4243.94
+
+2022-05-19 16:39:47.661 INFO [Updated] Task #9: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 291
+Total latency (us): 7273.89
+
+2022-05-19 16:39:48.524 INFO [Updated] Task #10: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 323
+Total latency (us): 8157.28
+
+2022-05-19 16:39:49.445 INFO [Updated] Task #11: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 355
+Total latency (us): 8327.38
+
+2022-05-19 16:39:50.347 INFO [Updated] Task #12: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 387
+Total latency (us): 9237.44
+
+2022-05-19 16:39:51.417 INFO [Updated] Task #13: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |            N/A |          N/A |                   N/A |      0 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 419
+Total latency (us): 11829.1
+
+2022-05-19 16:39:52.343 INFO [Updated] Task #14: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 451
+Total latency (us): 12757.3
+
+2022-05-19 16:39:53.140 INFO [Updated] Task #15: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |            N/A |          N/A |                   N/A |      0 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 483
+Total latency (us): 12924
+
+2022-05-19 16:39:54.094 INFO [Updated] Task #16: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 515
+Total latency (us): 21615.1
+
+2022-05-19 16:39:55.296 INFO [Updated] Task #17: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |            N/A |          N/A |                   N/A |      0 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 547
+Total latency (us): 35878
+
+2022-05-19 16:39:56.372 INFO [Updated] Task #18: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 579
+Total latency (us): 43936.4
+
+2022-05-19 16:39:57.420 INFO [Updated] Task #19: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |            N/A |          N/A |                   N/A |      0 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 611
+Total latency (us): 44162.8
+
+2022-05-19 16:39:58.420 INFO [Updated] Task #20: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 643
+Total latency (us): 44952
+
+2022-05-19 16:39:59.650 INFO [Updated] Task #21: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |            N/A |          N/A |                   N/A |      0 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 675
+Total latency (us): 47178.1
+
+2022-05-19 16:40:00.919 INFO [Updated] Task #22: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 707
+Total latency (us): 48193.6
+
+2022-05-19 16:40:02.145 INFO [Updated] Task #23: "fused_nn_global_avg_pool2d"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |            N/A |          N/A |                   N/A |      0 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 739
+Total latency (us): 48197.2
+
+2022-05-19 16:40:03.128 INFO [Updated] Task #24: "fused_layout_transform_nn_batch_flatten"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |            N/A |          N/A |                   N/A |      0 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 751
+Total latency (us): 48200.9
+
+2022-05-19 16:40:04.217 INFO [Updated] Task #25: "fused_nn_dense_add"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |            
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |            
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     31 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |            
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |            
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |            
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |            
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |            
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |            
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |            
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |            
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |            
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |            
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |            
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |            
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |            
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 783
+Total latency (us): 48237.4
+
+2022-05-19 16:40:04.217 INFO Scheduler picks Task #17: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3"
+2022-05-19 16:40:04.217 INFO Task #17 has finished. Remaining task(s): 25
+2022-05-19 16:40:04.217 INFO Scheduler picks Task #16: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5"
+2022-05-19 16:40:04.218 INFO Task #16 has finished. Remaining task(s): 24
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #18: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2"
+2022-05-19 16:40:04.218 INFO Task #18 has finished. Remaining task(s): 23
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #9: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1"
+2022-05-19 16:40:04.218 INFO Task #9 has finished. Remaining task(s): 22
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #13: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2"
+2022-05-19 16:40:04.218 INFO Task #13 has finished. Remaining task(s): 21
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #21: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4"
+2022-05-19 16:40:04.218 INFO Task #21 has finished. Remaining task(s): 20
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #22: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3"
+2022-05-19 16:40:04.218 INFO Task #22 has finished. Remaining task(s): 19
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #8: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1"
+2022-05-19 16:40:04.218 INFO Task #8 has finished. Remaining task(s): 18
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #14: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1"
+2022-05-19 16:40:04.218 INFO Task #14 has finished. Remaining task(s): 17
+2022-05-19 16:40:04.218 INFO Scheduler picks Task #12: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3"
+2022-05-19 16:40:04.219 INFO Task #12 has finished. Remaining task(s): 16
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #10: "fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu"
+2022-05-19 16:40:04.219 INFO Task #10 has finished. Remaining task(s): 15
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #0: "fused_nn_contrib_conv2d_NCHWc_add"
+2022-05-19 16:40:04.219 INFO Task #0 has finished. Remaining task(s): 14
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #20: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7"
+2022-05-19 16:40:04.219 INFO Task #20 has finished. Remaining task(s): 13
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #5: "fused_nn_contrib_conv2d_NCHWc_add_nn_relu"
+2022-05-19 16:40:04.219 INFO Task #5 has finished. Remaining task(s): 12
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #1: "fused_nn_contrib_conv2d_NCHWc_add_1"
+2022-05-19 16:40:04.219 INFO Task #1 has finished. Remaining task(s): 11
+2022-05-19 16:40:04.219 INFO Scheduler picks Task #2: "fused_nn_contrib_conv2d_NCHWc_add_2"
+2022-05-19 16:41:13.306 INFO Sending 1 sample(s) to builder
+2022-05-19 16:41:13.873 INFO Sending 1 sample(s) to runner
+2022-05-19 16:41:15.206 INFO [Updated] Task #2: "fused_nn_contrib_conv2d_NCHWc_add_2"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |            
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |            
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |            
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |            
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |            
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |            
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |            
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |            
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:41:15.206 INFO Scheduler picks Task #3: "fused_nn_contrib_conv2d_NCHWc_add_3"
+2022-05-19 16:41:15.206 INFO Task #3 has finished. Remaining task(s): 10
+2022-05-19 16:41:15.206 INFO Scheduler picks Task #2: "fused_nn_contrib_conv2d_NCHWc_add_2"
+2022-05-19 16:41:15.206 INFO Task #2 has finished. Remaining task(s): 9
+2022-05-19 16:41:15.206 INFO Scheduler picks Task #19: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6"
+2022-05-19 16:41:15.206 INFO Task #19 has finished. Remaining task(s): 8
+2022-05-19 16:41:15.206 INFO Scheduler picks Task #11: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2"
+2022-05-19 16:41:15.206 INFO Task #11 has finished. Remaining task(s): 7
+2022-05-19 16:41:15.206 INFO Scheduler picks Task #15: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4"
+2022-05-19 16:41:15.207 INFO Task #15 has finished. Remaining task(s): 6
+2022-05-19 16:41:15.207 INFO Scheduler picks Task #7: "fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu"
+2022-05-19 16:41:15.207 INFO Task #7 has finished. Remaining task(s): 5
+2022-05-19 16:41:15.207 INFO Scheduler picks Task #25: "fused_nn_dense_add"
+2022-05-19 16:41:15.207 INFO Task #25 has finished. Remaining task(s): 4
+2022-05-19 16:41:15.207 INFO Scheduler picks Task #6: "fused_nn_max_pool2d"
+2022-05-19 16:41:15.207 INFO Task #6 has finished. Remaining task(s): 3
+2022-05-19 16:41:15.207 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:41:27.575 INFO Sending 0 sample(s) to builder
+2022-05-19 16:41:27.576 INFO Sending 0 sample(s) to runner
+2022-05-19 16:41:27.577 INFO [Updated] Task #4: "fused_layout_transform"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:41:27.577 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:41:45.303 INFO Sending 0 sample(s) to builder
+2022-05-19 16:41:45.304 INFO Sending 0 sample(s) to runner
+2022-05-19 16:41:45.305 INFO [Updated] Task #24: "fused_layout_transform_nn_batch_flatten"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |            
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:41:45.305 INFO Scheduler picks Task #23: "fused_nn_global_avg_pool2d"
+2022-05-19 16:41:45.305 INFO Task #23 has finished. Remaining task(s): 2
+2022-05-19 16:41:45.306 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:41:57.595 INFO Sending 0 sample(s) to builder
+2022-05-19 16:41:57.596 INFO Sending 0 sample(s) to runner
+2022-05-19 16:41:57.597 INFO [Updated] Task #4: "fused_layout_transform"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:41:57.597 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:42:09.671 INFO Sending 0 sample(s) to builder
+2022-05-19 16:42:09.672 INFO Sending 0 sample(s) to runner
+2022-05-19 16:42:09.673 INFO [Updated] Task #4: "fused_layout_transform"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:42:09.673 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:42:27.426 INFO Sending 0 sample(s) to builder
+2022-05-19 16:42:27.427 INFO Sending 0 sample(s) to runner
+2022-05-19 16:42:27.428 INFO [Updated] Task #24: "fused_layout_transform_nn_batch_flatten"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:42:27.428 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:42:39.799 INFO Sending 0 sample(s) to builder
+2022-05-19 16:42:39.800 INFO Sending 0 sample(s) to runner
+2022-05-19 16:42:39.801 INFO [Updated] Task #4: "fused_layout_transform"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:42:39.801 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:42:57.536 INFO Sending 0 sample(s) to builder
+2022-05-19 16:42:57.537 INFO Sending 0 sample(s) to runner
+2022-05-19 16:42:57.538 INFO [Updated] Task #24: "fused_layout_transform_nn_batch_flatten"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |            
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:42:57.538 INFO Scheduler picks Task #4: "fused_layout_transform"
+2022-05-19 16:43:09.529 INFO Task #4 has finished. Remaining task(s): 1
+2022-05-19 16:43:09.530 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:43:27.234 INFO Sending 0 sample(s) to builder
+2022-05-19 16:43:27.235 INFO Sending 0 sample(s) to runner
+2022-05-19 16:43:27.236 INFO [Updated] Task #24: "fused_layout_transform_nn_batch_flatten"
+ ID |                                                Name |      FLOP | Weight | Speed (GFLOPS) | Latency (us) | Weighted Latency (us) | Trials | Terminated 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+  0 |                   fused_nn_contrib_conv2d_NCHWc_add | 205621248 |      1 |       235.2446 |     874.0744 |              874.0744 |     32 |          Y 
+  1 |                 fused_nn_contrib_conv2d_NCHWc_add_1 | 205721600 |      1 |       311.7182 |     659.9602 |              659.9602 |     32 |          Y 
+  2 |                 fused_nn_contrib_conv2d_NCHWc_add_2 | 205922304 |      1 |       375.2224 |     548.8007 |              548.8007 |     32 |          Y 
+  3 |                 fused_nn_contrib_conv2d_NCHWc_add_3 | 103563264 |      1 |       267.6440 |     386.9441 |              386.9441 |     32 |          Y 
+  4 |                              fused_layout_transform |         1 |      1 |         0.0002 |       5.5452 |                5.5452 |      4 |          Y 
+  5 |           fused_nn_contrib_conv2d_NCHWc_add_nn_relu | 237633536 |      1 |       332.8532 |     713.9289 |              713.9289 |     32 |          Y 
+  6 |                                 fused_nn_max_pool2d |   1806336 |      1 |        67.0579 |      26.9370 |               26.9370 |     32 |          Y 
+  7 |       fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu |  26292224 |      1 |       302.4576 |      86.9286 |               86.9286 |     32 |          Y 
+  8 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1 | 103362560 |      2 |       219.7273 |     470.4130 |              940.8260 |     32 |          Y 
+  9 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1 | 231612416 |      3 |       229.3236 |    1009.9807 |             3029.9422 |     32 |          Y 
+ 10 |   fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu | 105971712 |      3 |       359.8800 |     294.4640 |              883.3920 |     32 |          Y 
+ 11 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2 |  51681280 |      1 |       303.8306 |     170.0990 |              170.0990 |     32 |          Y 
+ 12 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3 | 103061504 |      3 |       339.7410 |     303.3531 |              910.0594 |     32 |          Y 
+ 13 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2 | 231411712 |      4 |       357.1688 |     647.9058 |             2591.6231 |     32 |          Y 
+ 14 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1 | 104366080 |      4 |       449.7246 |     232.0667 |              928.2666 |     32 |          Y 
+ 15 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4 |  51530752 |      1 |       309.2397 |     166.6369 |              166.6369 |     32 |          Y 
+ 16 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5 | 102910976 |     22 |       260.5009 |     395.0503 |             8691.1073 |     32 |          Y 
+ 17 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3 | 231311360 |     23 |       373.0069 |     620.1262 |            14262.9021 |     32 |          Y 
+ 18 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2 | 103563264 |     23 |       295.5853 |     350.3668 |             8058.4353 |     32 |          Y 
+ 19 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6 |  51455488 |      1 |       227.2453 |     226.4315 |              226.4315 |     32 |          Y 
+ 20 |     fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7 | 102835712 |      2 |       260.6146 |     394.5892 |              789.1785 |     32 |          Y 
+ 21 |         fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4 | 231261184 |      3 |       311.6606 |     742.0289 |             2226.0868 |     32 |          Y 
+ 22 | fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3 | 103161856 |      3 |       304.7767 |     338.4834 |             1015.4502 |     32 |          Y 
+ 23 |                          fused_nn_global_avg_pool2d |    102400 |      1 |        28.1527 |       3.6373 |                3.6373 |     32 |          Y 
+ 24 |             fused_layout_transform_nn_batch_flatten |         1 |      1 |         0.0003 |       3.6667 |                3.6667 |     12 |            
+ 25 |                                  fused_nn_dense_add |   4097000 |      1 |       112.1816 |      36.5212 |               36.5212 |     32 |          Y 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total trials: 784
+Total latency (us): 48237.4
+
+2022-05-19 16:43:27.236 INFO Scheduler picks Task #24: "fused_layout_transform_nn_batch_flatten"
+2022-05-19 16:43:44.959 INFO Task #24 has finished. Remaining task(s): 0
+2022-05-19 16:43:45.133 INFO Saved XGBModel to /tmp/tmpmhh093t4/cost_model.xgb
+2022-05-19 16:45:25.798 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu
+2022-05-19 16:45:25.880 WARNING Cannot find workload: tvmgen_default_fused_nn_max_pool2d
+2022-05-19 16:45:25.937 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_1
+2022-05-19 16:45:25.990 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu
+2022-05-19 16:45:26.098 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_2
+2022-05-19 16:45:26.155 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu_1
+2022-05-19 16:45:26.258 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_3
+2022-05-19 16:45:26.291 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add
+2022-05-19 16:45:26.386 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu
+2022-05-19 16:45:26.467 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_4
+2022-05-19 16:45:26.518 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_1
+2022-05-19 16:45:26.594 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_5
+2022-05-19 16:45:26.648 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_2
+2022-05-19 16:45:26.723 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_6
+2022-05-19 16:45:26.781 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu_2
+2022-05-19 16:45:26.884 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_7
+2022-05-19 16:45:26.915 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_1
+2022-05-19 16:45:26.978 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_8
+2022-05-19 16:45:27.043 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_1
+2022-05-19 16:45:27.123 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_9
+2022-05-19 16:45:27.174 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_3
+2022-05-19 16:45:27.242 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_10
+2022-05-19 16:45:27.288 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_11
+2022-05-19 16:45:27.340 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_4
+2022-05-19 16:45:27.414 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_12
+2022-05-19 16:45:27.473 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu_3
+2022-05-19 16:45:27.612 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_13
+2022-05-19 16:45:27.643 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_2
+2022-05-19 16:45:27.729 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_2
+2022-05-19 16:45:27.801 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_14
+2022-05-19 16:45:27.853 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_5
+2022-05-19 16:45:27.968 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_6
+2022-05-19 16:45:28.033 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_15
+2022-05-19 16:45:28.091 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_nn_relu_4
+2022-05-19 16:45:28.189 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_16
+2022-05-19 16:45:28.232 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_17
+2022-05-19 16:45:28.263 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_3
+2022-05-19 16:45:28.342 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_add_nn_relu_3
+2022-05-19 16:45:28.405 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_18
+2022-05-19 16:45:28.457 WARNING Cannot find workload: tvmgen_default_fused_nn_contrib_conv2d_NCHWc_add_add_nn_relu_7
+2022-05-19 16:45:28.502 WARNING Cannot find workload: tvmgen_default_fused_nn_global_avg_pool2d
+2022-05-19 16:45:28.541 WARNING Cannot find workload: tvmgen_default_fused_layout_transform_nn_batch_flatten
+The result is correct!

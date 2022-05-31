@@ -1,0 +1,4 @@
+https://storage.cloud.google.com/octoml-aquarium-models/onnx_model_zoo/vision_object_detection_segmentation_ResNet101-DUC.onnx
+file existed. Skipping downloading.
+/home/yj/models/ResNet101-DUC.onnx
+Starting to build with relay.

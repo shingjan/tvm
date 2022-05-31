@@ -25,7 +25,7 @@ from tvm import auto_scheduler
 from tvm import meta_schedule as ms
 from tvm import relay
 from tvm.meta_schedule.testing.custom_builder_runner import run_module_via_rpc
-from tvm.meta_schedule.testing.relay_workload import get_network
+from tvm.meta_schedule.testing.relay_workload import get_network, get_onnx_model
 
 
 def _parse_args():
@@ -37,6 +37,11 @@ def _parse_args():
     )
     args.add_argument(
         "--input-shape",
+        type=str,
+        required=True,
+    )
+    args.add_argument(
+        "--model-type",
         type=str,
         required=True,
     )
@@ -129,9 +134,10 @@ def main():
         )
     else:
         raise NotImplementedError(f"Unsupported target {ARGS.target}")
-    mod, params, (input_name, input_shape, input_dtype) = get_network(
+    mod, params, (input_info, input_dtype) = get_network(
         ARGS.workload,
         ARGS.input_shape,
+        model_type=ARGS.model_type,
         cache_dir=ARGS.cache_dir,
     )
     input_info = {input_name: input_shape}
@@ -161,6 +167,15 @@ def main():
             ],
         )
     )
+
+    for idx, (task, task_weight) in enumerate(zip(tasks, task_weights)):
+        print(f"==== Task {idx}: {task.desc} (weight {task_weight} key: {task.workload_key}) =====")
+        print(task.compute_dag)
+        print("\nTrace for this task is: ")
+        print(task.print_best(log_file))
+        sch, args = task.apply_best(log_file)
+        print("\nThe best replacement found is:")
+        print(tvm.lower(sch, args, simple_mode=True))
 
     with auto_scheduler.ApplyHistoryBest(log_file):
         with tvm.transform.PassContext(
@@ -198,6 +213,7 @@ def main():
         )
         results = list(np.array(ftimer().results) * 1000.0)  # type: ignore
         print("Running time in time_evaluator: ", results)
+        print("Avg running time: {}".format(np.mean(results)))
 
     run_module_via_rpc(
         rpc_config=ARGS.rpc_config,

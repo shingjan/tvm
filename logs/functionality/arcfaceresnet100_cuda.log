@@ -1,0 +1,11 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/home/yj/tvm/python/tvm/testing/test_meta_schedule.py", line 63, in <module>
+    mod, params = relay.frontend.from_onnx(onnx_model, shape_dict, freeze_params=True)
+  File "/home/yj/tvm/python/tvm/relay/frontend/onnx.py", line 5601, in from_onnx
+    mod, params = g.from_onnx(graph, opset)
+  File "/home/yj/tvm/python/tvm/relay/frontend/onnx.py", line 5269, in from_onnx
+    self._check_user_inputs_in_outermost_graph_scope()
+  File "/home/yj/tvm/python/tvm/relay/frontend/onnx.py", line 5343, in _check_user_inputs_in_outermost_graph_scope
+    assert all(
+AssertionError: User specified the shape for inputs that weren't found in the graph: {'data_0': [1, 3, 224, 224]}
