@@ -109,7 +109,6 @@ def main():
         model_type=ARGS.model_type,
         cache_dir=ARGS.cache_dir,
     )
-    input_info = {input_name: input_shape}
     input_data = {}
     print(f"Workload: {ARGS.workload}")
     for input_name, input_shape in input_info.items():
