@@ -65,10 +65,10 @@ def vmobj_to_list(o, dtype):
         raise RuntimeError("Unknown object type: %s" % type(o))
 
 
-def get_relay_meta_schedule_output(mod, params, target, dev, datas):
+def get_relay_meta_schedule_output(mod, params, target, dev, datas, input_dtype):
     logger.info("Starting to tune with meta schedule.")
-    with tempfile.TemporaryDirectory() as work_dir:
-        rt_mod1: tvm.runtime.Module = tune_relay(
+    with "/home/yj/tvm/work_dir" as work_dir:
+        vm_exec = tune_relay(
             mod=mod,
             params=params,
             target=target,
@@ -77,17 +77,6 @@ def get_relay_meta_schedule_output(mod, params, target, dev, datas):
                 num_trials_per_iter=32,
                 max_trials_per_task=32,
                 max_trials_global=20000,
-                logger_config={
-                    "loggers": {
-                        "{logger_name}": {
-                            "level": "INFO",
-                            "handlers": [
-                                "{logger_name}.file",
-                            ],
-                            "propagate": True,
-                        },
-                    },
-                },
             ),
             work_dir=work_dir,
             database=JSONDatabase(
@@ -95,11 +84,19 @@ def get_relay_meta_schedule_output(mod, params, target, dev, datas):
             ),
         )
         logger.info("Finished tuning with meta schedule.")
-    return get_output(rt_mod1, dev, datas)
+        vm = VirtualMachine(vm_exec, dev)
+        vm.set_input("main", **datas)
+        vm_output = vm.run()
+        if isinstance(vm_output, tvm.runtime.container.ADT):
+            expected_output = vmobj_to_list(vm_output, input_dtype)[0]  # only get the first result
+        else:
+            expected_output = vm_output.numpy()
+        return expected_output
 
 
 def run_single_model(model_name, target_str, model_dir):
     sys.stdout = open("/home/yj/tvm/logs/func/" + model_name + "_" + target_str + ".log", "w+")
+    sys.stderr = sys.stdout
     target = (
         Target("llvm --num-cores=8") if target_str == "llvm" else Target("nvidia/geforce-rtx-3070")
     )
@@ -122,77 +119,63 @@ def run_single_model(model_name, target_str, model_dir):
                 np.random.randint(0, 50256, size=input_shape).astype(input_dtype), dev
             )
         else:
-            print(model_name)
-            print(input_dtype)
-            print(input_shape)
             data = tvm.nd.array(np.random.randn(*input_shape).astype(input_dtype), dev)
     datas[input_name] = data
 
     # Check correctness
     try:
         expected_output = get_relay_output(mod, params, target, dev, datas, input_dtype)
-        actual_output = get_relay_meta_schedule_output(mod, params, target, dev, datas)
+        actual_output = get_relay_meta_schedule_output(mod, params, target, dev, datas, input_dtype)
         if np.allclose(actual_output, expected_output, rtol=1e-4, atol=2e-4):
             print("The result is correct!")
         else:
             print(actual_output)
             print(expected_output)
+            print(actual_output.shape)
+            print(expected_output.shape)
             print("not close")
     except Exception as ex:
         print(ex)
     sys.stdout = sys.__stdout__
+    sys.stderr = sys.__stderr__
 
 
-def run_all_models(finished):
+def run_all_models():
     model_dir = "/home/yj/models/"
     docs = yaml.safe_load(open(model_dir + "models.yaml", "r"))
+    need = [
+        # "bert_large_v1_1_fake_quant",
+        # "fbnet-a",
+        # "hf-distilbert-base-uncased",
+        # "hf-facebook-bart-base",
+        # "hf-facebook-bart-large",
+        # "hf-roberta-base",
+        # "shufflenet-v2-12-int8",
+        # "squeezenet1",
+        # "unet",
+        # "ssd",
+        "yolov3",
+        "tiny-yolov3",
+        # "shufflenet",
+        # "candy",
+        # "mosaic",
+        # "pointilism",
+        # "udnie",
+        # "rain-princess",
+    ]
 
-    for entry in docs:
-        model_name = entry["name"]
-        if model_name in finished:
-            continue
+    for model_name in need:
+        # model_set = entry["testset"]
+        # if model_name not in need:
+        #     continue
+        # if model_set == "full-onnx" or model_set == "release-essential-onnx":
         print("running: {}".format(model_name))
-        run_single_model(model_name, "llvm", model_dir)
-        run_single_model(model_name, "cuda", model_dir)
+        try:
+            run_single_model(model_name, "llvm", model_dir)
+            # run_single_model(model_name, "cuda", model_dir)
+        except Exception as ex:
+            print(ex)
 
 
 if __name__ == "__main__":
-    model_dir = "/home/yj/models/"
-    need = ["amd-ssd-mobilenet-v1"]
-    finished = [
-        "amd_resnet50v1",
-        "tiny-yolov3",
-        "yolov3",
-        "ssd",
-        "gpt2",
-        "yolov4",
-        "arcfaceresnet100",
-        "bert",
-        "rcnn-ilsvrc13",
-        "inception-v2",
-        "tinyyolov2",
-        "mobilenetv2",
-        "mnist",
-        "resnet50-v2",
-        "mobilenet_v1_1",
-        "resnet50-v1",
-        "squeezenet1.1",
-        "densenet",
-        "efficientnet-lite4",
-        "fcn-resnet50",
-        "amd-3d-unet",
-        "amd-resnet34-ssd",  # adt issue
-        "amd-ssd-mobilenet-v1",
-        "udnie",
-        "bvlcalexnet",
-        "squeezenet1.0",
-        "zfnet512",
-        "pointilism",
-        "ResNet101-DUC",
-        "shufflenet-v2",
-        "vgg19",
-    ]
-    for model in need:
-        run_single_model(model, "llvm", model_dir)
-        run_single_model(model, "cuda", model_dir)
-    run_all_models(need + finished)
+    run_all_models()

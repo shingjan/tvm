@@ -556,6 +556,7 @@ def tune_relay(
         The built runtime module for the given relay workload.
     """
     # pylint: disable=import-outside-toplevel
+    from tvm import relay
     from tvm.relay import build as relay_build
 
     from .relay_integration import extract_task_from_relay
@@ -585,4 +586,4 @@ def tune_relay(
             opt_level=3,
             config={"relay.backend.use_meta_schedule": True},
         ):
-            return relay_build(mod, target=target, params=params)
+            return relay.vm.compile(mod, target=target, params=params)
