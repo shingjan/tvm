@@ -41,9 +41,11 @@ from ..loops import while_loop
 from ..prelude import Prelude, StaticTensorArrayOps
 from ..ty import Any, TensorType, TupleType
 from . import qnn_torch
-from .common import AttrCvt, get_relay_op, gru_cell, logger
+from .common import AttrCvt, fold_constant, get_relay_op, gru_cell, infer_shape, infer_value, logger
 from .common import infer_shape as _infer_shape
 from .common import infer_value as _infer_value
+from .common import infer_type as _infer_type
+from .common import fold_constant as _fold_constant
 from .common import infer_value_simulated as _infer_value_simulated
 from .common import lstm_cell, try_infer_value, unbind
 from .pytorch_utils import is_version_greater_than, getattr_attr_name
@@ -319,6 +321,42 @@ class PyTorchOpConverter:
     def square(self, inputs, input_types):
         (dtype,) = input_types
         return _op.power(inputs[0], _expr.const(2, dtype))
+
+    def trilu(self, upper, inputs, input_types):
+        data = inputs[0]
+        if len(inputs) == 2:
+            k_value = inputs[1]
+        else:
+            k_value = 0
+        k_tensor = _op.const(np.asarray(k_value), dtype=np.int64)
+
+        input_shape = _op.shape_of(data, input_types[0])
+        input_dims = _infer_shape(input_shape)[0]
+        data_type = _infer_type(data).checked_type.dtype
+        diag_input = _op.zeros(_fold_constant(input_shape), dtype=data_type)
+
+        if upper == 0:  # trli case
+            k1 = _op.add(k_tensor, _op.const(1, dtype="int64"))
+            k1 = _op.expand_dims(k1, axis=0)
+            k2 = _op.take(input_shape, _op.const(input_dims - 1, dtype="int32"))
+            k2 = _op.expand_dims(k2, axis=0)
+        elif upper == 1:  # triu case
+            k1 = _op.take(data, _op.const(input_dims - 2, dtype="int32"))
+            k1 = _op.multiply(k1, _op.const(-1, dtype="int64"))
+            k1 = _op.subtract(k1, _op.const(1, dtype="int64"))
+            k1 = _op.expand_dims(k1, axis=0)
+            k2 = _op.subtract(k_tensor, _op.const(1, dtype="int64"))
+            k2 = _op.expand_dims(k2, axis=0)
+        else:
+            raise ValueError("Upper argument for trilu can only be 0/1.")
+
+        return _op.matrix_set_diag(data, diag_input, k=(0 - input_dims, -1))
+
+    def tril(self, inputs, input_types):
+        return self.trilu(0, inputs, input_types)
+
+    def triu(self, inputs, input_types):
+        return self.trilu(0, inputs, input_types)
 
     def arange(self, inputs, input_types):
         def _get_value(val, dtype):
@@ -702,6 +740,21 @@ class PyTorchOpConverter:
 
         return out
 
+    def new_ones(self, inputs, input_types):
+        size = inputs[1]
+
+        import torch
+
+        if not isinstance(size, (_expr.Expr, list, tuple, torch.Size, np.ndarray)):
+            msg = "Data type %s could not be parsed in ones op" % (type(size))
+            raise AssertionError(msg)
+
+        if inputs[2] is not None:
+            dtype = _convert_dtype_value(inputs[2])
+        else:
+            dtype = input_types[0]
+        return self.full_impl(size, 1, dtype)
+
     def zeros(self, inputs, input_types):
         data = inputs[0]
 
@@ -765,6 +818,33 @@ class PyTorchOpConverter:
             out = _op.cast(out, dtype)
 
         return out
+
+    def new_full(self, inputs, input_types):
+        data = inputs[1]
+        fill_value = inputs[2]
+        import torch
+
+        if not isinstance(data, (_expr.Expr, list, tuple, torch.Size)):
+            msg = "Data type %s could not be parsed in full op" % (type(data))
+            raise AssertionError(msg)
+
+        if inputs[3] is not None:  # dtype given
+            dtype = _convert_dtype_value(inputs[3])
+        else:
+            # if dtype is None, use the dtype of the input tensor
+            dtype = self.infer_type(input[0])
+
+        return self.full_impl(data, fill_value, dtype)
+
+    def fill_(self, inputs, input_types):
+        data = inputs[0]
+        fill_value = inputs[1]
+        print(data)
+        return self.full_impl(self.infer_shape(data), fill_value, input_types[0])
+
+    def copy_(self, inputs, input_types):
+        src = inputs[1]
+        return _op.tensor.copy(src)
 
     def linspace(self, inputs, input_types):
         start = inputs[0]
@@ -852,6 +932,17 @@ class PyTorchOpConverter:
     def silu(self, inputs, input_types):
         data = inputs[0]
         return data * _op.tensor.sigmoid(data)
+
+    def glu(self, inputs, input_types):
+        """
+        Applies the gated linear unit function GLU(a,b)= a * sigmoid(b)
+        where a is the first half of the input matrices and b is the second half.
+        Link: https://pytorch.org/docs/stable/generated/torch.nn.GLU.html
+        """
+        data = inputs[0]
+        dim = inputs[1]
+        relay_tup = _op.transform.split(data, 2, dim)
+        return relay_tup[0] * _op.tensor.sigmoid(relay_tup[1])
 
     def log_sigmoid(self, inputs, input_types):
         data = inputs[0]
@@ -1387,6 +1478,11 @@ class PyTorchOpConverter:
             new_shape = tmp_shape
         return _op.transform.reshape(data, new_shape)
 
+    def reshape_as(self, inputs, input_types):
+        data = inputs[0]
+        new_shape = self.infer_shape(inputs[1])
+        return _op.transform.reshape(data, new_shape)
+
     def pixel_shuffle(self, inputs, input_types):
         data = inputs[0]
         upscale_factor = inputs[1]
@@ -1768,6 +1864,62 @@ class PyTorchOpConverter:
     def none(self, inputs, input_types):
         return None
 
+    def pad(self, inputs, input_types):
+        if len(inputs) > 2:
+            mode = inputs[2]
+        else:
+            mode = "constant"
+        if len(inputs) == 4:
+            pad_value = inputs[3]
+            if pad_value == None:
+                pad_value = 0
+        else:
+            pad_value = 0
+        if mode == "replicate":
+            mode = "edge"
+        elif mode == "circular":
+            raise ValueError("circular mode for torch.nn.functional.pad are not supported in TVM")
+        data = inputs[0]
+        if isinstance(inputs[1], list):
+            pad_list = inputs[1]
+        else:
+            pad_list = list(self.infer_shape(inputs[1]))
+
+        # initialize paddings based on input len
+        pad_len = len(self.infer_shape(data)) * 2
+        paddings = [0] * pad_len
+
+        if len(pad_list) >= 2:
+            paddings[-1] = pad_list[1]
+            paddings[-2] = pad_list[0]
+        if len(pad_list) >= 4:
+            paddings[-3] = pad_list[3]
+            paddings[-4] = pad_list[2]
+        if len(pad_list) >= 6:
+            paddings[-5] = pad_list[5]
+            paddings[-6] = pad_list[4]
+
+        # group into tuple of 2 ints
+        paddings = [paddings[i : i + 2] for i in range(0, len(paddings), 2)]
+
+        const_paddings = []
+        non_zero_found = False
+        for pad in paddings:
+            const_paddings.append([])
+            for p in pad:
+                if not isinstance(p, int):
+                    p = int(_infer_value(p, {}).numpy())
+                const_paddings[-1].append(p)
+                if p != 0:
+                    non_zero_found = True
+
+        if not non_zero_found:
+            return data
+        elif mode == "constant":
+            return _op.nn.pad(data, const_paddings, pad_value=pad_value, pad_mode=mode)
+        else:
+            return _op.nn.pad(data, const_paddings, pad_mode=mode)
+
     def make_pad(self, mode):
         def pad(inputs, input_types):
             data = inputs[0]
@@ -1960,6 +2112,13 @@ class PyTorchOpConverter:
         if str(t0) != str(t1):
             target = _op.cast(target, t0)
         return _op.broadcast_to_like(inputs[0], target)
+
+    def broadcast_tensors(self, inputs, input_types):
+        tensor_list = inputs[0]
+        import torch
+
+        res_shape = list(torch.broadcast_shapes(*[self.infer_shape(t) for t in tensor_list]))
+        return [_op.broadcast_to(tensor, res_shape) for tensor in tensor_list]
 
     def Bool(self, inputs, input_types):
         assert len(inputs) == 1
@@ -2319,6 +2478,14 @@ class PyTorchOpConverter:
         shape = inputs[0]
         return _op.zeros(shape, _convert_dtype_value(inputs[1]))
 
+    def empty_like(self, inputs, input_types):
+        shape = self.infer_shape(inputs[0])
+        if inputs[1] is not None:
+            dtype = _convert_dtype_value(inputs[1])
+        else:
+            dtype = input_types[0]
+        return _op.zeros(shape, dtype)
+
     def bincount(self, inputs, input_types):
         data = inputs[0]
         weights = inputs[1]
@@ -2431,6 +2598,78 @@ class PyTorchOpConverter:
         if weights is None:
             weights = _op.full(_expr.const(1), (num_class,), dtype=input_types[0])
         return _op.nn.nll_loss(predictions, targets, weights, reduction, ignore_index)
+
+    def cross_entropy_loss(self, inputs, input_types):
+        input = inputs[0]
+        target = inputs[1]
+        weights = inputs[2]
+        reduction = inputs[3]
+        ignore_index = inputs[4]
+        label_smoothing = inputs[5]
+        input_shape = self.infer_shape(input)
+        target_shape = self.infer_shape(target)
+        if input_shape != target_shape:
+            if reduction == 0:
+                reduction = "none"
+            elif reduction == 1:
+                reduction = "mean"
+            else:
+                reduction = "sum"
+            num_class = self.infer_shape(input)[1]
+            if weights == None:
+                weights = _op.full(_expr.const(1), (num_class,), dtype=input_types[0])
+            return _op.nn.nll_loss(
+                _op.nn.log_softmax(input), target, weights, reduction, ignore_index
+            )
+        assert reduction == 1, "reduction not supported in cross_entropy_loss"
+        assert ignore_index == -100, "reduce not supported in cross_entropy_loss"
+        assert label_smoothing == 0.0, "label_smoothing not supported in cross_entropy_loss"
+        assert weights is None, "weight not supported in cross_entropy_loss"
+        return _op.nn.cross_entropy_with_logits(_op.nn.log_softmax(input), target)
+
+    def embedding_bag(self, inputs, _):
+        weights, indices, offsets_1d = inputs[0:3]
+        scale_grad_by_freq = inputs[3]
+        mode = inputs[4]
+        sparse = inputs[5]
+        per_sample_weights = inputs[6]
+        include_last_offset = inputs[7]
+        padding_idx = inputs[8]
+
+        assert scale_grad_by_freq == 0, "scale_grad_by_freq not supported in embedding_bag."
+        assert per_sample_weights == None, "per_sample_weights not supported in embedding_bag."
+        assert include_last_offset == 0, "include_last_offset not supported in embedding_bag."
+        assert padding_idx == None, "padding_idx not supported in embedding_bag."
+
+        assert len(infer_shape(indices)) == 1, "Expects 1D indices for aten::embedding_bag."
+
+        offsets_const_fold = fold_constant(offsets_1d)
+        assert isinstance(
+            offsets_const_fold, _expr.Constant
+        ), "Only constant offsets are supported."
+        # offsets_const_fold_val = infer_value(offsets_const_fold, {})
+
+        offsets_np = offsets_const_fold.data.numpy()
+        offsets_diff = np.diff(offsets_np)
+
+        assert np.all(offsets_diff[1:] == offsets_diff[0]), "Only 2D cases supported for now."
+
+        indices_2d = _op.reshape(indices, (-1, offsets_diff[0]))
+
+        mode_map = {0: _op.sum, 1: _op.mean, 2: _op.max}
+        assert mode in mode_map, "unsupported reduction op mode %d." % mode
+
+        reduce_op = mode_map[mode]
+
+        # TOOD(masahi): Implementing embedding_bag in terms of gather and reduce defeats the
+        # purpose of using this op. Implement Relay / topi op for fused gather and reduce.
+        gather = _op.take(weights, indices_2d, axis=0)
+        reduced = reduce_op(gather, 1)
+        # pytorch/aten/src/ATen/native/EmbeddingBag.cpp shows that aten::embedding_bag returns
+        # 4 outputs: output, offset2bag, bag_size, max_indices
+        # The Python version of the op only returns the first output, so we also support only the
+        # first output. If the model uses other outputs, the conversion would fail.
+        return reduced, None, None, None
 
     def flip(self, inputs, input_types):
         data = inputs[0]
@@ -3036,10 +3275,16 @@ class PyTorchOpConverter:
             "aten::addcmul": self.addcmul,
             "aten::ones": self.ones,
             "aten::ones_like": self.ones_like,
+            "aten::new_ones": self.new_ones,
             "aten::zeros": self.zeros,
             "aten::zeros_like": self.zeros_like,
             "aten::full": self.full,
             "aten::full_like": self.full_like,
+            "aten::new_full": self.new_full,
+            "aten::fill_": self.fill_,
+            "aten::copy_": self.copy_,
+            "aten::cross_entropy_loss": self.cross_entropy_loss,
+            "aten::embedding_bag": self.embedding_bag,
             "aten::linspace": self.linspace,
             "aten::reciprocal": self.reciprocal,
             "aten::repeat": self.repeat,
@@ -3064,6 +3309,7 @@ class PyTorchOpConverter:
             "aten::gelu": self.gelu,
             "aten::selu": self.selu,
             "aten::silu": self.silu,
+            "aten::glu": self.glu,
             "aten::log_sigmoid": self.log_sigmoid,
             "aten::adaptive_avg_pool1d": functools.partial(
                 self.adaptive_avg_pool, _op.nn.adaptive_avg_pool1d
@@ -3103,6 +3349,7 @@ class PyTorchOpConverter:
             "aten::size": self.size,
             "aten::view": self.view,
             "aten::reshape": self.reshape,
+            "aten::reshape_as": self.reshape_as,
             "aten::clone": self.clone,
             "aten::log_softmax": self.log_softmax,
             "aten::sigmoid": self.sigmoid,
@@ -3124,6 +3371,7 @@ class PyTorchOpConverter:
             "prim::NumToTensor": self.numtotensor,
             "prim::ImplicitTensorToNum": self.tensortonum,
             "aten::ScalarImplicit": self.tensortonum,
+            "aten::pad": self.pad,
             "aten::constant_pad_nd": self.make_pad("constant"),
             "aten::reflection_pad1d": self.make_pad("reflect"),
             "aten::reflection_pad2d": self.make_pad("reflect"),
@@ -3162,6 +3410,8 @@ class PyTorchOpConverter:
             "aten::sqrt": self.make_unary("sqrt"),
             "aten::rsqrt": self.make_unary("rsqrt"),
             "aten::square": self.square,
+            "aten::tril": self.tril,
+            "aten::triu": self.triu,
             "aten::ceil": self.make_unary("ceil"),
             "aten::floor": self.make_unary("floor"),
             "aten::round": self.make_unary("round"),
@@ -3178,6 +3428,7 @@ class PyTorchOpConverter:
             "aten::upsample_trilinear3d": self.make_upsample3d("linear"),
             "aten::upsample_nearest3d": self.make_upsample3d("nearest_neighbor"),
             "aten::expand_as": self.expand_as,
+            "aten::broadcast_tensors": self.broadcast_tensors,
             "aten::lt": self.make_elemwise("less"),
             "aten::gt": self.make_elemwise("greater"),
             "aten::le": self.make_elemwise("less_equal"),
@@ -3220,6 +3471,7 @@ class PyTorchOpConverter:
             "aten::tensor": self.identity,  # used for example in tensor(1.0)
             "aten::numel": self.numel,
             "aten::empty": self.empty,
+            "aten::empty_like": self.empty_like,
             "aten::bincount": self.bincount,
             "aten::scatter_add": self.scatter_add,
             "aten::__not__": self.logical_not,
@@ -3488,7 +3740,6 @@ class PyTorchOpConverter:
                     relay_op = self.convert_map[operator[:-1]]
                 else:
                     relay_op = self.convert_map[operator]
-
                 relay_out = relay_op(
                     inputs, _get_input_types(op_node, outputs, default_dtype=self.default_dtype)
                 )
@@ -3556,7 +3807,7 @@ def _convert_dtype_value(val):
         3: "torch.int32",
         2: "torch.int16",
         1: "torch.int8",
-        0: "torch.unit8",
+        0: "torch.uint8",
         None: "torch.int64",
     }  # Default is torch.int64
     if val in convert_torch_dtype_map:
@@ -4134,6 +4385,11 @@ def from_pytorch(
         else:
             func_args.append(arg)
     func_args = data_inputs + func_args
+    # print(input_infos)
+    # print(param_vars)
+    # print(tensors)
+    # print(tvm_params)
+    # print(func_args)
 
     mod["main"] = tvm.relay.Function(func_args, ret)
 
