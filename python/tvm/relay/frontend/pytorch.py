@@ -2599,6 +2599,35 @@ class PyTorchOpConverter:
             weights = _op.full(_expr.const(1), (num_class,), dtype=input_types[0])
         return _op.nn.nll_loss(predictions, targets, weights, reduction, ignore_index)
 
+    def l1_loss(self, inputs, input_types):
+        assert len(inputs) == 3
+        [predictions, targets, reduction] = inputs
+        delta = _op.abs(_op.subtract(predictions, targets))
+        if reduction == 0:
+            # reduction = "none"
+            return delta
+        elif reduction == 1:
+            # reduction = "mean"
+            return _op.mean(delta)
+        else:
+            # reduction = "sum"
+            return _op.sum(delta)
+
+    def mse_loss(self, inputs, input_types):
+        assert len(inputs) == 3
+        [predictions, targets, reduction] = inputs
+        delta = _op.subtract(predictions, targets)
+        delta = _op.power(delta, _expr.const(2, input_types[0]))
+        if reduction == 0:
+            # reduction = "none"
+            return delta
+        elif reduction == 1:
+            # reduction = "mean"
+            return _op.mean(delta)
+        else:
+            # reduction = "sum"
+            return _op.sum(delta)
+
     def cross_entropy_loss(self, inputs, input_types):
         input = inputs[0]
         target = inputs[1]
@@ -3486,6 +3515,8 @@ class PyTorchOpConverter:
             "aten::nll_loss": self.nll_loss,
             "aten::nll_loss2d": self.nll_loss,
             "aten::nll_loss_nd": self.nll_loss,
+            "aten::l1_loss": self.l1_loss,
+            "aten::mse_loss": self.mse_loss,
             "aten::flip": self.flip,
             "aten::gru": self.gru,
             "aten::lstm": self.lstm,
