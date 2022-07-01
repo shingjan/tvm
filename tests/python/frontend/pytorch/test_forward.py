@@ -200,7 +200,14 @@ def verify_model(
 
 
 def verify_model_with_input(
-    test_func, input_data, input_dict={}, custom_convert_map={}, rtol=1e-5, atol=1e-5
+    test_func,
+    input_data,
+    *,
+    input_dict={},
+    custom_convert_map={},
+    rtol=1e-5,
+    atol=1e-5,
+    assert_shape_only=False,
 ):
     baseline_outputs = test_func(*input_data)
     trace = torch.jit.trace(test_func, [input.clone() for input in input_data])
@@ -220,9 +227,8 @@ def verify_model_with_input(
 
             compiled_output = relay_model.get_output(0).numpy()
             assert_shapes_match(baseline_outputs, compiled_output)
-            print(baseline_outputs.shape)
-            print(compiled_output.shape)
-            tvm.testing.assert_allclose(baseline_outputs, compiled_output, rtol=rtol, atol=atol)
+            if assert_shape_only == False:
+                tvm.testing.assert_allclose(baseline_outputs, compiled_output, rtol=rtol, atol=atol)
 
 
 # Single operator tests
@@ -1319,7 +1325,7 @@ def test_forward_reshape_as():
 
     input_data = [torch.rand([2, 1, 10, 1, 10]), torch.rand([2, 1, 10, 10])]
 
-    verify_model_with_input(test_func, input_data, {"input0": input_data[0]})
+    verify_model_with_input(test_func, input_data, input_dict={"input0": input_data[0]})
 
 
 @tvm.testing.uses_gpu
@@ -3439,25 +3445,61 @@ def test_forward_unary():
 
 
 @tvm.testing.uses_gpu
+def test_forward_tril():
+    torch.set_grad_enabled(False)
+
+    def test_func(input_data):
+        return torch.tril(input_data)
+
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func, input_data=input_data)
+
+    def test_func1(input_data):
+        return torch.tril(input_data, 1)
+
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func1, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func1, input_data=input_data)
+
+    def test_func2(input_data):
+        return torch.tril(input_data, -1)
+
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func2, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func2, input_data=input_data)
+
+
+@tvm.testing.uses_gpu
 def test_forward_triu():
     torch.set_grad_enabled(False)
 
-    class Triu(Module):
-        def forward(self, *args):
-            return torch.triu(args[0])
+    def test_func(input_data):
+        return torch.triu(input_data)
 
-    input_shape = [3, 3]
-    input_data = torch.rand(input_shape).float()
-    verify_model(Triu().float().eval(), input_data=input_data)
-    input_shape = [1, 3]
-    input_data = torch.rand(input_shape).float()
-    verify_model(Triu().float().eval(), input_data=input_data)
-    input_shape = [3, 1]
-    input_data = torch.rand(input_shape).float()
-    verify_model(Triu().float().eval(), input_data=input_data)
-    input_shape = [1, 3, 10, 10]
-    input_data = torch.rand(input_shape).float()
-    verify_model(Triu().float().eval(), input_data=input_data)
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func, input_data=input_data)
+
+    def test_func1(input_data):
+        return torch.triu(input_data, 1)
+
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func1, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func1, input_data=input_data)
+
+    def test_func2(input_data):
+        return torch.triu(input_data, -1)
+
+    input_data = torch.rand([3, 3]).float()
+    verify_model(test_func2, input_data=input_data)
+    input_data = torch.rand([1, 3, 10, 10]).float()
+    verify_model(test_func2, input_data=input_data)
 
 
 @tvm.testing.uses_gpu
@@ -3854,14 +3896,14 @@ def test_empty():
     def test_func():
         return torch.empty([1, 3, 10, 10])
 
-    verify_model_with_input(test_func, [])
+    verify_model_with_input(test_func, [], assert_shape_only=True)
 
 
 def test_empty_like():
     def test_func(data):
         return torch.empty_like(data)
 
-    verify_model_with_input(test_func, [torch.rand([1, 3, 10, 10])])
+    verify_model_with_input(test_func, [torch.rand([1, 3, 10, 10]).float()], assert_shape_only=True)
 
 
 def test_forward_pretrained_bert_base_uncased():
