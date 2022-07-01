@@ -828,7 +828,6 @@ class PyTorchOpConverter:
     def fill_(self, inputs, input_types):
         data = inputs[0]
         fill_value = inputs[1]
-        print(data)
         return self.full_impl(self.infer_shape(data), fill_value, input_types[0])
 
     def copy_(self, inputs, input_types):
