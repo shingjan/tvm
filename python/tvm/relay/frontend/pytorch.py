@@ -2474,6 +2474,16 @@ class PyTorchOpConverter:
             dtype = input_types[0]
         return _op.zeros(shape, dtype)
 
+    def randn(self, inputs, input_types):
+        shape = inputs[0]
+        print(inputs)
+        print(shape)
+        import time
+
+        output = _op.random.normal(_op.random.threefry_key(int(time.time())), shape)
+        _, values = _expr.TupleWrapper(output, 2)
+        return values
+
     def bincount(self, inputs, input_types):
         data = inputs[0]
         weights = inputs[1]
@@ -3489,6 +3499,7 @@ class PyTorchOpConverter:
             "aten::numel": self.numel,
             "aten::empty": self.empty,
             "aten::empty_like": self.empty_like,
+            "aten::randn": self.randn,
             "aten::bincount": self.bincount,
             "aten::scatter_add": self.scatter_add,
             "aten::__not__": self.logical_not,
