@@ -4544,5 +4544,14 @@ def test_mod():
         verify_model(test_fn, [torch.tensor([1, 2, 3, 4, 5]), torch.tensor(-1.5)])
 
 
+def test_embedding_bag():
+    embedding_matrix = torch.rand(10, 3)
+    inp = torch.tensor([[1, 2, 4, 5], [4, 3, 2, 9], [6, 7, 8, 9]])
+    verify_model(
+        F.embedding_bag,
+        [inp, embedding_matrix],
+    )
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

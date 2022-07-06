@@ -40,7 +40,7 @@ from ..loops import while_loop
 from ..prelude import Prelude, StaticTensorArrayOps
 from ..ty import Any, TensorType, TupleType
 from . import qnn_torch
-from .common import AttrCvt, get_relay_op, gru_cell, logger
+from .common import AttrCvt, fold_constant, get_relay_op, gru_cell, infer_shape, logger
 from .common import infer_shape as _infer_shape
 from .common import infer_value as _infer_value
 from .common import infer_value_simulated as _infer_value_simulated
@@ -826,6 +826,10 @@ class PyTorchOpConverter:
         data = inputs[0]
         fill_value = inputs[1]
         return self.full_impl(self.infer_shape(data), fill_value, input_types[0])
+
+    def copy_(self, inputs, input_types):
+        src = inputs[1]
+        return _op.tensor.copy(src)
 
     def linspace(self, inputs, input_types):
         start = inputs[0]
@@ -3201,6 +3205,61 @@ class PyTorchOpConverter:
             inputs[0], grid, interpolate_str, layout, padding_mode_str, align_corners
         )
 
+    def embedding_bag(self, inputs, _):
+        assert len(inputs) == 9, "embedding_bag needs 9 arguments"
+        (
+            weights,
+            indices,
+            offsets_1d,
+            scale_grad_by_freq,
+            mode,
+            sparse,
+            per_sample_weights,
+            include_last_offset,
+            padding_idx,
+        ) = inputs
+
+        assert scale_grad_by_freq == 0, "scale_grad_by_freq not supported in embedding_bag."
+        assert padding_idx == None, "padding_idx not supported in embedding_bag."
+
+        assert len(infer_shape(indices)) == 1, "Expects 1D indices for aten::embedding_bag."
+
+        offsets_const_fold = fold_constant(offsets_1d)
+
+        assert isinstance(
+            offsets_const_fold, _expr.Constant
+        ), "Only constant offsets are supported."
+
+        offsets_np = offsets_const_fold.data.numpy()
+        if include_last_offset == 1:
+            offsets_np = offsets_np[..., 0]  # exclude last dimension
+        offsets_diff = np.diff(offsets_np)
+
+        assert np.all(offsets_diff[1:] == offsets_diff[0]), "Only 2D cases supported for now."
+
+        indices_2d = _op.reshape(indices, (-1, offsets_diff[0]))
+
+        mode_map = {0: _op.sum, 1: _op.mean, 2: _op.max}
+        assert mode in mode_map, "unsupported reduction op mode %d." % mode
+
+        reduce_op = mode_map[mode]
+
+        # TOOD(masahi): Implementing embedding_bag in terms of gather and reduce defeats the
+        # purpose of using this op. Implement Relay / topi op for fused gather and reduce.
+        gather = _op.take(weights, indices_2d, axis=0)
+        if per_sample_weights is not None:
+            if mode != 0:
+                raise NotImplementedError(
+                    "Only mode 'sum' is supported when per_sample_weights is passed."
+                )
+            gather = gather * per_sample_weights
+        reduced = reduce_op(gather, 1)
+        # pytorch/aten/src/ATen/native/EmbeddingBag.cpp shows that aten::embedding_bag returns
+        # 4 outputs: output, offset2bag, bag_size, max_indices
+        # The Python version of the op only returns the first output, so we also support only the
+        # first output. If the model uses other outputs, the conversion would fail.
+        return reduced, None, None, None
+
     # Operator mappings
     def create_convert_map(self):
         self.convert_map = {
@@ -3236,6 +3295,7 @@ class PyTorchOpConverter:
             "aten::full_like": self.full_like,
             "aten::new_full": self.new_full,
             "aten::fill_": self.fill_,
+            "aten::copy_": self.copy_,
             "aten::linspace": self.linspace,
             "aten::reciprocal": self.reciprocal,
             "aten::repeat": self.repeat,
@@ -3458,6 +3518,7 @@ class PyTorchOpConverter:
             "aten::__ixor__": self.make_elemwise("bitwise_xor"),
             "aten::__lshift__": self.make_elemwise("left_shift"),
             "aten::__rshift__": self.make_elemwise("right_shift"),
+            "aten::embedding_bag": self.embedding_bag,
         }
 
     def update_convert_map(self, custom_map):
