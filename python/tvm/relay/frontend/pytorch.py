@@ -1935,8 +1935,12 @@ class PyTorchOpConverter:
         for pad in paddings:
             const_paddings.append([])
             for p in pad:
-                if not isinstance(p, int):
+                if isinstance(p, _expr.Expr):
                     p = int(_infer_value(p, {}).numpy())
+                elif isinstance(p, float):
+                    p = int(p)
+                elif not isinstance(p, int):
+                    raise NotImplementedError("pad value should be int/float/expr")
                 const_paddings[-1].append(p)
                 if p != 0:
                     non_zero_found = True
@@ -1944,7 +1948,7 @@ class PyTorchOpConverter:
         if not non_zero_found:
             return data
         elif mode == "constant":
-            return _op.nn.pad(data, const_paddings, pad_value=inputs[2], pad_mode=mode)
+            return _op.nn.pad(data, const_paddings, pad_value=pad_value, pad_mode=mode)
         else:
             return _op.nn.pad(data, const_paddings, pad_mode=mode)
 
@@ -2494,6 +2498,12 @@ class PyTorchOpConverter:
         )
 
     def numel(self, inputs, input_types):
+        shape = self.infer_shape(inputs[0])
+        if isinstance(shape, tuple) and isinstance(shape[0], int):
+            res = 1
+            for s in shape:
+                res *= s
+            return _op.const(res, dtype="int32")
         return _op.ndarray_size(inputs[0])
 
     def empty(self, inputs, input_types):
@@ -3223,28 +3233,31 @@ class PyTorchOpConverter:
         assert padding_idx == None, "padding_idx not supported in embedding_bag."
 
         assert len(infer_shape(indices)) == 1, "Expects 1D indices for aten::embedding_bag."
-
+        # print(infer_shape(offsets_1d))
         offsets_const_fold = fold_constant(offsets_1d)
+        # print("before")
+        # print(offsets_1d)
+        # print("after")
+        # print(offsets_const_fold)
+        # print(infer_shape(offsets_const_fold))
+        if isinstance(offsets_const_fold, _expr.Constant):
+            offsets_np = offsets_const_fold.data.numpy()
+            if include_last_offset == 1:
+                offsets_np = offsets_np[..., 0]  # exclude last dimension
+            offsets_diff = np.diff(offsets_np)
 
-        assert isinstance(
-            offsets_const_fold, _expr.Constant
-        ), "Only constant offsets are supported."
+            assert np.all(offsets_diff[1:] == offsets_diff[0]), "Only 2D cases supported for now."
 
-        offsets_np = offsets_const_fold.data.numpy()
-        if include_last_offset == 1:
-            offsets_np = offsets_np[..., 0]  # exclude last dimension
-        offsets_diff = np.diff(offsets_np)
-
-        assert np.all(offsets_diff[1:] == offsets_diff[0]), "Only 2D cases supported for now."
-
-        indices_2d = _op.reshape(indices, (-1, offsets_diff[0]))
+            indices_2d = _op.reshape(indices, (-1, offsets_diff[0]))
+        else:
+            raise ValueError("Only 2D cases supported for now.")
 
         mode_map = {0: _op.sum, 1: _op.mean, 2: _op.max}
         assert mode in mode_map, "unsupported reduction op mode %d." % mode
 
         reduce_op = mode_map[mode]
 
-        # TOOD(masahi): Implementing embedding_bag in terms of gather and reduce defeats the
+        # TODO(masahi): Implementing embedding_bag in terms of gather and reduce defeats the
         # purpose of using this op. Implement Relay / topi op for fused gather and reduce.
         gather = _op.take(weights, indices_2d, axis=0)
         if per_sample_weights is not None:
@@ -4353,6 +4366,7 @@ def from_pytorch(
     outputs = _get_relay_input_vars(
         graph, input_infos, prelude, default_dtype=default_dtype, is_module=is_module
     )
+    print(outputs)
 
     if use_parser_friendly_name:
         new_names = [key.replace(".", "_") for key in params.keys()]
@@ -4402,7 +4416,11 @@ def from_pytorch(
         else:
             func_args.append(arg)
     func_args = data_inputs + func_args
+    print(func_args)
+    print(tvm_params)
 
     mod["main"] = tvm.relay.Function(func_args, ret)
+    print(outputs)
+    print(ret_name)
 
     return transform.RemoveUnusedFunctions()(mod), tvm_params
