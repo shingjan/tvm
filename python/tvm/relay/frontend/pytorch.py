@@ -1892,6 +1892,17 @@ class PyTorchOpConverter:
 
         return out
 
+    def as_strided(self, inputs, input_types):
+        data, size, stride = inputs[0:3]
+        if len(inputs) > 3:
+            storage_offset = inputs[3]
+        else:
+            storage_offset = 0
+        begin = [0, 0]
+        end = self.infer_shape(data)
+        ret = _op.transform.sliding_window(data, 0, size, stride)
+        return ret
+
     def int(self, inputs, input_types):
         if isinstance(inputs[0], _expr.Expr):
             return inputs[0]
@@ -3534,6 +3545,7 @@ class PyTorchOpConverter:
             "aten::matmul": self.matmul,
             "aten::bmm": self.matmul,
             "aten::expand": self.expand,
+            "aten::as_strided": self.as_strided,
             "aten::Int": self.int,
             "prim::NumToTensor": self.numtotensor,
             "prim::ImplicitTensorToNum": self.tensortonum,

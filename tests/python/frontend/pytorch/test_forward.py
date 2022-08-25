@@ -198,7 +198,10 @@ def verify_model(
 
             for i, baseline_output in enumerate(baseline_outputs):
                 output = result[i].numpy()
-
+                print("relay:")
+                print(output)
+                print("pytorch:")
+                print(baseline_output)
                 assert_shapes_match(baseline_output, output)
                 if check_correctness:
                     tvm.testing.assert_allclose(baseline_output, output, rtol=rtol, atol=atol)
@@ -1951,6 +1954,17 @@ def test_forward_expand():
     input_shape = [3, 1]
     input_data = torch.rand(input_shape).float()
     verify_model(Expand2().float().eval(), input_data=input_data)
+
+
+@tvm.testing.uses_gpu
+def test_forward_as_strided():
+    """test_forward_as_strided"""
+
+    def test_func(input_tensor):
+        print(input_tensor)
+        return torch.as_strided(input_tensor, (3, 3), (1, 2))
+
+    verify_model(test_func, input_data=torch.randn(3, 3).float())
 
 
 @tvm.testing.uses_gpu
