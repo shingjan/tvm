@@ -4608,7 +4608,6 @@ def test_mod():
         verify_model(test_fn, [torch.tensor([1, 2, 3, 4, 5]), torch.tensor(-1.5)])
 
 
-<<<<<<< HEAD
 def test_softmax_fuse():
     # https://github.com/apache/tvm/issues/12001
     class Model(torch.nn.Module):
@@ -4686,15 +4685,15 @@ def test_multinomial():
         _test_multinomial(1),
         [torch.rand(size=[4, 5]).float()],
         cpu_only=True,
-        check_correctness=False,
-=======
+    )
+
+
 def test_embedding_bag():
     embedding_matrix = torch.rand(10, 3)
     inp = torch.tensor([[1, 2, 4, 5], [4, 3, 2, 9], [6, 7, 8, 9]])
     verify_model(
         F.embedding_bag,
         [inp, embedding_matrix],
->>>>>>> dfcf28b5d... add copy_ and embedding_bag
     )
 
 

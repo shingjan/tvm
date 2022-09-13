@@ -39,11 +39,7 @@ from ..loops import while_loop
 from ..prelude import Prelude, StaticTensorArrayOps
 from ..ty import Any, TensorType, TupleType
 from . import qnn_torch
-<<<<<<< HEAD
-from .common import AttrCvt, get_relay_op, gru_cell, logger, rnn_cell
-=======
-from .common import AttrCvt, fold_constant, get_relay_op, gru_cell, infer_shape, logger
->>>>>>> dfcf28b5d... add copy_ and embedding_bag
+from .common import AttrCvt, fold_constant, get_relay_op, gru_cell, logger
 from .common import infer_shape as _infer_shape
 from .common import infer_value as _infer_value
 from .common import infer_value_simulated as _infer_value_simulated
@@ -3415,7 +3411,7 @@ class PyTorchOpConverter:
         output = _op.random.multinomial(key, probs, num_samples)
         _, indices = _expr.TupleWrapper(output, 2)
         return indices
-    
+
     def embedding_bag(self, inputs, _):
         assert len(inputs) == 9, "embedding_bag needs 9 arguments"
         (
@@ -3433,10 +3429,10 @@ class PyTorchOpConverter:
         assert scale_grad_by_freq == 0, "scale_grad_by_freq not supported in embedding_bag."
         assert padding_idx == None, "padding_idx not supported in embedding_bag."
 
-        assert len(infer_shape(indices)) == 1, "Expects 1D indices for aten::embedding_bag."
+        assert len(_infer_shape(indices)) == 1, "Expects 1D indices for aten::embedding_bag."
 
         offsets_const_fold = fold_constant(offsets_1d)
-
+        print(offsets_const_fold)
         assert isinstance(
             offsets_const_fold, _expr.Constant
         ), "Only constant offsets are supported."
