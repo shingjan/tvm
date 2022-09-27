@@ -868,6 +868,10 @@ class PyTorchOpConverter:
             fill_value = fold_constant(fill_value)
         return self.full_impl(self.infer_shape(data), fill_value, input_types[0])
 
+    def copy_(self, inputs, input_types):
+        src = inputs[1]
+        return _op.tensor.copy(src)
+
     def linspace(self, inputs, input_types):
         start = inputs[0]
         stop = inputs[1]
@@ -3526,6 +3530,7 @@ class PyTorchOpConverter:
             "aten::full_like": self.full_like,
             "aten::new_full": self.new_full,
             "aten::fill_": self.fill_,
+            "aten::copy_": self.copy_,
             "aten::linspace": self.linspace,
             "aten::reciprocal": self.reciprocal,
             "aten::repeat": self.repeat,
