@@ -27,6 +27,7 @@ import sys
 import numpy as np
 import tvm
 from tvm.ir import IRModule
+from tvm.relay.op.transform import embedding_bag
 from tvm.topi.utils import get_const_tuple
 
 from .. import analysis as _analysis
@@ -4078,7 +4079,12 @@ class PyTorchOpConverter:
                 else:
                     if operator == "aten::embedding_bag":
                         # The node_name of embedding_bag is like "22_23_24_25"
-                        node_name = node_name.split("_")[0]
+                        embedding_bag_outputs = node_name.split("_")
+                        if len(embedding_bag_outputs) != 4:
+                            embedding_bag_outputs = node_name.rsplit("_", 3)
+                        # Warning: only return the first output of embedding_bag
+                        # There will be side effects if other outputs are used
+                        node_name = embedding_bag_outputs[0]
                     outputs[node_name] = relay_out
 
         return [_wrap_const(outputs[ret_name]) for ret_name in ret_names]
