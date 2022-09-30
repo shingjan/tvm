@@ -27,6 +27,7 @@
 #include <tvm/te/operation.h>
 #include <tvm/tir/data_layout.h>
 #include <tvm/tir/index_map.h>
+#include <tvm/tir/op.h>
 #include <tvm/topi/broadcast.h>
 #include <tvm/topi/detail/broadcast.h>
 #include <tvm/topi/detail/constant_utils.h>
@@ -2038,46 +2039,65 @@ inline Tensor embedding_bag(const Tensor& input, const Tensor& weight, const Ten
   auto row = offset->shape[0];
   auto column = weight->shape[1];
 
-  int N = GetConstInt(input->shape[0]);
+  PrimExpr num_embedding = input->shape[0];
   if (include_last_offset) {
     row = row - 1;
   }
 
   Array<PrimExpr> oshape{row, column};
 
-  auto func = [&](tvm::tir::Var i, tvm::tir::Var j) {
-    auto ret = make_zero(dtype);
-    auto count = make_zero(dtype);  // count how many elements are used
+  // auto func = [&](tvm::tir::Var i, tvm::tir::Var j) {
+  //   auto ret = make_zero(dtype);
+  //   auto count = make_zero(dtype);  // count how many elements are used
 
-    auto st = offset(i);  // start point
-    auto ed = tvm::tir::Select(row == i + 1, PrimExpr(N),
-                               cast(DataType::Int(32), offset(i + 1)));  // end point
+  //   auto st = offset(i);  // start point
+  //   auto ed = tvm::tir::Select(row == i + 1, PrimExpr(N),
+  //                              cast(DataType::Int(32), offset(i + 1)));  // end point
 
-    // Use loop iteration here for the lack of `fold` in relay
-    for (auto idx = 0; idx < N; idx++) {
-      auto real_idx = st + idx;
-      auto idx_i = input(real_idx);
-      auto cond = (real_idx < ed) && (idx_i != padding_idx);
-      auto element = weight[idx_i][j] * per_sample_weights[real_idx];
-      if (mode == 0) {  // sum(0)
-        ret = tvm::tir::Select(cond, ret + element, ret);
-      } else if (mode == 1) {  // mean(1)
-        count = tvm::tir::Select(cond, count + 1, count);
-        ret = tvm::tir::Select(cond, ret + element, ret);
-      } else {  // max(2)
-        auto on_true = tvm::tir::Select(count == 0, element, max(ret, element));
-        ret = tvm::tir::Select(cond, on_true, ret);
-        count = tvm::tir::Select(cond, count + 1, count);
-      }
+  // Use loop iteration here for the lack of `fold` in relay
+  //   for (auto idx = 0; idx < GetConstInt(N); idx++) {
+  //     auto real_idx = st + idx;
+  //     auto idx_i = input(real_idx);
+  //     auto cond = (real_idx < ed) && (idx_i != padding_idx);
+  //     auto element = weight[idx_i][j] * per_sample_weights[real_idx];
+  //     if (mode == 0) {  // sum(0)
+  //       ret = tvm::tir::Select(cond, ret + element, ret);
+  //     } else if (mode == 1) {  // mean(1)
+  //       count = tvm::tir::Select(cond, count + 1, count);
+  //       ret = tvm::tir::Select(cond, ret + element, ret);
+  //     } else {  // max(2)
+  //       auto on_true = tvm::tir::Select(count == 0, element, max(ret, element));
+  //       ret = tvm::tir::Select(cond, on_true, ret);
+  //       count = tvm::tir::Select(cond, count + 1, count);
+  //     }
+  //   }
+  //   if (mode == 1) {  // mean
+  //     ret = tvm::topi::divide(ret, count);
+  //   }
+
+  //   return ret;
+  // };
+  auto func1 = [&](tvm::tir::Var bag_idx, tvm::tir::Var embedding_idx) {
+    auto st = offset(bag_idx);  // start point
+    auto ed = tvm::tir::Select(row == bag_idx + 1, num_embedding,
+                               cast(DataType::Int(32), offset(bag_idx + 1)));  // end point
+    auto k = reduce_axis(Range(st, ed), "k");
+    Array<PrimExpr> weight_indices{input(k), embedding_idx};
+    Array<PrimExpr> per_sample_weights_indices{bag_idx};
+    if (mode == 0) {
+      return tvm::sum(weight(weight_indices) * per_sample_weights(per_sample_weights_indices), {k},
+                      {make_zero(dtype)});
+    } else if (mode == 1) {
+      return tvm::sum(
+          weight(weight_indices) * per_sample_weights(per_sample_weights_indices) / num_embedding,
+          {k}, {make_zero(dtype)});
+    } else if (mode == 2) {
+      return tvm::max(weight(weight_indices) * per_sample_weights(per_sample_weights_indices), {k},
+                      {tvm::min_value(dtype)});
     }
-    if (mode == 1) {  // mean
-      ret = tvm::topi::divide(ret, count);
-    }
-
-    return ret;
   };
 
-  return compute(oshape, func, name, tag);
+  return compute(oshape, func1, name, tag);
 }  // namespace topi
 
 }  // namespace topi
