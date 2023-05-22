@@ -18,4 +18,5 @@
 PyTorch Frontends for constructing Relax programs, with the model importers
 """
 from .fx_translator import from_fx
+from .aot_fx_translator import from_aot_fx
 from .dynamo import relax_dynamo, dynamo_capture_subgraphs

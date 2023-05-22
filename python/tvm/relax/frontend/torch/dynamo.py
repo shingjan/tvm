@@ -26,6 +26,7 @@ import tvm
 from tvm.relax import build as relax_build
 
 from .fx_translator import from_fx
+from .aot_fx_translator import from_aot_fx
 
 
 def device_from_inputs(example_inputs):
@@ -140,23 +141,37 @@ def dynamo_capture_subgraphs(model, *params, **kwargs) -> tvm.IRModule:
     import torch  # type: ignore[import]
     from torch import fx  # type: ignore[import]
     from torch import _dynamo as dynamo  # type: ignore[import]
+    from torch._dynamo.backends.common import aot_autograd  # type: ignore[import]
 
     keep_params_as_input = "keep_params_as_input" in kwargs and kwargs["keep_params_as_input"]
     kwargs.pop("keep_params_as_input", None)
+    use_aot_autograd = kwargs.get('aot_autograd', False)
+    kwargs.pop('aot_autograd', None)
     mod = tvm.IRModule()
 
     def _capture(graph_module: fx.GraphModule, example_inputs):
         assert isinstance(graph_module, torch.fx.GraphModule)
         input_info = [(tuple(tensor.shape), str(tensor.dtype)) for tensor in example_inputs]
-        mod_ = from_fx(
-            graph_module,
-            input_info,
-            keep_params_as_input=keep_params_as_input,
-            unwrap_unit_return_tuple=True,
-        )
+
+        if use_aot_autograd:
+            mod_ = from_aot_fx(       
+                graph_module,
+                input_info,
+                keep_params_as_input=keep_params_as_input,
+                unwrap_unit_return_tuple=True,
+            )
+        else:
+            mod_ = from_fx(
+                graph_module,
+                input_info,
+                keep_params_as_input=keep_params_as_input,
+                unwrap_unit_return_tuple=True,
+            )
         mod[f"subgraph_{len(mod.get_global_vars())}"] = mod_["main"]
         return graph_module.forward
 
+    if use_aot_autograd:
+        _capture = aot_autograd(fw_compiler=_capture)
     dynamo.reset()
     compiled_model = torch.compile(model, backend=_capture)
 

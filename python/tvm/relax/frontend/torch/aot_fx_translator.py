@@ -17,7 +17,7 @@
 
 # pylint: disable=invalid-name, inconsistent-return-statements, unidiomatic-typecheck
 # pylint: disable=import-outside-toplevel
-"""PyTorch FX frontend of Relax."""
+"""PyTorch FX AOT autograd frontend of Relax."""
 from typing import Callable, Dict, List, Optional, Tuple, Union
 from functools import reduce
 
@@ -25,8 +25,8 @@ import tvm
 from tvm import relax
 
 
-class TorchFXImporter:
-    """An importer from PyTorch FX to Relax."""
+class AOTFXImporter:
+    """An importer from PyTorch FX with AOT_autograd to Relax."""
 
     import torch  # type: ignore
     from torch import fx
@@ -55,7 +55,7 @@ class TorchFXImporter:
                 )
             attr_itr = getattr(attr_itr, atom)
         if isinstance(attr_itr, torch.Tensor):
-            return TorchFXImporter._convert_torch_tensor_to_relax(attr_itr)
+            return AOTFXImporter._convert_torch_tensor_to_relax(attr_itr)
         return attr_itr
 
     @staticmethod
@@ -83,7 +83,7 @@ class TorchFXImporter:
     @staticmethod
     def _convert_torch_tensor_to_relax(tensor: torch.Tensor) -> relax.Var:
         tensor = tensor.detach().cpu()
-        dtype = TorchFXImporter._convert_data_type(str(tensor.data.dtype))
+        dtype = AOTFXImporter._convert_data_type(str(tensor.data.dtype))
         return relax.const(tensor.data.numpy(), dtype)
 
     @staticmethod
@@ -130,7 +130,7 @@ class TorchFXImporter:
             assert False
 
     def _call_binary_op(self, op, lhs, rhs):
-        lhs, rhs = TorchFXImporter._promote_binary_op_args(lhs, rhs)
+        lhs, rhs = AOTFXImporter._promote_binary_op_args(lhs, rhs)
         return self.block_builder.emit(op(lhs, rhs))
 
     ########## Arithmetic ##########
@@ -279,9 +279,9 @@ class TorchFXImporter:
             start_end_step[2] = 1
 
         if "dtype" in node.kwargs:
-            dtype = TorchFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
+            dtype = AOTFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
         elif any([isinstance(x, float) for x in start_end_step]):
-            dtype = TorchFXImporter._convert_data_type(torch.get_default_dtype())
+            dtype = AOTFXImporter._convert_data_type(torch.get_default_dtype())
         else:
             dtype = "int64"
         start_end_step = [
@@ -290,7 +290,7 @@ class TorchFXImporter:
         return relax.op.arange(*start_end_step, dtype=dtype)
 
     def _empty(self, node: fx.node.Node) -> relax.Var:
-        dtype = TorchFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
+        dtype = AOTFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
         return self.block_builder.emit(relax.op.zeros(node.args, dtype))
 
     def _inplace_fill(self, node: fx.node.Node) -> relax.Var:
@@ -359,9 +359,9 @@ class TorchFXImporter:
             size = (size,)
         size = relax.ShapeExpr(size)
         dtype = (
-            TorchFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
+            AOTFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
             if "dtype" in node.kwargs
-            else TorchFXImporter._convert_data_type(torch.get_default_dtype(), self.env)
+            else AOTFXImporter._convert_data_type(torch.get_default_dtype(), self.env)
         )
         return self.block_builder.emit(
             relax.op.full(
@@ -380,9 +380,9 @@ class TorchFXImporter:
             size = (size,)
         size = relax.ShapeExpr(size)
         dtype = (
-            TorchFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
+            AOTFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
             if "dtype" in node.kwargs
-            else TorchFXImporter._convert_data_type(torch.get_default_dtype(), self.env)
+            else AOTFXImporter._convert_data_type(torch.get_default_dtype(), self.env)
         )
         value = args[1] if isinstance(args[1], relax.expr.Constant) else relax.const(args[1], dtype)
         return self.block_builder.emit(
@@ -419,7 +419,7 @@ class TorchFXImporter:
 
     def _type(self, node: fx.node.Node) -> relax.Var:
         x = self.env[node.args[0]]
-        dtype = TorchFXImporter._convert_data_type(node.args[1], self.env)
+        dtype = AOTFXImporter._convert_data_type(node.args[1], self.env)
         return self.block_builder.emit(relax.op.astype(x, dtype))
 
     def _to(self, node: fx.node.Node) -> relax.Var:
@@ -428,10 +428,10 @@ class TorchFXImporter:
         x = self.env[node.args[0]]
         if len(node.args) == 2:
             if isinstance(node.args[1], torch.dtype):
-                dtype = TorchFXImporter._convert_data_type(node.args[1], self.env)
+                dtype = AOTFXImporter._convert_data_type(node.args[1], self.env)
                 return self.block_builder.emit(relax.op.astype(x, dtype))
         elif "dtype" in node.kwargs:
-            dtype = TorchFXImporter._convert_data_type(node.kwargs["dtype"], self.env)
+            dtype = AOTFXImporter._convert_data_type(node.kwargs["dtype"], self.env)
             return self.block_builder.emit(relax.op.astype(x, dtype))
         return x
 
@@ -568,7 +568,7 @@ class TorchFXImporter:
         else:
             dim = None
         if "dtype" in node.kwargs:
-            dtype = TorchFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
+            dtype = AOTFXImporter._convert_data_type(str(node.kwargs["dtype"]), self.env)
         else:
             dtype = None
         if "out" in node.kwargs:
@@ -783,7 +783,7 @@ class TorchFXImporter:
         module = self.named_modules[node.target]
         weight = self.params[module.weight]
         bias = self.params[module.bias]
-        dtype = TorchFXImporter._convert_data_type(str(module.running_mean.dtype))
+        dtype = AOTFXImporter._convert_data_type(str(module.running_mean.dtype))
         running_mean = relax.const(module.running_mean.cpu().detach().numpy(), dtype)
         running_var = relax.const(module.running_var.cpu().detach().numpy(), dtype)
         eps = module.eps
@@ -802,58 +802,25 @@ class TorchFXImporter:
 
         return self.block_builder.emit(relax.TupleGetItem(res_tuple, 0))
 
-    def _layer_norm(self, node: fx.node.Node) -> relax.Var:
-        import torch  # type: ignore
-        import numpy as np  # type: ignore
+    def _native_layer_norm(self, node: fx.node.Node) -> relax.Var:
+        import numpy as np
 
-        x = self.env[node.args[0]]
-
-        # functional.layer_norm
-        if node.target not in self.named_modules:
-            # static or symbolic
-            normalized_shape = (
-                node.args[1] if type(node.args[1]) == tuple else self.env[node.args[1]]
-            )
-            dim_num = len(normalized_shape)
-            axes = list(range(-dim_num, 0))
-
-            gamma = self.env[node.kwargs["weight"]]
-            beta = node.kwargs["bias"]
-            if beta is None:
-                shape_tuple = [int(s) for s in normalized_shape.values]
-                beta = relax.const(np.zeros(shape_tuple), x.struct_info.dtype)
-            else:
-                beta = self.env[beta]
-            eps = node.kwargs["eps"]
-
-            return self.block_builder.emit(
-                relax.op.nn.layer_norm(
-                    x,
-                    gamma,
-                    beta,
-                    axes=axes,
-                    epsilon=eps,
-                )
-            )
-
-        module = self.named_modules[node.target]
-
-        if module.elementwise_affine:
-            gamma = self.params[module.weight]
-            beta = self.params[module.bias]
-        else:
-            gamma = relax.const(torch.ones_like(module.normalized_shape), x.struct_info.dtype)
-            beta = relax.const(torch.zeros_like(module.normalized_shape), x.struct_info.dtype)
-        dim_num = len(module.normalized_shape)
+        x, normalized_shape, gamma, beta, epsilon = node.args
+        # static or symbolic
+        dim_num = len(normalized_shape)
         axes = list(range(-dim_num, 0))
+
+        if beta is None:
+            shape_tuple = [int(s) for s in normalized_shape.values]
+            beta = relax.const(np.zeros(shape_tuple), x.struct_info.dtype)
 
         return self.block_builder.emit(
             relax.op.nn.layer_norm(
-                x,
-                gamma,
-                beta,
+                self.params[x],
+                self.params[gamma],
+                self.params[beta],
                 axes=axes,
-                epsilon=module.eps,
+                epsilon=epsilon,
             )
         )
 
@@ -1120,7 +1087,7 @@ class TorchFXImporter:
             nn.SiLU: lambda node: self.block_builder.emit(relax.op.nn.silu(self.env[node.args[0]])),
             nn.Flatten: self._flatten,
             nn.BatchNorm2d: self._batch_norm_2d,
-            nn.LayerNorm: self._layer_norm,
+            "native_layer_norm": self._native_layer_norm,
             nn.GroupNorm: self._group_norm,
             nn.Dropout: lambda node: self.env[node.args[0]],
             nn.Identity: lambda node: self.env[node.args[0]],
@@ -1191,7 +1158,7 @@ class TorchFXImporter:
             "to": self._to,
             "avg_pool2d": self._avg_pool2d,
             "adaptive_avg_pool2d": self._adaptive_avg_pool2d(is_module=False),
-            "layer_norm": self._layer_norm,
+            "layer_norm": self._native_layer_norm,
             "index_select": self._index_select,
             "masked_fill": self._masked_fill,
             "ones": self._ones,
@@ -1214,47 +1181,41 @@ class TorchFXImporter:
         no_bind_return_tuple: bool,
     ) -> tvm.IRModule:
         """Convert a PyTorch FX GraphModule to a Relax program."""
+        import torch
         from torch import fx
 
         self.named_modules = dict(model.named_modules())
 
         graph: fx.Graph = model.graph
+
         # Create input variables.
-        inputs = list()
-        for idx, (shape, dtype) in enumerate(input_info):
-            inputs.append(
-                relax.Var(
+        inputs, input_nodes = list(), list()
+        for node in graph.nodes:
+            if node.op == "placeholder":
+                input_nodes.append(node)
+            else:
+                break
+        assert len(input_nodes) == len(input_info), "wrong number of inputs passed"
+        for idx, (node, (shape, dtype)) in enumerate(zip(input_nodes, input_info)):
+            relax_var = relax.Var(
                     f"inp_{idx}", relax.TensorStructInfo(shape, self._convert_data_type(dtype))
                 )
-            )
+            self.params[node] = relax_var
+            inputs.append(relax_var)
+        print(self.params)
+        for idx, (shape, dtype) in enumerate(input_info):
+            var = relax.Var(
+                    f"inp_{idx}", relax.TensorStructInfo(shape, self._convert_data_type(dtype))
+                )
+            inputs.append(var)
 
         # Initialize the block builder with a function and a dataflow block.
         func_name = "main"
         self.block_builder = relax.BlockBuilder()
-        params = []
-        if keep_params_as_input:
-            func_attrs = {"num_input": len(inputs)}
-            for name, param in sorted(model.named_parameters(), key=lambda x: x[0]):
-                shape = param.data.shape
-                dtype = self._convert_data_type(str(param.data.dtype))
-                inputs.append(relax.Var(name, relax.TensorStructInfo(shape, dtype)))
-                self.params[param] = inputs[-1]
-                params.append(tvm.nd.array(param.data.cpu().numpy()))
-        else:
-            func_attrs = None
-        print(self.params)
-        with self.block_builder.function(name=func_name, params=inputs.copy(), attrs=func_attrs):
+
+        with self.block_builder.function(name=func_name, params=inputs.copy(), attrs=None):
             output = None
             with self.block_builder.dataflow():
-                # Translate model parameters.
-                for _, param in model.named_parameters():
-                    shape = param.data.shape
-                    dtype = self._convert_data_type(str(param.data.dtype))
-                    if dtype in ("float32", "float16"):
-                        if not keep_params_as_input:
-                            self.params[param] = relax.const(param.data.cpu().numpy(), dtype)
-                    else:
-                        raise ValueError("Unsupported data type for model parameters: %s" % dtype)
                 # Translate the model.
                 for node in graph.nodes:
                     if node.op == "placeholder":
@@ -1278,13 +1239,9 @@ class TorchFXImporter:
                             output = self.block_builder.emit_output(args[0])
                         break
                     elif node.op == "get_attr":
-                        self.env[node] = TorchFXImporter._fetch_attr(model, node.target)
+                        self.env[node] = AOTFXImporter._fetch_attr(model, node.target)
                     elif node.op == "call_module":
-                        module = self.named_modules[node.target]
-                        assert (
-                            type(module) in self.convert_map
-                        ), f"Unsupported module type {type(module)}"
-                        self.env[node] = self.convert_map[type(module)](node)
+                        assert False, f"call_module {node.target} is not allowed in the AOTFXImporter."
                     elif node.op == "call_function":
                         func_name = node.name.rstrip("0123456789_")
                         assert (
@@ -1307,7 +1264,7 @@ class TorchFXImporter:
         return mod
 
 
-def from_fx(
+def from_aot_fx(
     model,
     input_info: List[Tuple[Tuple[int], str]],
     *,
@@ -1315,7 +1272,7 @@ def from_fx(
     unwrap_unit_return_tuple: bool = False,
     no_bind_return_tuple: bool = False,
 ) -> tvm.IRModule:
-    """Convert a PyTorch FX GraphModule to a Relax program
+    """Convert a PyTorch FX GraphModule after AOT autograd to a Relax program
 
     Parameters
     ----------
@@ -1403,6 +1360,6 @@ def from_fx(
     to print out the tabular representation of the PyTorch module, and then
     check the placeholder rows in the beginning of the tabular.
     """
-    return TorchFXImporter().from_fx(
+    return AOTFXImporter().from_fx(
         model, input_info, keep_params_as_input, unwrap_unit_return_tuple, no_bind_return_tuple
     )
