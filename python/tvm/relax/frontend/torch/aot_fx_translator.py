@@ -540,6 +540,16 @@ class AOTFXImporter:
         else:
             dim = 0
         return self.block_builder.emit(relax.op.split(x, chunks, dim))
+ 
+    def _t(self, node: fx.node.Node) -> relax.Var:
+        input_tensor = self.env[node.args[0]]
+        input_shape = self.shape_of(input_tensor)
+        if len(input_shape) < 2:
+            return input_tensor
+        elif len(input_shape) == 2:
+            return self.block_builder.emit(relax.op.permute_dims(input_tensor, [1, 0]))
+        else:
+            raise ValueError(f"invalid input tensor with more than 2 dimensions for aten._t")
 
     def _transpose(self, node: fx.node.Node) -> relax.Var:
         args = self.retrieve_args(node)
@@ -813,12 +823,14 @@ class AOTFXImporter:
         if beta is None:
             shape_tuple = [int(s) for s in normalized_shape.values]
             beta = relax.const(np.zeros(shape_tuple), x.struct_info.dtype)
+        # This implementation is different from how native_layer_norm is implemented in torch
+        # We need a native layer norm
 
         return self.block_builder.emit(
             relax.op.nn.layer_norm(
-                self.params[x],
-                self.params[gamma],
-                self.params[beta],
+                self.env[x],
+                self.env[gamma],
+                self.env[beta],
                 axes=axes,
                 epsilon=epsilon,
             )
@@ -1023,10 +1035,13 @@ class AOTFXImporter:
             i = 0
             shape = self.shape_of(x)
             non_ellipsis_cnt = 0
-            for index in node.args[1]:
+            indices = node.args[1]
+            if isinstance(indices, (int, slice)):
+                indices = [indices]
+            for index in indices:
                 if isinstance(index, (int, slice)):
                     non_ellipsis_cnt += 1
-            for index in node.args[1]:
+            for index in indices:
                 if isinstance(index, int):
                     begin.append(index)
                     end.append(index + 1)
@@ -1066,12 +1081,35 @@ class AOTFXImporter:
             return relax.const(x.data.numpy()[node.args[1]], dtype)
         else:
             assert False
+    
+    def mock_call_function(self, node):
+        import torch
+        print(f"calling func {node.target}:")
+        args = self.retrieve_args(node)
+        print(args)
+        for arg in args:
+            if isinstance(arg, relax.Expr):
+                print(f"input tensor size: {self.shape_of(arg).values}")
+            else:
+                print(f"input: {arg}")
+        out = node.target(*[torch.randn(self.shape_of(arg).values) if isinstance(arg, relax.Expr) else arg for arg in args])
+        print(f"output shape: {out.shape}")
 
     def create_convert_map(self):
+        import operator
+        from torch import ops
         from torch import nn
         from torch import fx
 
+        aten = ops.aten
+
         self.convert_map: Dict[Union[nn.Module, str], Callable[[fx.node.Node], relax.Var]] = {
+            # python operator
+            operator.getitem: self._getitem,
+            # call_function
+            aten.native_layer_norm.default: self._native_layer_norm,
+            aten.t.default: self._t,
+            aten.view.default: self._reshape,
             # call_module
             nn.Linear: self._linear,
             nn.Conv1d: self._conv1d,
@@ -1087,13 +1125,13 @@ class AOTFXImporter:
             nn.SiLU: lambda node: self.block_builder.emit(relax.op.nn.silu(self.env[node.args[0]])),
             nn.Flatten: self._flatten,
             nn.BatchNorm2d: self._batch_norm_2d,
-            "native_layer_norm": self._native_layer_norm,
+
             nn.GroupNorm: self._group_norm,
             nn.Dropout: lambda node: self.env[node.args[0]],
             nn.Identity: lambda node: self.env[node.args[0]],
             nn.modules.sparse.Embedding: self._embedding,
             nn.CrossEntropyLoss: self._cross_entropy,
-            # call_function and call_method
+            # call_function
             "cos": self._cos,
             "exp": self._exp,
             "sin": self._sin,
@@ -1181,33 +1219,19 @@ class AOTFXImporter:
         no_bind_return_tuple: bool,
     ) -> tvm.IRModule:
         """Convert a PyTorch FX GraphModule to a Relax program."""
-        import torch
         from torch import fx
 
         self.named_modules = dict(model.named_modules())
 
         graph: fx.Graph = model.graph
-
+        print(graph)
         # Create input variables.
-        inputs, input_nodes = list(), list()
-        for node in graph.nodes:
-            if node.op == "placeholder":
-                input_nodes.append(node)
-            else:
-                break
-        assert len(input_nodes) == len(input_info), "wrong number of inputs passed"
-        for idx, (node, (shape, dtype)) in enumerate(zip(input_nodes, input_info)):
+        inputs = list()
+        for idx, (shape, dtype) in enumerate(input_info):
             relax_var = relax.Var(
                     f"inp_{idx}", relax.TensorStructInfo(shape, self._convert_data_type(dtype))
                 )
-            self.params[node] = relax_var
             inputs.append(relax_var)
-        print(self.params)
-        for idx, (shape, dtype) in enumerate(input_info):
-            var = relax.Var(
-                    f"inp_{idx}", relax.TensorStructInfo(shape, self._convert_data_type(dtype))
-                )
-            inputs.append(var)
 
         # Initialize the block builder with a function and a dataflow block.
         func_name = "main"
@@ -1243,25 +1267,19 @@ class AOTFXImporter:
                     elif node.op == "call_module":
                         assert False, f"call_module {node.target} is not allowed in the AOTFXImporter."
                     elif node.op == "call_function":
-                        func_name = node.name.rstrip("0123456789_")
-                        assert (
-                            func_name in self.convert_map
-                        ), f"Unsupported function type {func_name}"
-                        self.env[node] = self.convert_map[func_name](node)
-                    elif node.op == "call_method":
+                        print(node.target)
                         assert (
                             node.target in self.convert_map
-                        ), f"Unsupported function target {node.target}"
+                        ), f"Unsupported function type {node.target}"
                         self.env[node] = self.convert_map[node.target](node)
+                    elif node.op == "call_method":
+                        assert False, f"call_method {node.target} is not allowed in the AOTFXImporter."
                     else:
                         raise ValueError(f"Unsupported op {node.op}")
             assert output is not None
             self.block_builder.emit_func_output(output)
 
-        mod = self.block_builder.get()
-        if keep_params_as_input:
-            mod["main"] = mod["main"].with_attr("params", params)
-        return mod
+        return self.block_builder.get()
 
 
 def from_aot_fx(

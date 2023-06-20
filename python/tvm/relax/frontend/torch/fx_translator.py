@@ -1242,7 +1242,7 @@ class TorchFXImporter:
                 params.append(tvm.nd.array(param.data.cpu().numpy()))
         else:
             func_attrs = None
-        print(self.params)
+
         with self.block_builder.function(name=func_name, params=inputs.copy(), attrs=func_attrs):
             output = None
             with self.block_builder.dataflow():

@@ -152,7 +152,6 @@ def dynamo_capture_subgraphs(model, *params, **kwargs) -> tvm.IRModule:
     def _capture(graph_module: fx.GraphModule, example_inputs):
         assert isinstance(graph_module, torch.fx.GraphModule)
         input_info = [(tuple(tensor.shape), str(tensor.dtype)) for tensor in example_inputs]
-
         if use_aot_autograd:
             mod_ = from_aot_fx(       
                 graph_module,
